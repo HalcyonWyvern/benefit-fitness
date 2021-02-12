@@ -17,7 +17,7 @@
 /out-tsc
 
 # dependencies
-/node_modules
+/server/node_modules
 
 # IDEs and editors
 /.idea
@@ -55,3 +55,4 @@ Thumbs.db
 
 # Env file
 *.env
+
