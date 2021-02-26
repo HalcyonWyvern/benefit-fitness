@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
-const { Schema } = mongoose;
+const mongoose = require("mongoose");
+const Schema  = mongoose.Schema;
 
 const requestSchema = new Schema({
-    userName: {
+    username: {
         type: String,
         required: true
     },
@@ -24,7 +24,7 @@ const requestSchema = new Schema({
     },
     requestedDate: {
         type: Date,
-        required: false
+        required: true
     },
     comments: [{
         body: String,
@@ -33,6 +33,4 @@ const requestSchema = new Schema({
     }]
 });
 
-const Request = mongoose.model('Request', requestSchema);
-
-export default Request;
+module.exports = Request = mongoose.model('requests', requestSchema);

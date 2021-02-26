@@ -2,10 +2,11 @@
   "name": "benefit-server",
   "version": "1.0.0",
   "description": "Backend for the Benefit Fitness application.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nose server.js",
+    "server": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,17 @@
   },
   "homepage": "https://github.com/HalcyonWyvern/benefit-fitness#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "concurrently": "^6.0.0",
     "express": "^4.17.1",
+    "is-empty": "^1.2.0",
     "mongoose": "^5.11.15",
     "mongoose-unique-validator": "^2.0.3",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "validator": "^13.5.2",
+    "jsonwebtoken": "^8.5.1"
   }
 }

@@ -1,10 +1,8 @@
-import mongoose from 'mongoose';
-const { Schema } = mongoose;
+const mongoose = require("mongoose");
+const Schema  = mongoose.Schema;
 
-const exerciseEntry = new Schema({
+const exerciseSchema = new Schema({
     //items here
 });
 
-const Exercise = mongoose.model('Exercise', exerciseEntry);
-
-export default Exercise;
+module.exports = Exercise = mongoose.model("requests", exerciseSchema);
