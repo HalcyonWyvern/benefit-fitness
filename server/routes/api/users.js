@@ -23,6 +23,13 @@ router.post("/register", (req, res) => {
         return res.status(400).json(errors);
     }
 
+    //checks if user is in use before going to check email
+    User.findOne({ username: req.body.username }).then(username => {
+        if (username) {
+            return res.status(400).json({username: "Username in use"});
+        }
+    });
+
     User.findOne({ email: req.body.email }).then(user => {
         if (user) {
             return res.status(400).json({ email: "Account already exists" });
@@ -82,7 +89,7 @@ router.post("/login", (req, res) => {
                 // Create JWT Payload
                 const payload = {
                     id: user.id,
-                    username: user.userName
+                    username: user.username
                 };
 
 // Sign token

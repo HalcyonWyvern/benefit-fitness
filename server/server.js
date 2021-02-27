@@ -11,7 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-
+//MongoDB Connection
 mongoose.connect(db.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -29,9 +29,10 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport") (passport);
 
-// Routes
+// Routes below this
 app.use("/api/users", users);
 
+// Port env is present on stuff like Heroku. OR statement attempts to use this first.
 const port = process.env.PORT || '5000';
 app.set('port', port);
 
