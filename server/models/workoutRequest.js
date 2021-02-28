@@ -3,12 +3,13 @@ const Schema  = mongoose.Schema;
 
 const requestSchema = new Schema({
     requestID: {
-        type: Number,
+        type: Schema.Types.ObjectId,
         index: true,
         unique: true
     },
     username: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'users',
         required: true
     },
     phoneNumber: {
@@ -30,4 +31,4 @@ const requestSchema = new Schema({
     }]
 });
 
-module.exports = Request = mongoose.model('requests', requestSchema);
+module.exports = Request = mongoose.model("requests", requestSchema);

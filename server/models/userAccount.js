@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema  = mongoose.Schema;
 
 const userSchema = new Schema({
+    // Required information section
     username: {
         type: String,
         required: true,
@@ -36,6 +37,8 @@ const userSchema = new Schema({
         required: true,
         default: false
     },
+
+    // Optional Health and Wellness Section
     bio: {
         type: String,
         required: false
@@ -52,6 +55,8 @@ const userSchema = new Schema({
         type: String,
         required: false
     },
+
+    //Address Section
     address: {
         type: String,
         required: true
