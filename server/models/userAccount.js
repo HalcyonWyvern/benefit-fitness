@@ -8,7 +8,8 @@ const userSchema = new Schema({
         required: true,
         unique: true,
         index: true,
-        lowercase: true
+        lowercase: true,
+        trim: true
     },
     email: {
         type: String,
@@ -36,24 +37,6 @@ const userSchema = new Schema({
         type: Boolean,
         required: true,
         default: false
-    },
-
-    // Optional Health and Wellness Section
-    bio: {
-        type: String,
-        required: false
-    },
-    height: {
-        type: String,
-        required: false
-    },
-    weight: {
-        type: String,
-        required: false
-    },
-    exerciseGoal: {
-        type: String,
-        required: false
     },
 
     //Address Section

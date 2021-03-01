@@ -3,6 +3,9 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
+const passport = require("passport");
+const mongoose = require("mongoose");
+mongoose.set('useFindAndModify', false);
 
 // Load User model from models
 const User = require("../../models/userAccount");
@@ -88,7 +91,7 @@ router.post("/login", (req, res) => {
                 // User matched
                 // Create JWT Payload
                 const payload = {
-                    id: user.id,
+                    id: user._id,
                     username: user.username,
                     isAdmin: user.isAdmin
                 };
@@ -115,5 +118,29 @@ router.post("/login", (req, res) => {
         });
     });
 });
+
+// Sorry, Usernames will never be changeable since they're UIDs
+// @route PUT api/users/:id
+// @desc Update an existing User account's information
+// @access Private
+router.put('/:id',
+    //passport.authenticate("jwt", { session: false }),
+   (req, res, next) => {
+        User.findByIdAndUpdate(
+            { _id: req.params.id },
+             req.body,
+            { new : true }
+        )
+            .then(user => {
+                res.json(user);
+            })
+            .catch(err => console.log(err));
+});
+
+
+// @route GET api/users/:id
+// @desc Get All existing users
+// @access Private
+router.get('/')
 
 module.exports = router;

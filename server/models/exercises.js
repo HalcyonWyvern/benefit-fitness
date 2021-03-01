@@ -2,11 +2,6 @@ const mongoose = require("mongoose");
 const Schema  = mongoose.Schema;
 
 const exerciseSchema = new Schema({
-    exerciseID: {
-        type: Schema.Types.ObjectId,
-        index: true,
-        unique: true
-    },
     exerciseName : {
       type: String,
       unique: true,
@@ -27,7 +22,7 @@ const exerciseSchema = new Schema({
         type: Schema.type,
         required: true
     },
-    video: {
+    videoURL: {
         type: String,
         required: false
     }
