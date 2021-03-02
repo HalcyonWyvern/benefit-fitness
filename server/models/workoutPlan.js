@@ -4,12 +4,18 @@ const Schema  = mongoose.Schema;
 const planSchema = new Schema({
     exercises: [{
         type: Schema.Types.ObjectId,
-        ref: "plans",
+        ref: "exercises",
         required: true
     }],
     trainerExplanation: {
         type: String,
-        required: true
+        required: false,
+        default: ""
+    },
+    type: {
+        type: String,
+        required: false,
+        default: "Default Plan Type"
     }
 })
 

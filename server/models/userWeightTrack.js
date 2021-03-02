@@ -7,16 +7,14 @@ const userWeightTrack = new Schema({
         ref: "users",
         required: true
     },
-    weightEntries: [{
-        weight: {
-            type: Number,
-            required: true
-        },
-        date: {
-            type: Date,
-            required: true,
-        }
-    }],
+    weight: {
+        type: Number,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true,
+    }
 });
 
 module.exports = WeightTrackerEntry = mongoose.model("weightTrackers", userWeightTrack);
