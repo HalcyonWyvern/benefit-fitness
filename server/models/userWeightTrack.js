@@ -17,4 +17,4 @@ const userWeightTrack = new Schema({
     }
 });
 
-module.exports = WeightTrackerEntry = mongoose.model("weightTrackers", userWeightTrack);
+module.exports = WeightTracker = mongoose.model("weightTrackers", userWeightTrack);

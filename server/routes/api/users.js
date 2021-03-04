@@ -35,7 +35,7 @@ router.post("/register", (req, res) => {
 
     User.findOne({ email: req.body.email }).then(user => {
         if (user) {
-            return res.status(400).json({ email: "Account already exists" });
+            return res.status(400).json({ email: "Email already in use" });
         } else {
             const newUser = new User({
                 username: req.body.username,
@@ -124,8 +124,8 @@ router.post("/login", (req, res) => {
 // @desc Update an existing User account's information
 // @access Private
 router.put('/:id',
-    //passport.authenticate("jwt", { session: false }),
-   (req, res, next) => {
+    passport.authenticate("jwt", { session: false }),
+   (req, res) => {
         User.findByIdAndUpdate(
             { _id: req.params.id },
              req.body,
@@ -139,8 +139,14 @@ router.put('/:id',
 
 
 // @route GET api/users/:id
-// @desc Get All existing users
+// @desc Get USER by _id
 // @access Private
-router.get('/')
+router.get('/:id', (req, res) => {
+
+});
+
+//@route GET api/users
+//@desc list all USERS
+//@access Private
 
 module.exports = router;

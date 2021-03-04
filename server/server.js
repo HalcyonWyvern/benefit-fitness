@@ -5,15 +5,21 @@ const mongoose = require('mongoose');
 const db = require('./config/keys');
 const passport = require("passport");
 
+//APIs because I didn't use an index lol
 const users = require("./routes/api/users");
 const requests = require("./routes/api/requests");
 const plans = require("./routes/api/plans");
 const exercises = require("./routes/api/plans");
+const nutrition = require("./routes/api/nutrition");
+const userplan = require("./routes/api/userplan");
+const weight = require("./routes/api/weight");
+const profile = require("./routes/api/profile");
+
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 //MongoDB Connection
 mongoose.connect(db.mongoURI, {
@@ -38,6 +44,10 @@ app.use("/api/users", users);
 app.use("/api/requests", requests);
 app.use("/api/plans", plans);
 app.use("/api/exercises", exercises);
+app.use("/api/nutrition", nutrition);
+app.use("/api/userplan", userplan);
+app.use("/api/weight", weight);
+app.use("/api/profile", profile);
 
 // Port env is present on stuff like Heroku. OR statement attempts to use this first.
 const port = process.env.PORT || '5000';

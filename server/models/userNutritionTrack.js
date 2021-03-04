@@ -25,4 +25,4 @@ const userNutritionTrack = new Schema({
     }]
 });
 
-module.exports = NutritionTrackerEntry = mongoose.model("nutritionTrackers", userNutritionTrack);
+module.exports = NutritionTracker = mongoose.model("nutritionTrackers", userNutritionTrack);

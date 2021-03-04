@@ -3,7 +3,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 
-const NutritionTracker = require("../../models/userNutritionTrack");
+const UserPlan = require("../../models/userPlan");
 
 //RESTful API below this
 

@@ -18,4 +18,4 @@ const userPlanSchema = new Schema({
         default: ""
     }
 });
-module.exports = UserPlan = mongoose.model("userPlans", userPlanSchema);
+module.exports = UserPlan = mongoose.model("userplans", userPlanSchema);

@@ -28,16 +28,12 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    isAdmin: {
-        type: Boolean,
+    role: {
+        type: String,
         required: true,
-        default: false
+        default: "User"
     },
-    isTrainer: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
+
 
     //Address Section
     address: {
