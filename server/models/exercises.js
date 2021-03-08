@@ -3,28 +3,33 @@ const Schema  = mongoose.Schema;
 
 const exerciseSchema = new Schema({
     exerciseName : {
-      type: String,
-      unique: true,
+        type: String,
+        unique: true,
+        required: true
     },
     equipment: {
         type: String,
         required: true
     },
     sets: {
-        type: Number,
+        type: String,
         required: true
     },
     reps: {
-        type: Number,
+        type: String,
         required: true
     },
     exerciseType: {
-        type: Schema.type,
+        type: String,
         required: true
     },
     videoURL: {
         type: String,
         required: false
+    },
+    instructions: {
+        type: String,
+        required: true
     }
 });
 
