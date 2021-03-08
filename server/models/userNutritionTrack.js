@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema  = mongoose.Schema;
 
+//UNUSED SCHEMA
 const userNutritionTrack = new Schema({
     user: {
         type: Schema.Types.ObjectId,

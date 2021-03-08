@@ -14,6 +14,9 @@ const User = require("../../models/userAccount");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
+//load isAdmin guard util
+const isAdmin = require("../../middlewares/isAdmin");
+
 // @route POST api/users/register
 // @desc Register user
 // @access Public
@@ -26,16 +29,9 @@ router.post("/register", (req, res) => {
         return res.status(400).json(errors);
     }
 
-    //checks if user is in use before going to check email
-    User.findOne({ username: req.body.username }).then(username => {
-        if (username) {
-            return res.status(400).json({username: "Username in use"});
-        }
-    });
-
-    User.findOne({ email: req.body.email }).then(user => {
+    User.findOne({ email: req.body.email, username: req.body.username }).then(user => {
         if (user) {
-            return res.status(400).json({ email: "Email already in use" });
+            return res.status(400).json({ email: "Account already in use", username: "Username already in use." });
         } else {
             const newUser = new User({
                 username: req.body.username,
@@ -101,7 +97,7 @@ router.post("/login", (req, res) => {
                     payload,
                     keys.secretOrKey,
                     {
-                        expiresIn: 31556926 // 1 year in seconds
+                        expiresIn: 2592000 // 1 year in seconds
                     },
                     (err, token) => {
                         res.json({
@@ -119,7 +115,6 @@ router.post("/login", (req, res) => {
     });
 });
 
-// Sorry, Usernames will never be changeable since they're UIDs
 // @route PUT api/users/:id
 // @desc Update an existing User account's information
 // @access Private
@@ -141,12 +136,40 @@ router.put('/:id',
 // @route GET api/users/:id
 // @desc Get USER by _id
 // @access Private
-router.get('/:id', (req, res) => {
-
+router.get('/:id',
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+    User.findById({ _id: req.params.id })
+        .then(user => {
+            res.json(user);
+        })
 });
 
 //@route GET api/users
 //@desc list all USERS
 //@access Private
+router.get('/',
+    //[passport.authenticate("jwt", { session: false }), isAdmin],
+    (req, res) => {
+    User.find()
+        .sort({ username: -1 }) //Sort by descending username
+        .then(user => res.json(user));
+});
+
+//@route DELETE api/users/:id
+//@desc delete a user by their _id (as parameter)
+//@access Private
+router.delete('/:id',
+    //[passport.authenticate("jwt", { session: false }), isAdmin],
+    (req, res) => {
+    User.findByIdAndDelete({ _id: req.params.id })
+        .then(user => {
+            res.json({ user, success: true})
+        })
+        .catch(err => {
+            res.status(404).json({ success: false })
+            console.log(err)
+        })
+});
 
 module.exports = router;

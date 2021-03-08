@@ -28,10 +28,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    role: {
-        type: String,
+    isAdmin: {
+        type: Boolean,
         required: true,
-        default: "User"
+        default: false
     },
 
 
