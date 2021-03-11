@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema  = mongoose.Schema;
 
 const requestSchema = new Schema({
-    username: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'users',
         required: true
@@ -19,11 +19,15 @@ const requestSchema = new Schema({
         type: Date,
         required: true
     },
-    comments: [{
-        body: String,
-        date: Date,
-        required: false
-    }]
+    comments: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    contactMethod: {
+        type: String,
+        required: true
+    }
 });
 
 module.exports = Request = mongoose.model("requests", requestSchema);
