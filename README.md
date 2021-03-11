@@ -2,7 +2,7 @@
   Web Application built using MongoDB, Express, React, and Node.
 
 
-## Contributing
+## Contributing -- Please Read
 
 1. Fork the repo (<https://github.com/HalcyonWyvern/sturgeon-site>)
 2. Create your feature branch (`git checkout -b feature/exampleOne`)
