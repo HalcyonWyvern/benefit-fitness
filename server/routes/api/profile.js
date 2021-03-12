@@ -16,7 +16,7 @@ router.post("/create/:username", (req, res) => {
         if (user) {
             Profile.findOne({user: user}).then(profile => {
                 if (profile) {
-                    return res.status(400).json({user: "User Profile already exists!"})
+                    return res.status(404).json({user: "User Profile already exists!"})
                 } else {
                     const newProfile = new Profile({
                         user: user,
