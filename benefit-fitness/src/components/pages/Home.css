@@ -9,7 +9,7 @@ video
 
 .hero-container
 {
-    background: url('images/BenefitBackground.png') center
+    background: url('../images/BenefitBackground.png') center
     center/cover no-repeat;
     height: 100vh;
     width: 100%;
