@@ -12,19 +12,21 @@ const isAdmin = require("../../middlewares/isAdmin");
 // @desc Create a new trainer request
 // @access Private [User+]
 router.post("/", (req,res) => {
-    const newRequest = new Request({
-        user: req.body.user,
-        phoneNumber: req.body.phoneNumber,
-        requestType: req.body.requestType,
-        requestedDate: req.body.requestedDate,
-        comments: req.body.comments,
-        contactMethod: req.body.contactMethod
-    });
+    User.findOne({ username: req.body.user }).then(user => {
+        const newRequest = new Request({
+            user: user,
+            phoneNumber: req.body.phoneNumber,
+            requestType: req.body.requestType,
+            requestedDate: req.body.requestedDate,
+            comments: req.body.comments,
+            contactMethod: req.body.contactMethod
+        });
 
-    newRequest
-        .save()
-        .then(request => res.json(request))
-        .catch(err => console.log(err));
+        newRequest
+            .save()
+            .then(request => res.json(request))
+            .catch(err => console.log(err));
+    })
 });
 
 
@@ -54,7 +56,9 @@ router.get("/user/:id",
 // @route GET api/requests/user/
 // @desc Get all requests from one user by inputting their username
 // @access Private
-router.get("/user", (req, res) =>{
+router.get("/user",
+    [passport.authenticate("jwt", { session: false }), isAdmin],
+    (req, res) =>{
     User.findOne({ username: req.body.username }).then(user => {
         Request.find({ user: user})
             .populate("user", "email")
@@ -65,7 +69,9 @@ router.get("/user", (req, res) =>{
 // @route PUT api/requests/:id
 // @desc Update request by _id
 // @access Private
-router.put("/:id", (req, res) => {
+router.put("/:id",
+    [passport.authenticate("jwt", { session: false }), isAdmin],
+    (req, res) => {
     Request.findByIdAndUpdate(
         {_id: req.params.id},
         req.body,
@@ -80,7 +86,9 @@ router.put("/:id", (req, res) => {
 // @route DELETE api/requests/:id
 // @desc Delete request by _id
 // @access Private
-router.delete("/:id", (req, res) => {
+router.delete("/:id",
+    [passport.authenticate("jwt", { session: false }), isAdmin],
+    (req, res) => {
     Request.findByIdAndDelete({ _id: req.params.id })
         .then(request => {
             res.json({ request, success: true})

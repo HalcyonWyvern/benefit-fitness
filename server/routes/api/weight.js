@@ -12,7 +12,9 @@ const isAdmin = require("../../middlewares/isAdmin");
 // @route POST api/weight/create/:username
 // @desc Create weight tracker for user (Done only once per user)
 // @access Private
-router.post("/create/:username", (req, res) => {
+router.post("/create/:username",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
     User.findOne({username : req.params.username}).then(user => {
         if(user) {
             WeightTracker.findOne({user: user}).then(weight => {
@@ -41,12 +43,16 @@ router.post("/create/:username", (req, res) => {
 // @route GET api/weight/:username
 // @desc GET weight information for user
 // @access Private
-router.get("/:username", (req,res) => {
+router.get("/:username",
+    passport.authenticate("jwt", { session: false }),
+    (req,res) => {
     User.findOne({username: req.params.username}).then(user =>{
         if(user) {
             WeightTracker.findOne({user: user})
                 .populate("user", "firstName lastName")
-                .then(weight => res.json(weight))
+                .then(weight => {
+                    res.json(weight)
+                });
         } else {
             res.status(404).json({user: "Username not found"})
         }
@@ -56,7 +62,9 @@ router.get("/:username", (req,res) => {
 // @route PUT api/weight/:username
 // @desc Add Weight to weight tracker
 // @access Private
-router.put("/:username", (req, res) => {
+router.put("/:username",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
     User.findOne({username: req.params.username}).then(user => {
         if (user) {
             WeightTracker.findOne({user: user}).then(weight => {
@@ -78,8 +86,10 @@ router.put("/:username", (req, res) => {
 });
 
 // @route DELETE api/weight/:id
-// @desc Delete weightTrack entry in user's weight tracker
+// @desc Delete weight entry in user's weight tracker
 // @access Private
 // TODO
+// Not really necessary unless we want it
+// Also a really big pain in the ass to deal with.
 
 module.exports = router;

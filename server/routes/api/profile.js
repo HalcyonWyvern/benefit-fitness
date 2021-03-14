@@ -11,7 +11,9 @@ const isAdmin = require("../../middlewares/isAdmin");
 // @route POST api/profile/create
 // @desc Create profile for user (Done only once per user)
 // @access Private
-router.post("/create/:username", (req, res) => {
+router.post("/create/:username",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
     User.findOne({username: req.params.username}).then(user => {
         if (user) {
             Profile.findOne({user: user}).then(profile => {
@@ -41,7 +43,9 @@ router.post("/create/:username", (req, res) => {
 //@route GET api/profile/:username
 //@desc Get a user profile by their username
 //@access Private
-router.get("/:username", (req, res) => {
+router.get("/:username",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
     User.findOne({ username: req.params.username }).then(user => {
         if(user) {
             Profile.find({user: user})
@@ -57,7 +61,9 @@ router.get("/:username", (req, res) => {
 //@route PUT api/profile/:username
 //@desc Update profile by ID
 //@access Private
-router.put("/:username", (req, res) => {
+router.put("/:username",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
     User.findOne({username: req.params.username}).then(user => {
         if (user) {
             Profile.findOneAndUpdate(

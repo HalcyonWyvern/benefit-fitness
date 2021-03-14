@@ -4,13 +4,15 @@ const Schema  = mongoose.Schema;
 const planSchema = new Schema({
     name: {
         type: String,
-        required: true
-
+        required: true,
+        index: true
     },
     exercises: [{
-        type: Schema.Types.ObjectId,
-        ref: "exercises",
-        required: true
+        exercise: {
+            type: Schema.Types.ObjectId,
+            ref: "exercises",
+            required: true
+        }
     }],
     trainerExplanation: {
         type: String,
