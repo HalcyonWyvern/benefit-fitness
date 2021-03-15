@@ -4,6 +4,7 @@ const http = require('http');
 const mongoose = require('mongoose');
 const db = require('./config/keys');
 const passport = require("passport");
+const base = require("./routes/base.route");
 
 //APIs because I didn't use an index lol
 const users = require("./routes/api/users");
@@ -46,6 +47,7 @@ app.use("/api/exercises", exercises);
 app.use("/api/userplan", userplan);
 app.use("/api/weight", weight);
 app.use("/api/profile", profile);
+app.use("/", base);
 
 // Port env is present on stuff like Heroku. OR statement attempts to use this first.
 const port = process.env.PORT || '5000';

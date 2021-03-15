@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "classnames": "^2.2.6",
+    "concurrently": "^6.0.0",
     "flow-bin": "^0.145.0",
     "jwt-decode": "^3.1.2",
     "node-sass": "^5.0.0",
@@ -27,8 +28,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "flow": "flow"
+    "flow": "flow",
+    "server": "nodemon start ../server/server.js",
+    "client": "npm start",
+    "dev": "concurrently \"npm run server\" \"npm start\""
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": [
       "react-app",
