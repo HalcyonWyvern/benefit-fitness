@@ -29,13 +29,13 @@ router.post("/register", (req, res) => {
         return res.status(400).json(errors);
     }
 
-    User.findOne({ email: req.body.email, username: req.body.username }).then(user => {
+    User.findOne({ email: req.body.email.toLowerCase(), username: req.body.username.toLowerCase() }).then(user => {
         if (user) {
             return res.status(400).json({ email: "Account already in use", username: "Username already in use." });
         } else {
             const newUser = new User({
-                username: req.body.username,
-                email: req.body.email,
+                username: req.body.username.toLowerCase(),
+                email: req.body.email.toLowerCase(),
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 address: req.body.address,
