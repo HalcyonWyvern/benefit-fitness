@@ -38,19 +38,23 @@ const userSchema = new Schema({
     //Address Section
     address: {
         type: String,
-        required: true
+        required: true,
+        default: ""
     },
     city: {
         type: String,
-        required: true
+        required: true,
+        default: ""
     },
     state: {
         type: String,
-        required: true
+        required: true,
+        default: ""
     },
     zip: {
         type: String,
-        required: true
+        required: true,
+        default: ""
     }
 }, {
     timestamps: true

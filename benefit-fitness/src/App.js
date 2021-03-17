@@ -1,23 +1,24 @@
-import './App.css';
-import Navbar from "./components/Navbar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from './components/pages/Home';
-import Navbar2 from "./components/Navbar2";
-import Login from "./components/pages/Login";
+import React, { Component } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <>
-      <Router>
-        <Navbar2 />
-        <Switch>
-          <Route path='/' exact component={Login} />
-          <Route path={'/home'} exact component={Home}/>
-        </Switch>
-      </Router>
+import Navbar from "./components/layout/Navbar";
+import Landing from "./components/layout/Landing";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
 
-    </>
-  );
+class App extends Component {
+    render() {
+        return (
+                <Router>
+                    <div className="App">
+                        <Navbar/>
+                        <Route exact path="/" component={Landing}/>
+                        <Route exact path="/register" component={Register}/>
+                        <Route exact path="/login" component={Login}/>
+                    </div>
+                </Router>
+        );
+    }
 }
-
 export default App;
