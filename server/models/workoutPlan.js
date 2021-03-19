@@ -8,11 +8,9 @@ const planSchema = new Schema({
         index: true
     },
     exercises: [{
-        exercise: {
             type: Schema.Types.ObjectId,
             ref: "exercises",
             required: true
-        }
     }],
     trainerExplanation: {
         type: String,

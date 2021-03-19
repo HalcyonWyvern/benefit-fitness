@@ -11,7 +11,7 @@ const isAdmin = require("../../middlewares/isAdmin");
 
 // @route POST api/plans
 // @desc Create a new (EMPTY) Workout Plan
-// @desc API for adding plans is below! PUT method inserts following exercises.
+// @desc API for adding plans is below! PUT method ADDS EXERCISES.
 // @access Private
 router.post("/",
     [passport.authenticate("jwt", { session: false }), isAdmin],
@@ -22,9 +22,6 @@ router.post("/",
                 name: req.body.name,
                 trainerExplanation: req.body.trainerExplanation,
                 type: req.body.type,
-                exercises: [{
-                    exercise: exercise
-                }]
             })
             newPlan
                 .save()
@@ -45,7 +42,7 @@ router.get("/",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
     Plan.find()
-        .populate("exercises.exercise", "exerciseName")
+        .populate("exercises", "exerciseName")
         .sort({ type: -1 }) // descending order
         .then(plans => res.json(plans));
 });
@@ -85,18 +82,19 @@ router.put("/add/:id",
     (req, res) => {
     Exercise.findOne({exerciseName: req.body.exercise}).then(exercise => {
         if(exercise) {
-            Plan.findById({_id: req.params.id})
+            Plan.findByIdAndUpdate(
+                {_id: req.params.id},
+                {
+                    $push: {
+                        exercises: exercise
+                    }
+                },
+                {new: true}
+                )
+                .populate("exercises", "exerciseName")
                 .then(plan => {
-                    plan.exercises.push({
-                        exercise: exercise
+                        res.json(plan)
                     })
-                    plan
-                        .populate("exercises.exercise", "exerciseName")
-                        .save()
-                        .then(plan => {
-                            res.json(plan);
-                    })
-                })
                 .catch(err => console.log(err));
         } else {
             return res.status(404).json({exercise: "Exercise not found!"})
@@ -107,7 +105,31 @@ router.put("/add/:id",
 // @route PUT api/plans/remove/:id
 // @desc Remove exercise from plan by exercise name
 // @access Private
+// Currently not working. I'll fix if we add this
 // TODO
-// Another pain in the ass. Just use the delete button and start fresh, honestly.
+router.put("/remove/:id",
+    [passport.authenticate("jwt", { session: false }), isAdmin],
+    (req, res) => {
+        Exercise.findOne({exerciseName: req.body.exercise}).then(exercise => {
+            if(exercise) {
+                Plan.findByIdAndUpdate(
+                    {_id: req.params.id},
+                    {
+                        $pull: {
+                            exercises: exercise
+                        }
+                    },
+                    {new: true}
+                )
+                    .populate("exercises", "exerciseName")
+                    .then(plan => {
+                        res.json(plan)
+                    })
+                    .catch(err => console.log(err));
+            } else {
+                return res.status(404).json({exercise: "Exercise not found!"})
+            }
+        })
+    })
 
 module.exports = router;
