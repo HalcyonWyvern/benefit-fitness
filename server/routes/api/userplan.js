@@ -18,7 +18,7 @@ router.post("/",
     (req, res) => {
     User.findOne({username: req.body.username}).then(user => {
         if(user) {
-            Plan.findOne({name: req.body.name}).then(plan => {
+            Plan.findOne({name: req.body.plan}).then(plan => {
                 if(plan) {
                     const newUPLan = new UserPlan({
                         user: user,
