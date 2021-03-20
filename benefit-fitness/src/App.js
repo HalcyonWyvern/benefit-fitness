@@ -7,12 +7,20 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import {Provider} from "react-redux";
 import store from "./store";
 
-import Navbar from "./components/layout/Navbar";
+import Header from "./components/layout/Header";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth_pages/Register";
 import Login from "./components/auth_pages/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
+
+//under components/pages
 import Dashboard from "./components/dashboard/Dashboard";
+import About from "./components/pages/About";
+import Exercises from "./components/pages/Exercises";
+import Plans from "./components/pages/Plans";
+import UserPlans from "./components/pages/UserPlans";
+import Admin from "./components/pages/Admin";
+import Contact from "./components/pages/Contact";
 
 // Check for JWT token to keep user logged in
 if (localStorage.jwtToken) {
@@ -41,12 +49,18 @@ class App extends Component {
             <Provider store={store}>
                 <Router>
                     <div className="App">
-                        <Navbar/>
+                        <Header />
                         <Route exact path="/" component={Landing}/>
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/login" component={Login}/>
                         <Switch>
                             <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+                            <PrivateRoute exact path="/exercises" component={Exercises}/>
+                            <PrivateRoute exact path="/plans" component={Plans}/>
+                            <PrivateRoute exact path="/userplans" component={UserPlans}/>
+                            <PrivateRoute exact path="/about" component={About}/>
+                            <PrivateRoute exact path="/contact" component={Contact}/>
+                            <PrivateRoute exact path="/admin" component={Admin}/>
                         </Switch>
                     </div>
                 </Router>
