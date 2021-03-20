@@ -137,7 +137,7 @@ router.put('/:id',
 // @desc Get USER by _id
 // @access Private
 router.get('/:id',
-    [passport.authenticate("jwt", { session: false }), isAdmin],
+    passport.authenticate("jwt", { session: false }),
     (req, res) => {
     User.findById({ _id: req.params.id })
         .then(user => {
@@ -149,7 +149,7 @@ router.get('/:id',
 //@desc list all USERS
 //@access Private
 router.get('/',
-    [passport.authenticate("jwt", { session: false }), isAdmin],
+    passport.authenticate("jwt", { session: false }),
     (req, res) => {
     User.find()
         .sort({ username: -1 }) //Sort by descending username
