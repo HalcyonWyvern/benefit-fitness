@@ -12,7 +12,7 @@ class Header extends Component {
                     <Navbar className="border-bottom" bg="transparent" expand="lg">
                         <Navbar.Brand as={Link} to="/">
                             <img
-                                alt""
+                                alt=""
                                 src={bannerLogo}
                                 width="40"
                                 height="40"
