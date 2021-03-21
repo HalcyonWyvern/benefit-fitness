@@ -13,6 +13,7 @@ import Landing from "./components/layout/Landing";
 import Register from "./components/auth_pages/Register";
 import Login from "./components/auth_pages/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
+import AdminRoute from "./components/private-route/AdminRoute";
 
 //under components/pages
 import Dashboard from "./components/dashboard/Dashboard";
@@ -63,7 +64,7 @@ class App extends Component {
                             <PrivateRoute exact path="/userplans" component={UserPlans}/>
                             <PrivateRoute exact path="/about" component={About}/>
                             <PrivateRoute exact path="/contact" component={Contact}/>
-                            <PrivateRoute exact path="/admin" component={Admin}/>
+                            <AdminRoute exact path="/admin" component={Admin}/>
                         </Switch>
                     </div>
                 </Router>
