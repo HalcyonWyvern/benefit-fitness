@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import {Container, Nav, Navbar,} from "react-bootstrap";
 import bannerLogo2 from '../images/BenefitLogo2.png';
-import Tweety from '../images/Tweety1.png';
+import Facebooky from '../images/Facebook.png'
 import Insta from '../images/Insta1.jpg'
 
 
@@ -26,31 +26,31 @@ class Footer extends Component {
                         <Nav.Item>
                             Phone: (314) 800-7051
                         </Nav.Item>
-                        <Link className="pl-3">
+                        <Nav.Item className="pl-3">
                             Email: sam@benefitfitness.org
-                        </Link>
+                        </Nav.Item>
                         <Nav.Item className="pl-3">
                             Follow us:
-                            <Link>
+                            <a target="_blank" href="https://m.facebook.com/benefit.ngo/" >
                                 {'  '}
                                 <img
                                     className="rounded-circle d-inline-block align-self-center"
                                     alt="100x100"
-                                    src={Tweety}
+                                    src={Facebooky}
                                     width="30"
                                     height="30"
                                 />
-                            </Link>
-                            <Link>
+                            </a>
+                            <a target="_blank" href="https://www.instagram.com/benefit.fitness/">
                                 {'  '}
                                 <img
-                                    className="rounded d-inline-block align-self-center"
+                                    className="rounded-circle d-inline-block align-self-center"
                                     alt="100x100"
                                     src={Insta}
                                     width="30"
                                     height="30"
                                 />
-                            </Link>
+                            </a>
                         </Nav.Item>
                     </Nav>
                 </Navbar>

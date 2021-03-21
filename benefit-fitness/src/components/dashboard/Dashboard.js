@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-import {Container} from "react-bootstrap";
+import {Button, Card, Col, Container, Row} from "react-bootstrap";
 
 class Dashboard extends Component {
     onLogoutClick = e => {
@@ -15,29 +15,109 @@ class Dashboard extends Component {
 
         return (
             <Container>
-            <div style={{ height: "35vh", justifyContent: "center"}} className="valign-wrapper">
+
+                <div style={{justifyContent: "center"}} className="valign-wrapper">
                 <div className="row">
-                    <div className="landing-copy col s12 center-align">
-                        <h4>
-                            <b>Hey there,</b> {user.username.split(" ")[0]}
-                            <p className="flow-text grey-text text-darken-1">
-                                You are logged into{" "}
-                                <span style={{ fontFamily: "monospace" }}>STURGEON</span>
-                            </p>
-                        </h4>
-                        <button
-                            style={{
-                                width: "150px",
-                                borderRadius: "3px",
-                                letterSpacing: "1.5px",
-                                marginTop: "1rem"
-                            }}
-                            onClick={this.onLogoutClick}
-                            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                        >
-                            Logout
-                        </button>
-                    </div>
+
+                        <Container>
+
+            {/*Row containing welcoming and logout button*/}
+                        <Row>
+                            <div className="landing-copy col s12 center-align">
+                                <h4>
+                                    <b>Hey there,</b> {user.username.split(" ")[0]}
+                                    <p className="flow-text grey-text text-darken-1">
+                                        You are logged into{" "}
+                                        <span style={{ fontFamily: "monospace" }}>STURGEON</span>
+                                    </p>
+                                </h4>
+                                <button
+                                    style={{
+                                        width: "150px",
+                                        borderRadius: "3px",
+                                        letterSpacing: "1.5px",
+                                        marginTop: "1rem"
+                                    }}
+                                    onClick={this.onLogoutClick}
+                                    className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                                >
+                                    Logout
+                                </button>
+                            </div>
+                        </Row>
+
+            {/*Row containing 1st set of Nav Cards    */}
+                        <Row>
+                            <Card style={{ width: '18rem' }}>
+                                {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
+                                <Card.Body>
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Card.Text>
+                                        Some quick example text to build on the card title and make up the bulk of
+                                        the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card>
+                            <Card style={{ width: '18rem' }} className="ml-2">
+                                <Card.Body>
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Card.Text>
+                                        Some quick example text to build on the card title and make up the bulk of
+                                        the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card>
+                            <Card style={{ width: '18rem' }} className="ml-2">
+                                <Card.Body>
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Card.Text>
+                                        Some quick example text to build on the card title and make up the bulk of
+                                        the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card>
+                        </Row>
+
+            {/*Row containing second set of Nav Cards*/}
+                        <Row>
+                            <Card style={{ width: '18rem' }}>
+                                {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
+                                <Card.Body>
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Card.Text>
+                                        Some quick example text to build on the card title and make up the bulk of
+                                        the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card>
+                            <Card style={{ width: '18rem' }} className="ml-2">
+                                <Card.Body>
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Card.Text>
+                                        Some quick example text to build on the card title and make up the bulk of
+                                        the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card>
+                            <Card style={{ width: '18rem' }} className="bg-primary ml-2">
+                                <Card.Body>
+                                    <Card.Title className="text-light">Card Title</Card.Title>
+                                    <Card.Text className="text-light">
+                                        Some quick example text to build on the card title and make up the bulk of
+                                        the card's content.
+                                    </Card.Text>
+                                    <Button variant="light">Go somewhere</Button>
+                                </Card.Body>
+                            </Card>
+                        </Row>
+
+                        </Container>
+
                 </div>
             </div>
             </Container>
