@@ -8,6 +8,7 @@ import {Provider} from "react-redux";
 import store from "./store";
 
 import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth_pages/Register";
 import Login from "./components/auth_pages/Login";
@@ -21,6 +22,7 @@ import Plans from "./components/pages/Plans";
 import UserPlans from "./components/pages/UserPlans";
 import Admin from "./components/pages/Admin";
 import Contact from "./components/pages/Contact";
+
 
 // Check for JWT token to keep user logged in
 if (localStorage.jwtToken) {
@@ -50,6 +52,7 @@ class App extends Component {
                 <Router>
                     <div className="App">
                         <Header />
+                        <Footer />
                         <Route exact path="/" component={Landing}/>
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/login" component={Login}/>
