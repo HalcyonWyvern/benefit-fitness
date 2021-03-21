@@ -34,7 +34,7 @@ class Landing extends Component {
                                     to="/login"
                                     style={{
                                         width: "140px",
-                                        borderRadius: "2px",
+                                        borderRadius: "3px",
                                         letterSpacing: "1.5px"
                                     }}
                                     className="btn btn-large waves-effect waves-light hoverable blue accent-3"

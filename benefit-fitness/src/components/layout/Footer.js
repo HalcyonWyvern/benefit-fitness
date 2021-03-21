@@ -24,17 +24,17 @@ class Footer extends Component {
                     </Navbar.Brand>
                     <Nav className="ml-auto">
                         <Nav.Item>
-                            Phone: (314)-xxx-xxxx
+                            Phone: (314) 800-7051
                         </Nav.Item>
                         <Link className="pl-3">
-                            Email: admin@gmail.com
+                            Email: sam@benefitfitness.org
                         </Link>
                         <Nav.Item className="pl-3">
                             Follow us:
                             <Link>
                                 {'  '}
                                 <img
-                                    className="rounded-circle  d-inline-block align-self-center"
+                                    className="rounded-circle d-inline-block align-self-center"
                                     alt="100x100"
                                     src={Tweety}
                                     width="30"
@@ -49,7 +49,6 @@ class Footer extends Component {
                                     src={Insta}
                                     width="30"
                                     height="30"
-
                                 />
                             </Link>
                         </Nav.Item>
