@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Container} from "react-bootstrap";
+import {Button, Col, Container, Jumbotron, Row} from "react-bootstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { sendRequest } from "../../actions/Contact/contactActions"
@@ -32,10 +32,25 @@ class Contact extends Component {
     }
 
     render() {
-        const { user } = this.props.auth;
-        return (
-            <Container fluid="lg">
+        const {user} = this.props.auth;
 
+        return (
+            <Container>
+                <Row>
+                    <Col>
+                        <p>{' '}</p>
+                        <Jumbotron>
+                            <h1>Contact Us!</h1>
+                            <p>
+                                This is a simple hero unit, a simple jumbotron-style component for calling
+                                extra attention to featured content or information.
+                            </p>
+                            <p>
+                                <Button variant="primary">Learn more</Button>
+                            </p>
+                        </Jumbotron>
+                    </Col>
+                </Row>
             </Container>
         );
     }
