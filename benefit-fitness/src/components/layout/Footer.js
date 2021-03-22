@@ -31,7 +31,7 @@ class Footer extends Component {
                         </Nav.Item>
                         <Nav.Item className="pl-3">
                             Follow us:
-                            <a target="_blank" href="https://m.facebook.com/benefit.ngo/" >
+                            <a target="_blank" href="https://facebook.com/benefit.ngo/" >
                                 {'  '}
                                 <img
                                     className="rounded-circle d-inline-block align-self-center"
