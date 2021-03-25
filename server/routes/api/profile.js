@@ -11,10 +11,10 @@ const isAdmin = require("../../middlewares/isAdmin");
 // @route POST api/profile/create
 // @desc Create profile for user (Done only once per user)
 // @access Private
-router.post("/create/:username",
+router.post("/create/",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-    User.findOne({username: req.params.username}).then(user => {
+    User.findOne({username: req.body.username}).then(user => {
         if (user) {
             Profile.findOne({user: user}).then(profile => {
                 if (profile) {
@@ -22,10 +22,6 @@ router.post("/create/:username",
                 } else {
                     const newProfile = new Profile({
                         user: user,
-                        bio: req.body.bio,
-                        height: req.body.height,
-                        weight: req.body.weight,
-                        exerciseGoal: req.body.exerciseGoal
                     })
 
                     newProfile
