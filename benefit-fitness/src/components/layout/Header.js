@@ -29,6 +29,7 @@ class Header extends Component {
                                 <Link className="nav-link" to="/userplans">My Plans</Link>
                                 <Link className="nav-link" to="/about">About</Link>
                                 <Link className="nav-link" to="/contact">Contact</Link>
+                                <Link className="nav-link" to="/profile">Profile</Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>
