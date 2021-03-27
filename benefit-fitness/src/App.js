@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
@@ -23,6 +23,7 @@ import Plans from "./components/pages/Plans";
 import UserPlans from "./components/pages/UserPlans";
 import Admin from "./components/pages/Admin";
 import Contact from "./components/pages/Contact";
+import Profile from "./components/pages/Profile";
 
 
 // Check for JWT token to keep user logged in
@@ -64,6 +65,7 @@ class App extends Component {
                             <PrivateRoute exact path="/userplans" component={UserPlans}/>
                             <PrivateRoute exact path="/about" component={About}/>
                             <PrivateRoute exact path="/contact" component={Contact}/>
+                            <PrivateRoute exact path="/profile" component ={Profile}/>
                             <AdminRoute exact path="/admin" component={Admin}/>
                         </Switch>
                     </div>
