@@ -6,6 +6,7 @@ const db = require('./config/keys');
 const passport = require("passport");
 const base = require("./routes/base.route");
 
+
 //APIs because I didn't use an index lol
 const users = require("./routes/api/users");
 const requests = require("./routes/api/requests");
@@ -32,6 +33,9 @@ mongoose.connect(db.mongoURI, {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}));
 
 // Passport middleware
 app.use(passport.initialize());
