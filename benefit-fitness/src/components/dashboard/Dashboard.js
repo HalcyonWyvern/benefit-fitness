@@ -102,7 +102,7 @@ class Dashboard extends Component {
                                             Some quick example text to build on the card title and make up the bulk of
                                             the card's content.
                                         </Card.Text>
-                                        <Button variant="primary" as={Link} to="/myprofile">Go to My Profile</Button>
+                                        <Button variant="primary" as={Link} to="/profile">Go to My Profile</Button>
                                     </Card.Body>
                                 </Card>
                                 {/*<Card style={{ width: '18rem' }} className="bg-primary ml-2">*/}
