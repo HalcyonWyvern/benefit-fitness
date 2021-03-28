@@ -1,12 +1,12 @@
 import React, {Component} from "react";
-import {Container, Form} from "react-bootstrap";
+import {Button, Container, Form, Row} from "react-bootstrap";
 import axios from "axios";
 
 
 class Exercises extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             exerciseName: "",
             equipment: "",
@@ -43,7 +43,7 @@ class Exercises extends Component {
         }
 
         axios({
-            url: 'http://localhost:5000/api/',
+            url: '/api/',
             method: 'POST',
             data: payload
         })
@@ -57,9 +57,17 @@ class Exercises extends Component {
     }
 
     render() {
+
+        // console.log('State:', this.state);
+
         return (
             <Container style={{ marginBottom: "5rem" }}>
+
                 <form onSubmit={this.submit}>
+
+                    {/*<h1>Add an Exercise</h1>*/}
+                    {/*<Button variant={}>Add Exercise</Button>*/}
+
                     <Form.Group>
                         <Form.Label>Exercise Name</Form.Label>
                         <Form.Control
