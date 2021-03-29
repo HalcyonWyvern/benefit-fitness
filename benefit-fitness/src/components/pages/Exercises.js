@@ -1,12 +1,13 @@
 import React, {Component} from "react";
 import {Button, Container, Form, Row} from "react-bootstrap";
 import axios from "axios";
+import {render} from "@testing-library/react";
 
 
 class Exercises extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             exerciseName: "",
             equipment: "",
@@ -15,19 +16,34 @@ class Exercises extends Component {
             exerciseType: "",
             videoURL: "",
             instructions: "",
+            choices: [],
             errors: {}
         };
     }
 
-    handleChange = (event) => {
-        const target = event.target;
-        const id = target.id;
-        const value = target.value;
-
-        this.setState({
-            [id]: value
-        })
+    componentDidMount = () => {
+        this.getExercise();
     }
+
+    getExercise = () => {
+        axios.get('/api/exercises')
+            .then((response) => {
+                const exercise = response.data
+                this.setState({ choices: exercise})
+
+                console.log('Data has been received');
+            })
+            .catch(() => {
+                alert('Error');
+            });
+    }
+
+
+    handleChange = ({ target }) => {
+        const { name, value } = target;
+        this.setState({ [name]: value });
+    };
+
 
     submit = (event) => {
         event.preventDefault();
@@ -42,121 +58,70 @@ class Exercises extends Component {
             instructions: this.state.instructions
         }
 
-        axios({
-            url: '/api/',
-            method: 'POST',
-            data: payload
-        })
-            .then(() => {
-                console.log('Data has been sent');
-            })
-            .catch(() => {
-                console.log('Internal server error')
-            });
+        // axios({
+        //     url: '/api/',
+        //     method: 'POST',
+        //     data: payload
+        // })
+        //     .then(() => {
+        //         console.log('Data has been sent');
+        //         this.getExercise();
+        //     })
+        //     .catch(() => {
+        //         console.log('Internal server error')
+        //     });
 
     }
+
+    displayExercises = (choices) => {
+        if (!choices.length) return null;
+
+        return choices.map((exercise, index) =>(
+            <div key={index}>
+                <h3>{exercise.exerciseName}</h3>
+                <p>Instructions: {exercise.instructions}</p>
+                <p>Equipment: {exercise.equipment}</p>
+                <p>Sets: {exercise.sets}</p>
+                <p>Reps: {exercise.reps}</p>
+                <p>Exercise Type: {exercise.exerciseType}</p>
+                <p>Video Link: {exercise.videoURL}</p>
+
+            </div>
+        ));
+    };
 
     render() {
-
-        // console.log('State:', this.state);
-
         return (
+
             <Container style={{ marginBottom: "5rem" }}>
-
-                <form onSubmit={this.submit}>
-
-                    {/*<h1>Add an Exercise</h1>*/}
-                    {/*<Button variant={}>Add Exercise</Button>*/}
-
-                    <Form.Group>
-                        <Form.Label>Exercise Name</Form.Label>
-                        <Form.Control
-                            placeholder="Exercise Name"
-                            id="exerciseName"
-                            as="textarea"
-                            value={this.state.exerciseName}
-                            rows={1}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Label>Equipment</Form.Label>
-                        <Form.Control
-                            placeholder="Equipment"
-                            id="equipment"
-                            as="textarea"
-                            value={this.state.equipment}
-                            rows={1}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Label>Reps</Form.Label>
-                        <Form.Control
-                            placeholder="Reps"
-                            id="reps"
-                            as="textarea"
-                            value={this.state.reps}
-                            rows={1}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Label>Sets</Form.Label>
-                        <Form.Control
-                            placeholder="Sets"
-                            id="sets"
-                            as="textarea"
-                            value={this.state.sets}
-                            rows={1}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Label>Exercise Type</Form.Label>
-                        <Form.Control
-                            placeholder="Exercise Type"
-                            id="exerciseType"
-                            as="textarea"
-                            value={this.state.exerciseType}
-                            rows={1}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Label>Video URL</Form.Label>
-                        <Form.Control
-                            placeholder="Video URL"
-                            id="videoURL"
-                            as="textarea"
-                            value={this.state.videoURL}
-                            rows={1}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Label>Instructions</Form.Label>
-                        <Form.Control
-                            placeholder="Instructions"
-                            id="instructions"
-                            as="textarea"
-                            value={this.state.instructions}
-                            rows={1}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
-
-                    <button>Submit</button>
-                </form>
+                <div className="exercises">
+                    {this.displayExercises(this.state.choices)}
+                </div>
             </Container>
+
         );
+
+
     }
+
 }
 
+
 export default Exercises;
+
+
+{/*<form onSubmit={this.submit}>*/}
+
+{/*    <Form.Group>*/}
+{/*    <Form.Label>Exercise Name</Form.Label>*/}
+{/*    <Form.Control*/}
+{/*        placeholder="Exercise Name"*/}
+{/*        id="exerciseName"*/}
+{/*        as="textarea"*/}
+{/*        value={this.state.exerciseName}*/}
+{/*        rows={1}*/}
+{/*        onChange={this.handleChange}*/}
+{/*    />*/}
+{/*    </Form.Group>*/}
+{/*    <button>Submit</button>*/}
+{/*</form>*/}

@@ -44,9 +44,11 @@ router.post("/",
 router.get("/",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-    Exercise.find()
+    Exercise.find({ })
         .sort({ exerciseName: -1 })
-        .then(exercise => res.json(exercise));
+        .then((exercise) => {res.json(exercise);
+        })
+        .catch(err => console.log(err));
 });
 
 //@route GET api/exercises/:id
