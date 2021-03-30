@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import axios from "axios";
 
-
 class Contact extends Component {
     constructor(props) {
         super(props);
@@ -19,15 +18,24 @@ class Contact extends Component {
         };
     }
 
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
     onSubmit = e => {
+        e.preventDefault();
+        const {user} = this.props.auth;
+
         const newRequest = {
-            user: this.auth.user.id,
+            user: user.username.split(" ")[0],
             phoneNumber: this.state.phoneNumber,
             requestType: this.state.requestType,
             requestedDate: this.state.requestedDate,
             comments: this.state.comments,
             contactMethod: this.state.contactMethod,
         };
+        console.log(newRequest);
+
        axios
            .post("/api/requests", newRequest)
            .then(res => console.log(res.data));
@@ -47,8 +55,13 @@ class Contact extends Component {
                     </Row>
                     <Form onSubmit={this.onSubmit}>
                         <Form.Group>
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control onChange={this.onChange} value={user.username.split(" ")[0]} disabled="disabled" name="user" id="user" type="box"/>
+                        </Form.Group>
+
+                        <Form.Group>
                             <Form.Label>Phone Number</Form.Label>
-                            <Form.Control id="phoneNumber" type="phoneNumber" placeholder="Phone"/>
+                            <Form.Control onChange={this.onChange} value={this.state.phoneNumber} name="phoneNumber" id="phoneNumber" type="box" placeholder="Phone"/>
 
                             <Form.Text className="text-muted">
                                 We'll never share your phone or email with anyone else.
@@ -57,7 +70,8 @@ class Contact extends Component {
 
                         <Form.Group>
                             <Form.Label>Request Type</Form.Label>
-                            <Form.Control as="select" multiple id="requestType">
+                            <Form.Control onChange={this.onChange} value={this.state.requestType} as="select" id="requestType">
+                                <option>Please Choose an Option</option>
                                 <option>Fitness Inquiry</option>
                                 <option>Request Exercise Plan</option>
                                 <option>Group Inquiry</option>
@@ -68,7 +82,8 @@ class Contact extends Component {
 
                         <Form.Group>
                             <Form.Label>Contact Method</Form.Label>
-                            <Form.Control as="select" id="contactMethod">
+                            <Form.Control onChange={this.onChange} value={this.state.contactMethod} as="select" id="contactMethod">
+                                <option>Please Choose an Option</option>
                                 <option>Phone</option>
                                 <option>Email</option>
                             </Form.Control>
@@ -76,12 +91,12 @@ class Contact extends Component {
 
                         <Form.Group>
                             <Form.Label>Details</Form.Label>
-                            <Form.Control id="comments" as="textarea" rows={3}/>
+                            <Form.Control onChange={this.onChange} value={this.state.comments} id="comments" as="textarea" rows={3}/>
                         </Form.Group>
 
                         <Form.Group>
                             <Form.Label>Requested Date</Form.Label>
-                            <Form.Control id="requestedDate" type="date" placeholder="Date"/>
+                            <Form.Control onChange={this.onChange} value={this.state.date} id="requestedDate" type="date" placeholder="Date"/>
                         </Form.Group>
 
 
