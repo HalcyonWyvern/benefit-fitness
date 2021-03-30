@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-import {Button, Card, Col, Container, Navbar, Row} from "react-bootstrap";
+import {Button, Card, Container, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 class Dashboard extends Component {
@@ -16,7 +16,7 @@ class Dashboard extends Component {
 
         return (
             <Container>
-
+                <p>{' '}</p>
                 <div style={{justifyContent: "center"}} className="valign-wrapper">
                     <div className="row">
 
@@ -54,8 +54,8 @@ class Dashboard extends Component {
                                     <Card.Body>
                                         <Card.Title>EXERCISE LIBRARY</Card.Title>
                                         <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
+                                            View our library of handpicked exercises and see what
+                                            we personally recommend our clients.
                                         </Card.Text>
                                         <Button variant="primary" as={Link} to="/exercises">Go to Exercises</Button>
                                     </Card.Body>
@@ -64,8 +64,8 @@ class Dashboard extends Component {
                                     <Card.Body>
                                         <Card.Title>WORKOUT PLANS</Card.Title>
                                         <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
+                                            View our collection of curated workout plans and find a system
+                                            that works right for you.
                                         </Card.Text>
                                         <Button variant="primary" as={Link} to="/plans">Go to Plans</Button>
                                     </Card.Body>
@@ -74,8 +74,8 @@ class Dashboard extends Component {
                                     <Card.Body>
                                         <Card.Title>MY PLANS</Card.Title>
                                         <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
+                                            View all of your saved plans and plans that have been assigned to you
+                                            by our staff members.
                                         </Card.Text>
                                         <Button variant="primary" as={Link} to="/userplans">Go to My Plans</Button>
                                     </Card.Body>
@@ -89,8 +89,8 @@ class Dashboard extends Component {
                                     <Card.Body>
                                         <Card.Title>CONTACT US</Card.Title>
                                         <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
+                                            Got an inquiry about training or need to get into contact with us? Send us
+                                            a contact message!
                                         </Card.Text>
                                         <Button variant="primary" as={Link} to="/contact">Go to Contact</Button>
                                     </Card.Body>
@@ -99,8 +99,8 @@ class Dashboard extends Component {
                                     <Card.Body>
                                         <Card.Title>MY PROFILE</Card.Title>
                                         <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
+                                            View and edit your profile information. Only our trainers will ever
+                                            see the information you place inside.
                                         </Card.Text>
                                         <Button variant="primary" as={Link} to="/profile">Go to My Profile</Button>
                                     </Card.Body>
