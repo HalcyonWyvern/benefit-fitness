@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import {Button, Col, Container, Form, Row} from "react-bootstrap";
+import { Button, Col, Container, Form, Row} from "react-bootstrap";
+import { Alert } from "reactstrap";
 
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -15,39 +16,102 @@ class Contact extends Component {
             requestedDate: "",
             comments: "",
             contactMethod: "",
+            visible: false
         };
+    }
+
+    valid = () => {
+        let phoneErr = "";
+        let reqTypeErr = "";
+        let methodErr = "";
+        let commentErr = "";
+        let dateErr = "";
+
+        if (!this.state.phoneNumber) {
+            phoneErr = "Phone number cannot be blank."
+        }
+
+        if (!this.state.requestType) {
+            reqTypeErr = "Please choose the request type."
+        }
+
+        if (!this.state.comments) {
+            commentErr = "Please fill out the comment section."
+        }
+
+        if (!this.state.requestedDate) {
+            dateErr = "Please select a date."
+        }
+
+
+        if (!this.state.contactMethod) {
+            methodErr = "Please select a contact method."
+        }
+
+        if (phoneErr || reqTypeErr || methodErr || commentErr || dateErr) {
+            this.setState({
+                phoneErr,
+                reqTypeErr,
+                methodErr,
+                commentErr,
+                dateErr
+            });
+            return false;
+        } else {
+            return true;
+        }
     }
 
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
 
+    onDismiss = () => this.setState({ visible: false });
+
     onSubmit = e => {
         e.preventDefault();
         const {user} = this.props.auth;
+        const isValid = this.valid();
+        if (isValid) {
+            const newRequest = {
+                user: user.username.split(" ")[0],
+                phoneNumber: this.state.phoneNumber,
+                requestType: this.state.requestType,
+                requestedDate: this.state.requestedDate,
+                comments: this.state.comments,
+                contactMethod: this.state.contactMethod,
+            };
+            console.log(newRequest);
 
-        const newRequest = {
-            user: user.username.split(" ")[0],
-            phoneNumber: this.state.phoneNumber,
-            requestType: this.state.requestType,
-            requestedDate: this.state.requestedDate,
-            comments: this.state.comments,
-            contactMethod: this.state.contactMethod,
-        };
-        console.log(newRequest);
+            axios
+                .post("/api/requests", newRequest)
+                .then(res => console.log(res.data));
 
-       axios
-           .post("/api/requests", newRequest)
-           .then(res => console.log(res.data));
+            this.setState({
+                visible: true,
+            });
+            this.setState({
+                user: "",
+                phoneNumber: "",
+                requestType: "",
+                requestedDate: "",
+                comments: "",
+                contactMethod: "",
+            })
+        }
     }
 
     render() {
         const {user} = this.props.auth;
         return (
                 <Container>
+                    <p>{' '}</p>
+                    <Alert color="info" isOpen={this.state.visible} toggle={this.onDismiss}>
+                    <h4>Thank you!</h4>Your request has been sent, you should receive a message from us
+                    within 5-10 business days!
+                </Alert>
                     <Row>
                         <Col>
-                            <p>{' '}</p>
                             <h2>Contact Us!</h2>
                             <h6>Please Provide us with some basic information and we will reach out to you shortly.</h6>
 
@@ -67,8 +131,12 @@ class Contact extends Component {
                                 We'll never share your phone or email with anyone else.
                             </Form.Text>
                         </Form.Group>
+                        <div style={{ fontSize: 10, color: "red" }}>
+                            {this.state.phoneErr}
+                        </div>
 
-                        <Form.Group>
+                        <Form.Row>
+                        <Form.Group as={Col} md="6">
                             <Form.Label>Request Type</Form.Label>
                             <Form.Control onChange={this.onChange} value={this.state.requestType} as="select" id="requestType">
                                 <option>Please Choose an Option</option>
@@ -80,7 +148,7 @@ class Contact extends Component {
                             </Form.Control>
                         </Form.Group>
 
-                        <Form.Group>
+                        <Form.Group as={Col} md="6">
                             <Form.Label>Contact Method</Form.Label>
                             <Form.Control onChange={this.onChange} value={this.state.contactMethod} as="select" id="contactMethod">
                                 <option>Please Choose an Option</option>
@@ -89,17 +157,33 @@ class Contact extends Component {
                             </Form.Control>
                         </Form.Group>
 
+                        </Form.Row>
+                        <Row>
+                            <Col><div style={{ fontSize: 10, color: "red" }}>
+                                {this.state.reqTypeErr}
+                            </div></Col>
+                            <Col><div style={{ fontSize: 10, color: "red" }}>
+                                {this.state.methodErr}
+                            </div></Col>
+                        </Row>
+
                         <Form.Group>
                             <Form.Label>Details</Form.Label>
                             <Form.Control onChange={this.onChange} value={this.state.comments} id="comments" as="textarea" rows={3}/>
                         </Form.Group>
+                        <div style={{ fontSize: 10, color: "red" }}>
+                            {this.state.commentErr}
+                        </div>
 
                         <Form.Group>
                             <Form.Label>Requested Date</Form.Label>
                             <Form.Control onChange={this.onChange} value={this.state.date} id="requestedDate" type="date" placeholder="Date"/>
                         </Form.Group>
+                        <div style={{ fontSize: 10, color: "red" }}>
+                            {this.state.dateErr}
+                        </div>
 
-
+                        <p>{' '}</p>
                         <Button variant="primary" type="submit">
                             Submit
                         </Button>
