@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Container, Form, Row} from "react-bootstrap";
+import {Button, Container, Form, Row, Table} from "react-bootstrap";
 import axios from "axios";
 import {render} from "@testing-library/react";
 
@@ -78,6 +78,22 @@ class Exercises extends Component {
 
         return choices.map((exercise, index) =>(
             <div key={index}>
+                <Table striped bordered hover>
+                    <thead>
+                    <tr>
+                        <th>Exercise Name</th>
+                        <th>Exercise Type</th>
+                        <th>Equipment</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{exercise.exerciseName}</td>
+                        <td>{exercise.exerciseType}</td>
+                        <td>{exercise.equipment}</td>
+                    </tr>
+                    </tbody>
+                </Table>
                 <h3>{exercise.exerciseName}</h3>
                 <p>Instructions: {exercise.instructions}</p>
                 <p>Equipment: {exercise.equipment}</p>
