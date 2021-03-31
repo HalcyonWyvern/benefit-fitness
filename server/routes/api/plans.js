@@ -16,24 +16,24 @@ const isAdmin = require("../../middlewares/isAdmin");
 router.post("/",
     [passport.authenticate("jwt", { session: false }), isAdmin],
     (req, res) => {
-        Exercise.findOne({exerciseName: req.body.exercise}).then(exercise => {
-            if (exercise) {
-                const newPlan = new Plan({
-                    name: req.body.name,
-                    trainerExplanation: req.body.trainerExplanation,
-                    type: req.body.type,
+    Exercise.findOne({exerciseName: req.body.exercise}).then(exercise => {
+        if (exercise) {
+            const newPlan = new Plan({
+                name: req.body.name,
+                trainerExplanation: req.body.trainerExplanation,
+                type: req.body.type,
+            })
+            newPlan
+                .save()
+                .then(plan => {
+                    res.json(plan);
                 })
-                newPlan
-                    .save()
-                    .then(plan => {
-                        res.json(plan);
-                    })
-                    .catch(err => console.log(err));
-            } else {
-                return res.status(404).json({exercise: "Selected Exercise not found."})
-            }
-        })
+                .catch(err => console.log(err));
+        } else {
+            return res.status(404).json({exercise: "Selected Exercise not found."})
+        }
     })
+})
 
 // @route GET api/plans
 // @desc Get all workout plans in the library
@@ -41,11 +41,11 @@ router.post("/",
 router.get("/",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        Plan.find()
-            .populate("exercises", "exerciseName")
-            .sort({ type: -1 }) // descending order
-            .then(plans => res.json(plans));
-    });
+    Plan.find()
+        .populate("exercises", "exerciseName")
+        .sort({ type: -1 }) // descending order
+        .then(plans => res.json(plans));
+});
 
 // @route GET api/plans/:id
 // @desc Get Workout Plan by ID
@@ -53,10 +53,10 @@ router.get("/",
 router.get("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        Plan.findById({_id: req.params.id })
-            .populate("exercises", "exerciseName")
-            .then(plan => res.json(plan));
-    })
+    Plan.findById({_id: req.params.id })
+        .populate("exercises", "exerciseName")
+        .then(plan => res.json(plan));
+})
 
 // @route DELETE api/plans/:id
 // @desc Delete workout plan by ID
@@ -64,15 +64,15 @@ router.get("/:id",
 router.delete("/:id",
     [passport.authenticate("jwt", { session: false }), isAdmin],
     (req, res) => {
-        Plan.findByIdAndDelete({_id: req.params.id})
-            .then(plan => {
-                res.json({plan, success: true})
-            })
-            .catch(err => {
-                res.status(404).json({success: false})
-                console.log(err)
-            })
-    })
+    Plan.findByIdAndDelete({_id: req.params.id})
+        .then(plan => {
+            res.json({plan, success: true})
+        })
+        .catch(err => {
+            res.status(404).json({success: false})
+            console.log(err)
+        })
+})
 
 // @route PUT api/plans/add/:id
 // @desc Add exercise to plan by exercise name
@@ -80,27 +80,27 @@ router.delete("/:id",
 router.put("/add/:id",
     [passport.authenticate("jwt", { session: false }), isAdmin],
     (req, res) => {
-        Exercise.findOne({exerciseName: req.body.exercise}).then(exercise => {
-            if(exercise) {
-                Plan.findByIdAndUpdate(
-                    {_id: req.params.id},
-                    {
-                        $push: {
-                            exercises: exercise
-                        }
-                    },
-                    {new: true}
+    Exercise.findOne({exerciseName: req.body.exercise}).then(exercise => {
+        if(exercise) {
+            Plan.findByIdAndUpdate(
+                {_id: req.params.id},
+                {
+                    $push: {
+                        exercises: exercise
+                    }
+                },
+                {new: true}
                 )
-                    .populate("exercises", "exerciseName")
-                    .then(plan => {
+                .populate("exercises", "exerciseName")
+                .then(plan => {
                         res.json(plan)
                     })
-                    .catch(err => console.log(err));
-            } else {
-                return res.status(404).json({exercise: "Exercise not found!"})
-            }
-        })
+                .catch(err => console.log(err));
+        } else {
+            return res.status(404).json({exercise: "Exercise not found!"})
+        }
     })
+})
 
 // @route PUT api/plans/remove/:id
 // @desc Remove exercise from plan by exercise name
