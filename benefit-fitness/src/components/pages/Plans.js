@@ -8,7 +8,6 @@ class Plans extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // _id: "",
             name: "",
             exercises: [],
             trainerExplanation: "",
@@ -18,16 +17,24 @@ class Plans extends Component {
         };
     }
 
-    componentDidMount = () => {
-        this.getPlan();
-        // this.getPlanExercises();
+    // componentDidMount = () => {
+    //     this.getPlan();
+    //     this.getPlanExercises();
+    // }
+
+   componentDidMount() {
+       this.getExercisePlans();
     }
 
-    getPlan = () => {
+    getExercisePlans(){
         axios.get('/api/plans')
             .then((response) => {
                 const plans = response.data
-                this.setState({ exercisePlans: [plans]})
+                // const planExercises = response.data
+                // let forEachData = ''
+                // forEach(planExercises, d => forEachData += `<li>${d.exercises.exerciseName}</li>`)
+
+                this.setState({ exercisePlans: plans})
 
                 console.log('Data has been received');
             })
@@ -36,45 +43,23 @@ class Plans extends Component {
             });
     }
 
-    // getPlanExercises = () => {
-    //     axios.get('/api/plans/exercises')
-    //         .then((response) =>{
-    //             const names =response.data
-    //             this.setState({exercises: [names]})
-    //
-    //             console.log('Exercise names received');
-    //         })
-    //         .catch(() =>{
-    //             alert('Error retrieving exercise names');
-    //         });
-    // }
-
-
-    // displayPlanExercises = (exercises) => {
-    //     if (!exercises.length) return null;
-    //
-    //     return exercises.map(([names, index]) =>(
-    //         <p>Exercises: {names.exerciseName}</p>
-    //     ))
-    // }
-
     displayPlans = (exercisePlans) => {
         if (!exercisePlans.length) return null;
 
-        return exercisePlans.map(([plans, index]) =>(
+
+        return exercisePlans.map((plans, index) =>(
             <div key={index}>
                 <h3>{plans.name}</h3>
-                <p>Exercises: {plans.exercises}</p>
-                {/*{this.displayPlanExercises(this.state.exercises)}*/}
+                {/*<p>Exercises: {plans.exercises}</p>*/}
+                {/*<p>Exercises: {plans.exercises}</p>*/}
                 <p>Trainer Explanation: {plans.trainerExplanation}</p>
                 <p>Type: {plans.type}</p>
-
-
             </div>
         ));
     };
 
     render() {
+
         return (
             <Container>
                 <div className="plans">
