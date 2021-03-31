@@ -54,7 +54,7 @@ router.get("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
     Plan.findById({_id: req.params.id })
-        .populate("exercises.exercise", "exerciseName")
+        .populate("exercises", "exerciseName")
         .then(plan => res.json(plan));
 })
 
