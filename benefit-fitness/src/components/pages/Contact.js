@@ -113,7 +113,7 @@ class Contact extends Component {
                     <Row>
                         <Col>
                             <h2>Contact Us!</h2>
-                            <h6>Please Provide us with some basic information and we will reach out to you shortly.</h6>
+                            <h6>Please provide us with some basic information and we will reach out to you shortly.</h6>
 
                         </Col>
                     </Row>
