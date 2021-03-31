@@ -27,7 +27,7 @@ class Plans extends Component {
     }
 
     getExercisePlans(){
-        axios.get('/api/plans')
+        axios.get('/api/plans', {})
             .then((response) => {
                 const plans = response.data
                 // const planExercises = response.data
@@ -44,16 +44,18 @@ class Plans extends Component {
     }
 
     displayPlans = (exercisePlans) => {
-        if (!exercisePlans.length) return null;
+        // if (!exercisePlans.length) return null;
 
 
         return exercisePlans.map((plans, index) =>(
             <div key={index}>
                 <h3>{plans.name}</h3>
-                {/*<p>Exercises: {plans.exercises}</p>*/}
-                {/*<p>Exercises: {plans.exercises}</p>*/}
-                <p>Trainer Explanation: {plans.trainerExplanation}</p>
-                <p>Type: {plans.type}</p>
+                <ul><h5>Exercises:</h5> {plans.exercises.map(option =>
+                    <li>{option.exerciseName}</li>
+                )}
+                </ul>
+                <p><h5>Trainer Explanation:</h5> {plans.trainerExplanation}</p>
+                <p><h5>Type:</h5> {plans.type}</p>
             </div>
         ));
     };
