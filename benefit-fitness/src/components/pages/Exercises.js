@@ -84,7 +84,7 @@ class Exercises extends Component {
                 <p>Sets: {exercise.sets}</p>
                 <p>Reps: {exercise.reps}</p>
                 <p>Exercise Type: {exercise.exerciseType}</p>
-                <p>Video Link: {exercise.videoURL}</p>
+                <p>Video Link: <a target="_blank" href={exercise.videoURL}>{exercise.videoURL}</a></p>
 
             </div>
         ));
