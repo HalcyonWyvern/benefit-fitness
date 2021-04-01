@@ -21,9 +21,14 @@ import About from "./components/pages/About";
 import Exercises from "./components/pages/Exercises";
 import Plans from "./components/pages/Plans";
 import UserPlans from "./components/pages/UserPlans";
-import Admin from "./components/pages/Admin";
 import Contact from "./components/pages/Contact";
 import Profile from "./components/pages/Profile";
+
+//Admin components
+import Admin from "./components/pages/admin_components/pages/AdminDash";
+import AdminExercises from "./components/pages/admin_components/pages/AdminExercises";
+import AdminPlans from "./components/pages/admin_components/pages/AdminPlans";
+import AdminRequests from "./components/pages/admin_components/pages/AdminRequests";
 
 
 // Check for JWT token to keep user logged in
@@ -67,6 +72,9 @@ class App extends Component {
                             <PrivateRoute exact path="/contact" component={Contact}/>
                             <PrivateRoute exact path="/profile" component ={Profile}/>
                             <AdminRoute exact path="/admin" component={Admin}/>
+                            <AdminRoute exact path="/admin/exercises" component={AdminExercises}/>
+                            <AdminRoute exact path="/admin/requests" component={AdminRequests}/>
+                            <AdminRoute exact path="/admin/plans" component={AdminPlans}/>
                         </Switch>
                     </div>
                 </Router>

@@ -6,7 +6,7 @@ mongoose.set('useFindAndModify', false);
 
 const Exercise = require("../../models/exercises");
 
-//NOTE Admin only access to ALL APIs here
+//NOTE AdminDash only access to ALL APIs here
 //Please ensure they all go through the authorization middleware
 const isAdmin = require("../../middlewares/isAdmin");
 

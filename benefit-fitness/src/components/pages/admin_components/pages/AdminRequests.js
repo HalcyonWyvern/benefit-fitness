@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Container} from "react-bootstrap";
 
-class Admin extends Component {
+class AdminRequests extends Component {
 
     render() {
         return (
@@ -11,4 +11,4 @@ class Admin extends Component {
         );
     }
 }
-export default Admin;
+export default AdminRequests;
