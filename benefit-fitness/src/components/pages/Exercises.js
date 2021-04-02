@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import {Button, Container, Form, Row, Table} from "react-bootstrap";
 import axios from "axios";
 import {render} from "@testing-library/react";
@@ -58,26 +58,17 @@ class Exercises extends Component {
             instructions: this.state.instructions
         }
 
-        // axios({
-        //     url: '/api/',
-        //     method: 'POST',
-        //     data: payload
-        // })
-        //     .then(() => {
-        //         console.log('Data has been sent');
-        //         this.getExercise();
-        //     })
-        //     .catch(() => {
-        //         console.log('Internal server error')
-        //     });
-
     }
 
     displayExercises = (choices) => {
+        // const pages =[5, 10, 25]
+        // const [page,setPage] = useState(0)
+        // const [rowsPerPage, setRowsPerPage] = useState(pages[page])
+
         if (!choices.length) return null;
 
-        return choices.map((exercise, index) =>(
-            <div key={index}>
+        return (
+            <div>
                 <Table striped bordered hover>
                     <thead>
                     <tr>
@@ -87,23 +78,34 @@ class Exercises extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    {choices.map(exercise =>
+                    <tr key={exercise._id}>
+                        <>
                         <td>{exercise.exerciseName}</td>
                         <td>{exercise.exerciseType}</td>
                         <td>{exercise.equipment}</td>
+                        </>
                     </tr>
+                    )}
                     </tbody>
                 </Table>
-                <h3>{exercise.exerciseName}</h3>
-                <p>Instructions: {exercise.instructions}</p>
-                <p>Equipment: {exercise.equipment}</p>
-                <p>Sets: {exercise.sets}</p>
-                <p>Reps: {exercise.reps}</p>
-                <p>Exercise Type: {exercise.exerciseType}</p>
-                <p>Video Link: <a target="_blank" href={exercise.videoURL}>{exercise.videoURL}</a></p>
+                {choices.map(exercise =>
+                    <>
+                    <h3>{exercise.exerciseName}</h3>
+                    <p>Instructions: {exercise.instructions}</p>
+                    <p>Equipment: {exercise.equipment}</p>
+                    <p>Sets: {exercise.sets}</p>
+                    <p>Reps: {exercise.reps}</p>
+                    <p>Exercise Type: {exercise.exerciseType}</p>
+                    <p>Video Link: <a target="_blank" href={exercise.videoURL}>{exercise.videoURL}</a></p>
+                    </>
+                )}
+
+
 
             </div>
-        ));
+
+        );
     };
 
     render() {
