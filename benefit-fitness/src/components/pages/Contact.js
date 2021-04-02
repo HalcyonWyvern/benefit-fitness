@@ -107,9 +107,9 @@ class Contact extends Component {
                 <Container>
                     <p>{' '}</p>
                     <Alert color="info" isOpen={this.state.visible} toggle={this.onDismiss}>
-                    <h4>Thank you!</h4>Your request has been sent, you should receive a message from us
-                    within 5-10 business days!
-                </Alert>
+                        <h4>Thank you!</h4>Your request has been sent, you should receive a message from us
+                        within 5-10 business days!
+                    </Alert>
                     <Row>
                         <Col>
                             <h2>Contact Us!</h2>
