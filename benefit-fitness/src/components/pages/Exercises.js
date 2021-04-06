@@ -115,11 +115,11 @@ class Exercises extends Component {
                     <tbody>
 
                     {choices.map(exercise =>
-                    <tr key={exercise._id}>
-                        <td><Link onClick={this.clickHandler.bind(this, exercise)}>{exercise.exerciseName}</Link></td>
-                        <td>{exercise.exerciseType}</td>
-                        <td>{exercise.equipment}</td>
-                    </tr>
+                        <tr key={exercise._id}>
+                            <td><Link onClick={this.clickHandler.bind(this, exercise)}>{exercise.exerciseName}</Link></td>
+                            <td>{exercise.exerciseType}</td>
+                            <td>{exercise.equipment}</td>
+                        </tr>
                     )}
 
 
@@ -127,12 +127,12 @@ class Exercises extends Component {
 
                 </Table>
 
-            {/*{this.state.choices.map((exercise, index) =>*/}
-            {/*<>*/}
-            {/*    <div key={index}>*/}
-            {/*        <p>{exercise.exerciseName}</p>*/}
-            {/*    </div>*/}
-            {/*</> )}*/}
+                {/*{this.state.choices.map((exercise, index) =>*/}
+                {/*<>*/}
+                {/*    <div key={index}>*/}
+                {/*        <p>{exercise.exerciseName}</p>*/}
+                {/*    </div>*/}
+                {/*</> )}*/}
                 {/*{this.state.choices.map(exercise =>(*/}
                 {/*    <div key={exercise._id}>*/}
 
