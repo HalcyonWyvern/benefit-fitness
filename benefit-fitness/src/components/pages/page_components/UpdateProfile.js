@@ -2,7 +2,7 @@
 import {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Button, Container, Form, Modal} from "react-bootstrap";
+import {Button, Form, Modal} from "react-bootstrap";
 import axios from "axios";
 
 class UpdateProfile extends Component {
@@ -13,7 +13,7 @@ class UpdateProfile extends Component {
             height: "",
             weight: "",
             exerciseGoal: "",
-            isOpen: false
+            isOpen: false,
         }
     }
 
@@ -70,6 +70,7 @@ class UpdateProfile extends Component {
                     <Modal.Header closeButton>
                         <Modal.Title>Update My Profile</Modal.Title>
                     </Modal.Header>
+
                     <Modal.Body>
                         <Form onSubmit={this.onSubmit}>
                             <Form.Group>

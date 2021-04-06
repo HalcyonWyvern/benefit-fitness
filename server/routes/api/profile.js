@@ -45,7 +45,7 @@ router.get("/:username",
     User.findOne({ username: req.params.username }).then(user => {
         if(user) {
             Profile.find({user: user})
-                .populate("user", "username email city state")
+                .populate("user", "username email city state address zip")
                 .then(profile => res.json(profile))
         } else {
             res.status(404).json({user: "Username not found"})
