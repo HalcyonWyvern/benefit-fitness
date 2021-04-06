@@ -53,13 +53,13 @@ class Profile extends Component {
                 <Row>
                     {this.state.profiles.map(profile =>
                         <Col>
-                            <p>{profile.bio}</p>
-                            <p>{profile.height}</p>
-                            <p>{profile.weight}</p>
-                            <p>{profile.exerciseGoal}</p>
-                            <p>{profile.user.city}</p>
-                            <p>{profile.user.state}</p>
-                            <p>{profile.user.email}</p>
+                            <p>Bio: {profile.bio}</p>
+                            <p>Height: {profile.height}</p>
+                            <p>Weight: {profile.weight}</p>
+                            <p>Goal: {profile.exerciseGoal}</p>
+                            <p>City: {profile.user.city}</p>
+                            <p>State: {profile.user.state}</p>
+                            <p>Email: {profile.user.email}</p>
                         </Col>
                     )}
                 </Row>
