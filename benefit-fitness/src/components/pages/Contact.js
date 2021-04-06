@@ -141,9 +141,10 @@ class Contact extends Component {
                             <Form.Control onChange={this.onChange} value={this.state.requestType} as="select" id="requestType">
                                 <option>Please Choose an Option</option>
                                 <option>Fitness Inquiry</option>
-                                <option>Request Exercise Plan</option>
-                                <option>Group Inquiry</option>
+                                <option>Online Training</option>
+                                <option>More Information on Services</option>
                                 <option>Speak to a Trainer</option>
+                                <option>Account Update</option>
                                 <option>Misc. Questions</option>
                             </Form.Control>
                         </Form.Group>
