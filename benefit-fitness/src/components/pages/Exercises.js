@@ -2,6 +2,8 @@ import React, {Component, useState} from "react";
 import {Button, Container, Form, Row, Table} from "react-bootstrap";
 import axios from "axios";
 import {render} from "@testing-library/react";
+import {Link} from "react-router-dom";
+import {func} from "prop-types";
 
 
 class Exercises extends Component {
@@ -39,26 +41,59 @@ class Exercises extends Component {
     }
 
 
-    handleChange = ({ target }) => {
-        const { name, value } = target;
-        this.setState({ [name]: value });
-    };
+    // handleChange = ({ target }) => {
+    //     const { name, value } = target;
+    //     this.setState({ [name]: value });
+    // };
 
+    clickHandler = (exercise) => {
+        this.setState({})
+        console.log(exercise)
 
-    submit = (event) => {
-        event.preventDefault();
+        // return exercise.map(options =>(
+        //     <div key={options._id}>
+        //         <p>{options.exerciseName}</p>
+        //     </div>
+        //
+        // ))
 
-        const payload = {
-            exerciseName: this.state.exerciseName,
-            equipment: this.state.equipment,
-            reps: this.state.reps,
-            sets: this.state.sets,
-            exerciseType: this.state.exerciseType,
-            videoURL: this.state.videoURL,
-            instructions: this.state.instructions
-        }
-
+        // return(
+        //     <div key={index}>
+        //         <p>{exercise.exerciseName}</p>
+        //     </div>
+        // )
+        // choices.map(exercise =>
+        // <div key={exercise._id}>
+        //     <h3>{exercise.exerciseName}</h3>
+        //     <p>Instructions: {exercise.instructions}</p>
+        //     <p>Equipment: {exercise.equipment}</p>
+        //     <p>Sets: {exercise.sets}</p>
+        //     <p>Reps: {exercise.reps}</p>
+        //     <p>Exercise Type: {exercise.exerciseType}</p>
+        //     <p>Video Link: <a target="_blank" href={exercise.videoURL}>{exercise.videoURL}</a></p>
+        // </div>)
     }
+
+
+
+    // console.log('Button Clicked');
+
+
+
+    // submit = (event) => {
+    //     event.preventDefault();
+    //
+    //     const payload = {
+    //         exerciseName: this.state.exerciseName,
+    //         equipment: this.state.equipment,
+    //         reps: this.state.reps,
+    //         sets: this.state.sets,
+    //         exerciseType: this.state.exerciseType,
+    //         videoURL: this.state.videoURL,
+    //         instructions: this.state.instructions
+    //     }
+    //
+    // }
 
     displayExercises = (choices) => {
         // const pages =[5, 10, 25]
@@ -78,28 +113,42 @@ class Exercises extends Component {
                     </tr>
                     </thead>
                     <tbody>
+
                     {choices.map(exercise =>
-                    <tr key={exercise._id}>
-                        <>
-                        <td>{exercise.exerciseName}</td>
-                        <td>{exercise.exerciseType}</td>
-                        <td>{exercise.equipment}</td>
-                        </>
-                    </tr>
+                        <tr key={exercise._id}>
+                            <td><Link onClick={this.clickHandler.bind(this, exercise)}>{exercise.exerciseName}</Link></td>
+                            <td>{exercise.exerciseType}</td>
+                            <td>{exercise.equipment}</td>
+                        </tr>
                     )}
+
+
                     </tbody>
+
                 </Table>
-                {choices.map(exercise =>
-                    <>
-                    <h3>{exercise.exerciseName}</h3>
-                    <p>Instructions: {exercise.instructions}</p>
-                    <p>Equipment: {exercise.equipment}</p>
-                    <p>Sets: {exercise.sets}</p>
-                    <p>Reps: {exercise.reps}</p>
-                    <p>Exercise Type: {exercise.exerciseType}</p>
-                    <p>Video Link: <a target="_blank" href={exercise.videoURL}>{exercise.videoURL}</a></p>
-                    </>
-                )}
+
+                {/*{this.state.choices.map((exercise, index) =>*/}
+                {/*<>*/}
+                {/*    <div key={index}>*/}
+                {/*        <p>{exercise.exerciseName}</p>*/}
+                {/*    </div>*/}
+                {/*</> )}*/}
+                {/*{this.state.choices.map(exercise =>(*/}
+                {/*    <div key={exercise._id}>*/}
+
+                {/*    </div>*/}
+                {/*))}*/}
+                {/*{choices.map(exercise =>*/}
+                {/*    <>*/}
+                {/*    <h3>{exercise.exerciseName}</h3>*/}
+                {/*    <p>Instructions: {exercise.instructions}</p>*/}
+                {/*    <p>Equipment: {exercise.equipment}</p>*/}
+                {/*    <p>Sets: {exercise.sets}</p>*/}
+                {/*    <p>Reps: {exercise.reps}</p>*/}
+                {/*    <p>Exercise Type: {exercise.exerciseType}</p>*/}
+                {/*    <p>Video Link: <a target="_blank" href={exercise.videoURL}>{exercise.videoURL}</a></p>*/}
+                {/*    </>*/}
+                {/*)}*/}
 
 
 
