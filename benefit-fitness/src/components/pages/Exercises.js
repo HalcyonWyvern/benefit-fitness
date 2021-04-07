@@ -1,5 +1,5 @@
 import React, {Component, useState} from "react";
-import {Button, Container, Form, Row, Table} from "react-bootstrap";
+import {Button, Container, Pagination, Row, Table, PaginationProps, PageItem} from "react-bootstrap";
 import axios from "axios";
 import {render} from "@testing-library/react";
 import {Link} from "react-router-dom";
@@ -19,12 +19,14 @@ class Exercises extends Component {
             videoURL: "",
             instructions: "",
             choices: [],
+            // isOpen: false,
             errors: {}
         };
     }
 
     componentDidMount = () => {
         this.getExercise();
+        this.clickHandler();
     }
 
     getExercise = () => {
@@ -46,22 +48,15 @@ class Exercises extends Component {
     //     this.setState({ [name]: value });
     // };
 
-    clickHandler = (exercise) => {
-        this.setState({})
-        console.log(exercise)
+    clickHandler = (e) => {
 
-        // return exercise.map(options =>(
-        //     <div key={options._id}>
-        //         <p>{options.exerciseName}</p>
-        //     </div>
-        //
-        // ))
+        this.setState({clicks: e})
+        console.log({clicks: e})
 
-        // return(
-        //     <div key={index}>
-        //         <p>{exercise.exerciseName}</p>
-        //     </div>
-        // )
+    }
+
+
+
         // choices.map(exercise =>
         // <div key={exercise._id}>
         //     <h3>{exercise.exerciseName}</h3>
@@ -72,28 +67,23 @@ class Exercises extends Component {
         //     <p>Exercise Type: {exercise.exerciseType}</p>
         //     <p>Video Link: <a target="_blank" href={exercise.videoURL}>{exercise.videoURL}</a></p>
         // </div>)
+
+    //
+
+    showModal = (exercise) => {
+        this.setState({
+            isOpen: true
+        })
+        console.log({clicks: exercise})
+    }
+
+    hideModal = () => {
+        this.setState({
+            isOpen: false
+        })
     }
 
 
-
-    // console.log('Button Clicked');
-
-
-
-    // submit = (event) => {
-    //     event.preventDefault();
-    //
-    //     const payload = {
-    //         exerciseName: this.state.exerciseName,
-    //         equipment: this.state.equipment,
-    //         reps: this.state.reps,
-    //         sets: this.state.sets,
-    //         exerciseType: this.state.exerciseType,
-    //         videoURL: this.state.videoURL,
-    //         instructions: this.state.instructions
-    //     }
-    //
-    // }
 
     displayExercises = (choices) => {
         // const pages =[5, 10, 25]
@@ -101,6 +91,29 @@ class Exercises extends Component {
         // const [rowsPerPage, setRowsPerPage] = useState(pages[page])
 
         if (!choices.length) return null;
+
+        // const pages = [5, 10, 25]
+        // const [page, setPage] = useState(0)
+        // const [rowsPerPage, setRowsPerPage] = useState(pages[page])
+        //
+        // const tblPagination = () => {
+        //     const component = "div"
+        //     const page = [page]
+        //     const rowsPerPageOptions = [pages]
+        //     const rowsPerPage = [rowsPerPage]
+        //     const count = [choices.length]
+        //
+        // }
+
+        let active = 1;
+        let items = [];
+        for (let number = 1; number <= 5; number++) {
+            items.push(
+                <Pagination.Ellipsis key={number} active={number === active}>
+                    {number}
+                </Pagination.Ellipsis>,
+            );
+        }
 
         return (
             <div>
@@ -114,19 +127,27 @@ class Exercises extends Component {
                     </thead>
                     <tbody>
 
-                    {choices.map(exercise =>
-                        <tr key={exercise._id}>
-                            <td><Link onClick={this.clickHandler.bind(this, exercise)}>{exercise.exerciseName}</Link></td>
+                    {choices.map((exercise, index) =>
+                        <>
+                        <tr key={index}>
+                            <td onClick={this.showModal}>{exercise.exerciseName}</td>
                             <td>{exercise.exerciseType}</td>
                             <td>{exercise.equipment}</td>
                         </tr>
+
+                        </>
                     )}
 
 
                     </tbody>
-
+                    <Pagination>{items}</Pagination>
                 </Table>
 
+                {/*<div>*/}
+                {/*    {clicks.map(data =>*/}
+                {/*    <h3>Name: {data.exerciseName}</h3>*/}
+                {/*    )}*/}
+                {/*</div>*/}
                 {/*{this.state.choices.map((exercise, index) =>*/}
                 {/*<>*/}
                 {/*    <div key={index}>*/}
@@ -151,7 +172,6 @@ class Exercises extends Component {
                 {/*)}*/}
 
 
-
             </div>
 
         );
@@ -161,7 +181,7 @@ class Exercises extends Component {
         return (
 
             <Container style={{ marginBottom: "5rem" }}>
-                <div className="exercises">
+                <div>
                     {this.displayExercises(this.state.choices)}
                 </div>
             </Container>
