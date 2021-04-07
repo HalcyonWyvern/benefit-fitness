@@ -51,7 +51,7 @@ router.get("/user/:username",
         if(user) {
             UserPlan.find({user: user})
                 .populate("user", "username")
-                .populate("plan", "name")
+                .populate("plan")
                 .then(plan => {
                     res.json(plan)
             });
