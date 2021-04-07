@@ -8,7 +8,6 @@ class Header extends Component {
         return (
             <div>
                 <Container className="p-0" fluid={true}>
-
                     <Navbar className="border-bottom" bg="transparent" expand="lg">
                         <Navbar.Brand as={Link} to="/">
                             <img
@@ -29,7 +28,7 @@ class Header extends Component {
                                 <Link className="nav-link" to="/userplans">My Plans</Link>
                                 <Link className="nav-link" to="/about">About</Link>
                                 <Link className="nav-link" to="/contact">Contact</Link>
-                                <Link className="nav-link" to="/profile">Profile</Link>
+                                <Link className="nav-link" to="/profile">My Account</Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>

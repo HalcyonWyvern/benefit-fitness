@@ -13,7 +13,7 @@ class UpdateProfile extends Component {
             height: "",
             weight: "",
             exerciseGoal: "",
-            isOpen: false,
+            isOpen: false
         }
     }
 
@@ -80,12 +80,12 @@ class UpdateProfile extends Component {
 
                             <Form.Group>
                                 <Form.Label>Height</Form.Label>
-                                <Form.Control onChange={this.onChange} value={this.state.height} name="height" id="height" placeholder="My New Weight"/>
+                                <Form.Control onChange={this.onChange} value={this.state.height} name="height" id="height" placeholder="Weight in lbs"/>
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Height</Form.Label>
-                                <Form.Control onChange={this.onChange} value={this.state.weight} name="weight" id="weight" placeholder="My New Height"/>
+                                <Form.Control onChange={this.onChange} value={this.state.weight} name="weight" id="weight" placeholder="Height in inches"/>
                             </Form.Group>
 
                             <Form.Group>
