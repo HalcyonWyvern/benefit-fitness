@@ -13,11 +13,13 @@ const exerciseSchema = new Schema({
     },
     sets: {
         type: String,
-        required: true
+        required: false,
+        default: "0"
     },
     reps: {
         type: String,
-        required: true
+        required: false,
+        default: "0"
     },
     exerciseType: {
         type: String,
