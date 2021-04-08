@@ -17,7 +17,7 @@ class AdminDash extends Component {
                             <Card.Title>
                                 Manage Exercises
                             </Card.Title>
-                            <Button variant="primary" as={Link} to="/admin/exercises">GO</Button>
+                            <Button variant="primary" as={Link} to="/admin_exercises">GO</Button>
                         </Card.Body>
                     </Card>
                     <Card style={{ width: '20rem', height: '8rem' }} className="ml-2">
@@ -25,7 +25,7 @@ class AdminDash extends Component {
                             <Card.Title>
                                 Manage Plans
                             </Card.Title>
-                            <Button variant="primary" as={Link} to="/admin/plans">GO</Button>
+                            <Button variant="primary" as={Link} to="/admin_plans">GO</Button>
                         </Card.Body>
                     </Card>
                     <Card style={{ width: '20rem', height: '8rem' }} className="ml-2">
@@ -33,7 +33,7 @@ class AdminDash extends Component {
                             <Card.Title>
                                 Manage Requests
                             </Card.Title>
-                            <Button variant="primary" as={Link} to="/admin/requests">GO</Button>
+                            <Button variant="primary" as={Link} to="/admin_requests">GO</Button>
                         </Card.Body>
                     </Card>
                 </Row>

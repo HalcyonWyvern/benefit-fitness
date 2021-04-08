@@ -11,8 +11,8 @@ const Exercise = require("../../models/exercises");
 const isAdmin = require("../../middlewares/isAdmin");
 
 // @route POST api/exercises/
-// @desc Add exercise to the database, USERS can do this too
-// @access Public
+// @desc Add exercise to the database
+// @access Private
 router.post("/",
     [passport.authenticate("jwt", { session: false }), isAdmin],
     (req, res) => {
