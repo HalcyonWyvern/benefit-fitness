@@ -22,23 +22,6 @@ class Exercises extends Component {
         };
     }
 
-    componentDidMount = () => {
-        this.getExercise();
-    }
-
-    getExercise = () => {
-        axios.get('/api/exercises')
-            .then((response) => {
-                const exercise = response.data
-                this.setState({ choices: exercise})
-
-                console.log('Data has been received');
-            })
-            .catch(() => {
-                alert('Error');
-            });
-    }
-
     render() {
         return (
 
@@ -64,6 +47,7 @@ const ExerciseTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
     const [sorting, setSorting] = useState({ field: "", order: "" });
+    const [clicked, setClicked] = useState([]);
 
     const ITEMS_PER_PAGE = 2;
 
@@ -87,6 +71,14 @@ const ExerciseTable = () => {
 
         getExercises();
     }, []);
+
+
+        const clickExercise = (name) => {
+
+            console.log(name)
+    }
+
+
 
     const exerciseData = useMemo(() => {
         let computedNames = names;
@@ -156,7 +148,7 @@ const ExerciseTable = () => {
                             <tbody>
                             {exerciseData.map(name => (
                                 <tr key={name._id}>
-                                    <td>{name.exerciseName}</td>
+                                    <td onClick={() => clickExercise(name)}>{name.exerciseName}</td>
                                     <td>{name.exerciseType}</td>
                                     <td>{name.equipment}</td>
                                     {/*<td>{name.body}</td>*/}
@@ -164,6 +156,7 @@ const ExerciseTable = () => {
                             ))}
                             </tbody>
                         </Table>
+
                     </div>
                 </div>
         </>
