@@ -47,7 +47,7 @@ const ExerciseTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
     const [sorting, setSorting] = useState({ field: "", order: "" });
-    const [clicked, setClicked] = useState([]);
+    // const [clicked, setClicked] = useState([]);
 
     const ITEMS_PER_PAGE = 2;
 
@@ -148,10 +148,9 @@ const ExerciseTable = () => {
                             <tbody>
                             {exerciseData.map(name => (
                                 <tr key={name._id}>
-                                    <td onClick={() => clickExercise(name)}>{name.exerciseName}</td>
+                                    <td>{name.exerciseName}</td>
                                     <td>{name.exerciseType}</td>
                                     <td>{name.equipment}</td>
-                                    {/*<td>{name.body}</td>*/}
                                 </tr>
                             ))}
                             </tbody>
