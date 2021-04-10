@@ -64,20 +64,20 @@ router.get("/user/:username",
 // @route GET /api/userplan/:id
 // @desc Get a single user plan by its ID and return it
 // @access Private
-router.get("/:id",
-    passport.authenticate("jwt", { session: false }),
-    (req, res) => {
-    UserPlan.findOne({_id: req.params.id})
-        .populate("user", "username")
-        .populate("plan", "name")
-        .then(uplan => {
-        if(uplan) {
-            res.json(uplan)
-        } else {
-            return res.status(404).json({_id: "User Plan ID not found"})
-        }
-    })
-})
+// router.get("/:id",
+//     passport.authenticate("jwt", { session: false }),
+//     (req, res) => {
+//     UserPlan.findOne({_id: req.params.id})
+//         .populate("user", "username")
+//         .populate("plan", "name")
+//         .then(plan => {
+//         if(plan) {
+//             res.json(plan)
+//         } else {
+//             return res.status(404).json({_id: "User Plan ID not found"})
+//         }
+//     })
+// })
 
 // @route DELETE /api/userplan/:id
 // @desc Delete a user plan by it's id
