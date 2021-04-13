@@ -16,8 +16,8 @@ const isAdmin = require("../../middlewares/isAdmin");
 router.post("/",
     [passport.authenticate("jwt", { session: false }), isAdmin],
     (req, res) => {
-    Exercise.findOne({exerciseName: req.body.exercise}).then(exercise => {
-        if (exercise) {
+    Plan.findOne({name: req.body.name}).then(plan => {
+        if (!plan) {
             const newPlan = new Plan({
                 name: req.body.name,
                 trainerExplanation: req.body.trainerExplanation,
@@ -30,7 +30,7 @@ router.post("/",
                 })
                 .catch(err => console.log(err));
         } else {
-            return res.status(404).json({exercise: "Selected Exercise not found."})
+            return res.status(404).json({name: "Exercise Plan is already created."})
         }
     })
 })
@@ -75,7 +75,7 @@ router.delete("/:id",
 })
 
 // @route PUT api/plans/add/:id
-// @desc Add exercise to plan by exercise name
+// @desc Add exercise to plan (The ID) by exercise name(req.body.exercise)
 // @access Private
 router.put("/add/:id",
     [passport.authenticate("jwt", { session: false }), isAdmin],
