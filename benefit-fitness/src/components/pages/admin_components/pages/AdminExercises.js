@@ -1,16 +1,16 @@
 import React, {Component, useEffect, useMemo, useState} from "react";
-import {Button, Container, Row, Table} from "react-bootstrap";
+import {Button, Col, Container, Row, Table} from "react-bootstrap";
 import AddExercise from "../page_components/AddExercise"
 import axios from "axios";
 import PaginationComponent from "../../page_components/PaginationComponent";
 import Search from "../../page_components/Search";
+import UpdateExercise from "../../admin_components/page_components/UpdateExercise";
 
 class AdminExercises extends Component {
 
     render() {
         return (
             <Container>
-                <AddExercise/>
                 <ExerciseTable />
             </Container>
         );
@@ -105,24 +105,29 @@ const ExerciseTable = () => {
             <h3>Find Exercises Here</h3>
             <div >
                 <div >
-                    <div>
-                        <div>
+                    <Row>
+                        <Col>
+
                             <PaginationComponent
                                 total={totalItems}
                                 itemsPerPage={ITEMS_PER_PAGE}
                                 currentPage={currentPage}
                                 onPageChange={page => setCurrentPage(page)}
                             />
-                        </div>
-                        <div>
+
+
                             <Search
                                 onSearch={value => {
                                     setSearch(value);
                                     setCurrentPage(1);
                                 }}
                             />
-                        </div>
-                    </div>
+
+                        </Col>
+                        <Col>
+                            <AddExercise/>
+                        </Col>
+                    </Row>
 
                     <Table striped bordered hover>
                         <thead>
@@ -148,9 +153,10 @@ const ExerciseTable = () => {
                                         <Button variant="primary" className="ml-2" onClick={() => toggleShown(name.exerciseName)}>
                                         Toggle Details
                                         </Button>
-                                        <Button variant="success" className="ml-2">
-                                            Update Exercise
-                                        </Button>
+                                        <UpdateExercise/>
+                                        {/*<Button variant="success" className="ml-2" onClick={UpdateExercise}>*/}
+                                        {/*    Update Exercise*/}
+                                        {/*</Button>*/}
                                         <Button variant="danger" className="ml-2">
                                             Delete Exercise
                                         </Button>

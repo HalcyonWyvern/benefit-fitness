@@ -1,5 +1,5 @@
 import React, {Component, useEffect, useMemo, useState} from "react";
-import {Button, Container, Row, Table} from "react-bootstrap";
+import {Button, Col, Container, Row, Table} from "react-bootstrap";
 import AddPlan from "../page_components/AddPlan";
 import axios from "axios";
 import PaginationComponent from "../../page_components/PaginationComponent";
@@ -10,7 +10,6 @@ class AdminPlans extends Component {
     render() {
         return (
             <Container>
-                <AddPlan/>
                 <PlansTable/>
             </Container>
         );
@@ -101,24 +100,25 @@ const PlansTable = () => {
             <h3>Find Plans Here</h3>
             <div >
                 <div >
-                    <div>
-                        <div>
+                    <Row>
+                        <Col>
                             <PaginationComponent
                                 total={totalItems}
                                 itemsPerPage={ITEMS_PER_PAGE}
                                 currentPage={currentPage}
                                 onPageChange={page => setCurrentPage(page)}
                             />
-                        </div>
-                        <div>
                             <Search
                                 onSearch={value => {
                                     setSearch(value);
                                     setCurrentPage(1);
                                 }}
                             />
-                        </div>
-                    </div>
+                        </Col>
+                        <Col>
+                            <AddPlan/>
+                        </Col>
+                    </Row>
 
                     <Table striped bordered hover>
                         <thead>
