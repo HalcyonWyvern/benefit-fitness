@@ -102,9 +102,10 @@ class Dashboard extends Component {
                                             View and edit your profile information. Only our trainers will ever
                                             see the information you place inside.
                                         </Card.Text>
-                                        <Button variant="primary" as={Link} to="/profile/}">Go to My Profile</Button>
+                                        <Button variant="primary" as={Link} to="/profile">Go to My Profile</Button>
                                     </Card.Body>
                                 </Card>
+
                                 {/*<Card style={{ width: '18rem' }} className="bg-primary ml-2">*/}
                                 {/*    <Card.Body>*/}
                                 {/*        <Card.Title className="text-light">Card Title</Card.Title>*/}
