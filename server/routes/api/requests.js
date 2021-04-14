@@ -9,7 +9,7 @@ const User = require("../../models/userAccount");
 const isAdmin = require("../../middlewares/isAdmin");
 
 // @route POST api/requests
-// @desc Create a new trainer request
+// @desc Create a new request
 // @access Private [User+]
 router.post("/", (req,res) => {
     User.findOne({ username: req.body.user }).then(user => {
@@ -38,7 +38,8 @@ router.get("/",
     (req, res) => {
     Request.find()
         .populate({path: "user", select: "username email"})
-        .sort({ user_id: -1 })
+        //Sorts by newest requests first. Database limits max requests to about 1000 unless upgraded.
+        .sort({ requestedDate: 1 })
         .then(request => res.json(request))
 });
 
@@ -68,6 +69,7 @@ router.get("/user",
 
 // @route PUT api/requests/:id
 // @desc Update request by _id
+// Most likely unused due to how requests are handled in UI
 // @access Private
 router.put("/:id",
     [passport.authenticate("jwt", { session: false }), isAdmin],
