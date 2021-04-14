@@ -1,5 +1,5 @@
 import React, {Component, useEffect, useMemo, useState} from "react";
-import { Container, Row, Table} from "react-bootstrap";
+import {Button, Container, Nav, Row, Table} from "react-bootstrap";
 import axios from "axios";
 import PaginationComponent from "./page_components/PaginationComponent"
 import Search from "./page_components/Search";
@@ -7,20 +7,6 @@ import Search from "./page_components/Search";
 
 class Exercises extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            exerciseName: "",
-            equipment: "",
-            reps: "",
-            sets: "",
-            exerciseType: "",
-            videoURL: "",
-            instructions: "",
-            choices: [],
-            errors: {}
-        };
-    }
 
     render() {
         return (
@@ -48,6 +34,7 @@ const ExerciseTable = () => {
     const [search, setSearch] = useState("");
     const [sorting, setSorting] = useState({ field: "", order: "" });
     // const [clicked, setClicked] = useState([]);
+    const [exerciseShown, setExerciseShown] = useState([]);
 
     const ITEMS_PER_PAGE = 2;
 
@@ -73,9 +60,22 @@ const ExerciseTable = () => {
     }, []);
 
 
-        const clickExercise = (name) => {
-
-            console.log(name)
+    const toggleShown = exerciseName => {
+        //slice method to return selected elements as new array object
+            const shownState = exerciseShown.slice();
+        //indexOf to search array for specified item
+            const index = shownState.indexOf(exerciseName);
+        // if item found remove item
+            if(index >= 0) {
+                // splice adds/removes item
+                // 1 means remove one item if found
+                shownState.splice(index, 1);
+                setExerciseShown(shownState);
+            }
+            else {
+                shownState.push(exerciseName);
+                setExerciseShown(shownState);
+            }
     }
 
 
@@ -139,6 +139,7 @@ const ExerciseTable = () => {
                                 <th>Exercise Name</th>
                                 <th>Exercise Type</th>
                                 <th>Equipment</th>
+                                <th>More Info</th>
                             </tr>
                             {/*headers={headers}*/}
                             {/*onSorting={(field, order) =>*/}
@@ -147,11 +148,25 @@ const ExerciseTable = () => {
                             </thead>
                             <tbody>
                             {exerciseData.map(name => (
+                                <>
                                 <tr key={name._id}>
-                                    <td>{name.exerciseName}</td>
+                                    <td >{name.exerciseName}</td>
                                     <td>{name.exerciseType}</td>
                                     <td>{name.equipment}</td>
+                                    <td colSpan="0"><Button variant="primary" onClick={() => toggleShown(name.exerciseName)}>Toggle Details</Button></td>
                                 </tr>
+                                    {exerciseShown.includes(name.exerciseName) && (
+                                        <>
+                                        <tr>
+                                            <td colSpan="4"><h5>Instructions:</h5>{name.instructions}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colSpan="4"><h5>Video Link:</h5> <a target="_blank" href={name.videoURL}>{name.videoURL}</a> </td>
+                                        </tr>
+                                        </>
+                                    )}
+
+                                </>
                             ))}
                             </tbody>
                         </Table>

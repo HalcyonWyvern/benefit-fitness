@@ -1,7 +1,6 @@
 import React, {Component, useEffect, useMemo, useState} from "react";
-import {Container, Table} from "react-bootstrap";
+import {Button, Container, Table} from "react-bootstrap";
 import axios from "axios";
-import {forEach} from "react-bootstrap/ElementChildren";
 import PaginationComponent from "./page_components/PaginationComponent";
 import Search from "./page_components/Search";
 
@@ -18,45 +17,6 @@ class Plans extends Component {
             errors: {}
         };
     }
-
-    // componentDidMount = () => {
-    //     this.getPlan();
-    //     this.getPlanExercises();
-    // }
-
-   // componentDidMount() {
-   //     this.getExercisePlans();
-   //  }
-   //
-   //  getExercisePlans(){
-   //      axios.get('/api/plans', {})
-   //          .then((response) => {
-   //              const plans = response.data
-   //              this.setState({ exercisePlans: plans})
-   //
-   //              console.log('Data has been received');
-   //          })
-   //          .catch(() => {
-   //              alert('Error');
-   //          });
-   //  }
-   //
-   //  displayPlans = (exercisePlans) => {
-   //      // if (!exercisePlans.length) return null;
-   //
-   //
-   //      return exercisePlans.map((plans, index) =>(
-   //          <div key={index}>
-   //              <h3>{plans.name}</h3>
-   //              <ul><h5>Exercises:</h5> {plans.exercises.map(option =>
-   //                  <li>{option.exerciseName}</li>
-   //              )}
-   //              </ul>
-   //              <p><h5>Trainer Explanation:</h5> {plans.trainerExplanation}</p>
-   //              <p><h5>Type:</h5> {plans.type}</p>
-   //          </div>
-   //      ));
-   //  };
 
     render() {
 
@@ -76,9 +36,10 @@ const PlansTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
     const [sorting, setSorting] = useState({ field: "", order: "" });
+    const [planShown, setPlanShown] = useState([]);
 
 
-    const ITEMS_PER_PAGE = 1;
+    const ITEMS_PER_PAGE = 2;
 
 
 
@@ -101,8 +62,22 @@ const PlansTable = () => {
         getPlans();
     }, []);
 
-    const clickHandler = () => {
-
+    const toggleShown = name => {
+        //slice method to return selected elements as new array object
+        const shownState = planShown.slice();
+        //indexOf to search array for specified item
+        const index = shownState.indexOf(name);
+        // if item found remove item
+        if(index >= 0) {
+            // splice adds/removes item
+            // 1 means remove one item if found
+            shownState.splice(index, 1);
+            setPlanShown(shownState);
+        }
+        else {
+            shownState.push(name);
+            setPlanShown(shownState);
+        }
     }
 
     const planData = useMemo(() => {
@@ -136,7 +111,7 @@ const PlansTable = () => {
 
     return (
         <>
-            <h3>Find Exercises Here</h3>
+            <h3>Find Plans Here</h3>
             <div >
                 <div >
                     <div>
@@ -163,7 +138,8 @@ const PlansTable = () => {
                         <tr>
                             <th>Plan Name</th>
                             <th>Plan Type</th>
-                            <th>Exercises</th>
+                            <th>Date</th>
+                            <th>More Info</th>
                         </tr>
                         {/*headers={headers}*/}
                         {/*onSorting={(field, order) =>*/}
@@ -172,17 +148,27 @@ const PlansTable = () => {
                         </thead>
                         <tbody>
                         {planData.map(plan => (
+                            <>
                             <tr key={plan._id}>
                                 <td>{plan.name}</td>
                                 <td>{plan.type}</td>
-                                <td>{plan.exercises.map(option =>
-                                    <>({option.exerciseName}) {' '}</>
-                                )}
-                                </td>
-
-                                {/*<td>{plan.equipment}</td>*/}
-                                {/*<td>{name.body}</td>*/}
+                                <td>{' '}</td>
+                                <td colSpan="0"><Button variant="primary" onClick={() => toggleShown(plan.name)}>Toggle Details</Button></td>
                             </tr>
+                                {planShown.includes(plan.name) && (
+                                    <>
+                                        <tr>
+                                            <td colSpan="4"><h5>Trainer Explanation:</h5>{plan.trainerExplanation}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colSpan="4"><h5>Exercises:</h5> {plan.exercises.map(option =>
+                                                <li><a target="_blank" href={option.videoURL}>{option.exerciseName}</a></li>
+                                            )}
+                                            </td>
+                                        </tr>
+                                    </>
+                                )}
+                            </>
                         ))}
                         </tbody>
                     </Table>
