@@ -21,7 +21,7 @@ class Dashboard extends Component {
                        View the administrator dashboard to manage the Sturgeon Web Application
                         all in one spot.
                     </Card.Text>
-                    <Button variant="light">Admin Dashboard</Button>
+                    <Button variant="light" as={Link} to="/admin">Admin Dashboard</Button>
                 </Card.Body>
             </Card>)
         }

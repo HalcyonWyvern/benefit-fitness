@@ -25,7 +25,7 @@ class Header extends Component {
                                 <Link className="nav-link" to="/dashboard">Home</Link>
                                 <Link className="nav-link" to="/exercises">Exercises</Link>
                                 <Link className="nav-link" to="/plans">Plans</Link>
-                                <Link className="nav-link" to="/userplans">My Plans</Link>
+                                {/*<Link className="nav-link" to="/userplans">My Plans</Link>*/}
                                 <Link className="nav-link" to="/about">About</Link>
                                 <Link className="nav-link" to="/contact">Contact</Link>
                                 <Link className="nav-link" to="/profile">My Account</Link>
