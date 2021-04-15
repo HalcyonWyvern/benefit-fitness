@@ -25,7 +25,6 @@ class Contact extends Component {
         let reqTypeErr = "";
         let methodErr = "";
         let commentErr = "";
-        let dateErr = "";
 
         if (!this.state.phoneNumber) {
             phoneErr = "Phone number cannot be blank."
@@ -39,22 +38,16 @@ class Contact extends Component {
             commentErr = "Please fill out the comment section."
         }
 
-        if (!this.state.requestedDate) {
-            dateErr = "Please select a date."
-        }
-
-
         if (!this.state.contactMethod) {
             methodErr = "Please select a contact method."
         }
 
-        if (phoneErr || reqTypeErr || methodErr || commentErr || dateErr) {
+        if (phoneErr || reqTypeErr || methodErr || commentErr) {
             this.setState({
                 phoneErr,
                 reqTypeErr,
                 methodErr,
-                commentErr,
-                dateErr
+                commentErr
             });
             return false;
         } else {
@@ -77,7 +70,7 @@ class Contact extends Component {
                 user: user.username.split(" ")[0],
                 phoneNumber: this.state.phoneNumber,
                 requestType: this.state.requestType,
-                requestedDate: this.state.requestedDate,
+                requestedDate: Date.now(),
                 comments: this.state.comments,
                 contactMethod: this.state.contactMethod,
             };
@@ -97,11 +90,16 @@ class Contact extends Component {
                 requestedDate: "",
                 comments: "",
                 contactMethod: "",
+                phoneErr: "",
+                reqTypeErr: "",
+                methodErr: "",
+                commentErr: "",
             })
         }
     }
 
     render() {
+        const date = new Date();
         const {user} = this.props.auth;
         return (
                 <Container>
@@ -120,7 +118,12 @@ class Contact extends Component {
                     <Form onSubmit={this.onSubmit}>
                         <Form.Group>
                             <Form.Label>Username</Form.Label>
-                            <Form.Control onChange={this.onChange} value={user.username.split(" ")[0]} disabled="disabled" name="user" id="user" type="box"/>
+                            <Form.Control onChange={this.onChange} value={user.username.split(" ")[0]} disabled name="user" id="user" type="box"/>
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label>Today's Date</Form.Label>
+                            <Form.Control onChange={this.onChange} value={date.toDateString()} id="requestedDate"  placeholder="Date" disabled type="box"/>
                         </Form.Group>
 
                         <Form.Group>
@@ -176,13 +179,6 @@ class Contact extends Component {
                             {this.state.commentErr}
                         </div>
 
-                        <Form.Group>
-                            <Form.Label>Requested Date</Form.Label>
-                            <Form.Control onChange={this.onChange} value={this.state.date} id="requestedDate" type="date" placeholder="Date"/>
-                        </Form.Group>
-                        <div style={{ fontSize: 10, color: "red" }}>
-                            {this.state.dateErr}
-                        </div>
 
                         <p>{' '}</p>
                         <Button variant="primary" type="submit">
