@@ -11,6 +11,22 @@ class Dashboard extends Component {
         this.props.logoutUser();
     };
 
+    renderAdmin = () => {
+        const {user} = this.props.auth;
+        if(user.isAdmin) {
+            return(<Card style={{width: '20rem'}} className="bg-primary ml-2">
+                <Card.Body>
+                    <Card.Title className="text-light">Administration</Card.Title>
+                    <Card.Text className="text-light">
+                       View the administrator dashboard to manage the Sturgeon Web Application
+                        all in one spot.
+                    </Card.Text>
+                    <Button variant="light">Admin Dashboard</Button>
+                </Card.Body>
+            </Card>)
+        }
+    }
+
     render() {
         const { user } = this.props.auth;
 
@@ -106,16 +122,9 @@ class Dashboard extends Component {
                                     </Card.Body>
                                 </Card>
 
-                                {/*<Card style={{ width: '18rem' }} className="bg-primary ml-2">*/}
-                                {/*    <Card.Body>*/}
-                                {/*        <Card.Title className="text-light">Card Title</Card.Title>*/}
-                                {/*        <Card.Text className="text-light">*/}
-                                {/*            Some quick example text to build on the card title and make up the bulk of*/}
-                                {/*            the card's content.*/}
-                                {/*        </Card.Text>*/}
-                                {/*        <Button variant="light">Go somewhere</Button>*/}
-                                {/*    </Card.Body>*/}
-                                {/*</Card>*/}
+
+                                {this.renderAdmin()}
+
                             </Row>
 
                         </Container>
