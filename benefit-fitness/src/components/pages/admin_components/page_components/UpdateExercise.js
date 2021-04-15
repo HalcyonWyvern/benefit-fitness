@@ -36,7 +36,7 @@ class UpdateExercise extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const {exercise} = this.props.auth;
+        const {id} = this.props.auth;
         const newRequest = {
             exerciseName: this.state.exerciseName,
             equipment: this.state.equipment,
@@ -47,7 +47,9 @@ class UpdateExercise extends Component {
         console.log(newRequest);
 
         axios
-            .put('/api/exercises/' + exercise.id, newRequest)
+            .put('/api/exercises/' + id._id, newRequest)
+            // .put('/api/exercises/' , newRequest)
+
             .then(res => console.log(res.data));
 
         this.setState({
