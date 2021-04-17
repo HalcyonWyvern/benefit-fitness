@@ -4,12 +4,17 @@ import AddPlan from "../page_components/AddPlan";
 import axios from "axios";
 import PaginationComponent from "../../page_components/PaginationComponent";
 import Search from "../../page_components/Search";
+import BackToDashButton from "../page_components/BackToDashButton";
+import DeleteRequest from "../page_components/DeleteRequest"
 
 class AdminPlans extends Component {
 
     render() {
         return (
             <Container>
+                <p>{' '}</p>
+                <BackToDashButton/>
+                <p>{' '}</p>
                 <PlansTable/>
             </Container>
         );
@@ -147,9 +152,7 @@ const PlansTable = () => {
                                         <Button variant="success" className="ml-2">
                                             Update Plan
                                         </Button>
-                                        <Button variant="danger" className="ml-2">
-                                            Delete Plan
-                                        </Button>
+                                        <DeleteRequest requestID={plan._id} URI='/api/plans/'/>
                                     </td>
                                 </tr>
                                 {planShown.includes(plan.name) && (

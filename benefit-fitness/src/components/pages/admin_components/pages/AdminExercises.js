@@ -3,14 +3,19 @@ import {Button, Col, Container, Row, Table} from "react-bootstrap";
 import AddExercise from "../page_components/AddExercise"
 import axios from "axios";
 import PaginationComponent from "../../page_components/PaginationComponent";
+import BackToDashButton from "../page_components/BackToDashButton"
 import Search from "../../page_components/Search";
 import UpdateExercise from "../../admin_components/page_components/UpdateExercise";
+import DeleteRequest from "../page_components/DeleteRequest";
 
 class AdminExercises extends Component {
 
     render() {
         return (
             <Container>
+                <p>{' '}</p>
+                <BackToDashButton/>
+                <p>{' '}</p>
                 <ExerciseTable />
             </Container>
         );
@@ -27,7 +32,7 @@ const ExerciseTable = () => {
     // const [clicked, setClicked] = useState([]);
     const [exerciseShown, setExerciseShown] = useState([]);
 
-    const ITEMS_PER_PAGE = 2;
+    const ITEMS_PER_PAGE = 10;
 
 
 
@@ -157,9 +162,7 @@ const ExerciseTable = () => {
                                         {/*<Button variant="success" className="ml-2" onClick={UpdateExercise}>*/}
                                         {/*    Update Exercise*/}
                                         {/*</Button>*/}
-                                        <Button variant="danger" className="ml-2">
-                                            Delete Exercise
-                                        </Button>
+                                        <DeleteRequest requestID={name._id} URI='/api/exercises/'/>
                                     </td>
                                 </tr>
                                 {exerciseShown.includes(name.exerciseName) && (

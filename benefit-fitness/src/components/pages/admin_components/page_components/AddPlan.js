@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from "axios";
-import {Button, Col, Form, Modal, Row} from "react-bootstrap";
+import {Button, Form, Modal} from "react-bootstrap";
 
 
 class AddExercise extends Component {
@@ -87,7 +87,8 @@ class AddExercise extends Component {
 
                     <Modal.Body>
                         <p>This tool allows you to create empty workouts for the workout library. To add
-                        an exercise into newly created workouts, please use the appropriate tool.</p>
+                        an exercise into newly created workouts, please use the "Add Exercises" button to
+                        the right of the plans table on the Admin Page.</p>
                         <Form onSubmit={this.onSubmit}>
                             <Form.Group>
                                 <Form.Label>Plan Name</Form.Label>
