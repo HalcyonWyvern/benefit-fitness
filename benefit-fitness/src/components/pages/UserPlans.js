@@ -83,7 +83,7 @@ class UserPlans extends Component {
                         {/*)}*/}
 
                         <Row>
-                        <p>Plan: {uPlan.plan.name}</p>
+                        {/*<p>Plan: {uPlan.plan.name}</p>*/}
                         <p></p>
                         </Row>
                         {/*<p>{uPlan.plan}</p>*/}

@@ -36,7 +36,7 @@ const ExerciseTable = () => {
     // const [clicked, setClicked] = useState([]);
     const [exerciseShown, setExerciseShown] = useState([]);
 
-    const ITEMS_PER_PAGE = 2;
+    const ITEMS_PER_PAGE = 10;
 
 
 

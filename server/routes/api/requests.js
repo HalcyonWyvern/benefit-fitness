@@ -37,9 +37,8 @@ router.get("/",
     [passport.authenticate("jwt", { session: false }), isAdmin],
     (req, res) => {
     Request.find()
-        .populate({path: "user", select: "username email"})
-        //Sorts by newest requests first. Database limits max requests to about 1000 unless upgraded.
-        .sort({ requestedDate: 1 })
+        .sort({ requestedDate: -1 })
+        .populate({path: "user"})
         .then(request => res.json(request))
 });
 
