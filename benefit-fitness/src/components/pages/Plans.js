@@ -1,8 +1,9 @@
 import React, {Component, useEffect, useMemo, useState} from "react";
-import {Button, Container, Table} from "react-bootstrap";
+import {Button, Container, ListGroup, Table} from "react-bootstrap";
 import axios from "axios";
 import PaginationComponent from "./page_components/PaginationComponent";
 import Search from "./page_components/Search";
+import ExerciseModal from "./page_components/ExerciseModal";
 
 class Plans extends Component {
 
@@ -37,6 +38,7 @@ const PlansTable = () => {
     const [search, setSearch] = useState("");
     const [sorting, setSorting] = useState({ field: "", order: "" });
     const [planShown, setPlanShown] = useState([]);
+    const [showState, setShowState] = useState("");
 
 
     const ITEMS_PER_PAGE = 2;
@@ -52,7 +54,7 @@ const PlansTable = () => {
                     const plan = response.data
                     // this.setState({ choices: exercise})
                     setPlans(plan);
-                    console.log('Data has been received');
+                    console.log(response.data);
                 })
                 .catch(() => {
                     alert('Error');
@@ -109,6 +111,14 @@ const PlansTable = () => {
         );
     }, [plans, currentPage, search, sorting]);
 
+    const hideThis = () => {
+        setShowState("");
+    }
+
+    function showThis(id) {
+        setShowState(id);
+    }
+
     return (
         <>
             <h3>Find Plans Here</h3>
@@ -138,7 +148,7 @@ const PlansTable = () => {
                         <tr>
                             <th>Plan Name</th>
                             <th>Plan Type</th>
-                            <th>Date</th>
+                            <th>Tags</th>
                             <th>More Info</th>
                         </tr>
                         {/*headers={headers}*/}
@@ -162,7 +172,10 @@ const PlansTable = () => {
                                         </tr>
                                         <tr>
                                             <td colSpan="4"><h5>Exercises:</h5> {plan.exercises.map(option =>
-                                                <li><a target="_blank" href={option.videoURL}>{option.exerciseName}</a></li>
+                                                <ListGroup as="ul">
+                                                    <ListGroup.Item action onClick={() => showThis(option._id)}>{option.exerciseName}</ListGroup.Item>
+                                                    <ExerciseModal exerciseData={option} showState={(showState === option._id)} hideModal={hideThis}/>
+                                                </ListGroup>
                                             )}
                                             </td>
                                         </tr>
