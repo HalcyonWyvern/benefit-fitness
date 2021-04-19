@@ -42,7 +42,7 @@ router.get("/",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
     Plan.find()
-        .populate("exercises", "exerciseName")
+        .populate("exercises")
         .sort({ type: -1 }) // descending order
         .then(plans => res.json(plans));
 });

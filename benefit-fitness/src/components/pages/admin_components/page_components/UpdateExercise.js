@@ -9,11 +9,11 @@ class UpdateExercise extends Component {
         super(props);
 
         this.state = {
-            exerciseName: "",
-            equipment: "",
-            exerciseType: "",
-            videoURL: "",
-            instructions: "",
+            exerciseName: props.name || "",
+            equipment: props.equipment || "",
+            exerciseType: props.type || "",
+            videoURL: props.video || "",
+            instructions: props.instructions || "",
             isOpen: false
         }
     }
@@ -36,7 +36,6 @@ class UpdateExercise extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const {id} = this.props.auth;
         const newRequest = {
             exerciseName: this.state.exerciseName,
             equipment: this.state.equipment,
@@ -47,7 +46,7 @@ class UpdateExercise extends Component {
         console.log(newRequest);
 
         axios
-            .put('/api/exercises/' + id._id, newRequest)
+            .put('/api/exercises/' + this.props.exerciseID, newRequest)
             // .put('/api/exercises/' , newRequest)
 
             .then(res => console.log(res.data));
@@ -80,17 +79,25 @@ class UpdateExercise extends Component {
                         <Form onSubmit={this.onSubmit}>
                             <Form.Group>
                                 <Form.Label>Exercise Name</Form.Label>
-                                <Form.Control onChange={this.onChange} value={this.state.exerciseName} name="exerciseName" id="exerciseName" as="textarea"/>
+                                <Form.Control onChange={this.onChange} value={this.state.exerciseName} name="exerciseName" id="exerciseName" type="box"/>
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Equipment</Form.Label>
-                                <Form.Control onChange={this.onChange} value={this.state.equipment} name="equipment" id="equipment" placeholder="Equipment Needed"/>
+                                <Form.Control onChange={this.onChange} value={this.state.equipment} name="equipment" id="equipment" type="box" placeholder="Equipment Needed"/>
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Exercise Type</Form.Label>
-                                <Form.Control onChange={this.onChange} value={this.state.exerciseType} name="exerciseType" id="exerciseType" placeholder="Type of Exercise"/>
+                                <Form.Control onChange={this.onChange} value={this.state.exerciseType} name="exerciseType" id="exerciseType" as="select">
+                                    <option>Please Select an Exercise Type</option>
+                                    <option>Please Choose the Exercise Type</option>
+                                    <option>Core Work</option>
+                                    <option>Upper Body</option>
+                                    <option>Lower Body</option>
+                                    <option>Arms and Shoulders</option>
+                                    <option>Compound Exercise</option>
+                                </Form.Control>
                             </Form.Group>
 
                             <Form.Group>
@@ -105,7 +112,7 @@ class UpdateExercise extends Component {
 
                             <Form.Group>
                                 <Form.Label>Instructions</Form.Label>
-                                <Form.Control onChange={this.onChange} value={this.state.instructions} name="instructions" id="instructions" placeholder="Exercise Instructions"/>
+                                <Form.Control onChange={this.onChange} value={this.state.instructions} as="textarea" rows={4} name="instructions" id="instructions" placeholder="Exercise Instructions"/>
                             </Form.Group>
                             <Button variant="primary" type="submit">
                                 Save Changes

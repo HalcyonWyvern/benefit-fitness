@@ -9,10 +9,10 @@ class UpdateProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bio: "",
-            height: "",
-            weight: "",
-            exerciseGoal: "",
+            bio: props.bio || "",
+            height: props.height || "",
+            weight: props.weight || "",
+            exerciseGoal: props.goal || "",
             isOpen: false
         }
     }

@@ -46,13 +46,24 @@ class Profile extends Component {
             <Container>
                 <p>{' '}</p>
                 <Row>
+
+                </Row>
+                <Row>
                     <Col>
                         <h2>{x}'s Profile</h2>
                         <h6>Please ensure your information is up-to-date for our trainers to reference.</h6>
                     </Col>
+
                     <Col xs={6} md={2}>
                         <p>{' '}</p>
-                        <UpdateProfile/>
+                        {this.state.profiles.map(profile =>
+                        <UpdateProfile
+                            bio={profile.bio}
+                            height={profile.height}
+                            weight={profile.weight}
+                            goal={profile.exerciseGoal}
+                        />
+                        )}
                     </Col>
                 </Row>
 

@@ -64,7 +64,7 @@ class Dashboard extends Component {
                             </Row>
 
                             {/*Row containing 1st set of Nav Cards    */}
-                            <Row>
+                            <Row style={{justifyContent: "Center"}}>
                                 <Card style={{ width: '20rem', height: '15rem'}}>
                                     {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
                                     <Card.Body>
@@ -86,7 +86,7 @@ class Dashboard extends Component {
                                         <Button variant="primary" as={Link} to="/plans">Go to Plans</Button>
                                     </Card.Body>
                                 </Card>
-                                <Card style={{ width: '20rem', height: '15rem' }} className="ml-2">
+                                {/*<Card style={{ width: '20rem', height: '15rem' }} className="ml-2">
                                     <Card.Body>
                                         <Card.Title>MY PLANS</Card.Title>
                                         <Card.Text>
@@ -95,7 +95,7 @@ class Dashboard extends Component {
                                         </Card.Text>
                                         <Button variant="primary" as={Link} to="/userplans">Go to My Plans</Button>
                                     </Card.Body>
-                                </Card>
+                                </Card>*/}
                             </Row>
 
                             {/*Row containing second set of Nav Cards*/}
