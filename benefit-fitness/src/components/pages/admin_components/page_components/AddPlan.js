@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useEffect} from "react";
 import axios from "axios";
 import {Button, Form, Modal} from "react-bootstrap";
 
@@ -14,6 +14,23 @@ class AddExercise extends Component {
             exercises: []
         }
     }
+
+    // componentDidMount() {
+    //     this.getProfile();
+    // }
+    //
+    // getProfile = () => {
+    //     // const {user} = this.props.auth;
+    //     axios.get('/api/exercises/')
+    //         .then(res => {
+    //             const data = res.data
+    //             this.setState({exercises: data})
+    //             console.log(data);
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // }
 
     showModal = () => {
         this.setState({
@@ -101,9 +118,33 @@ class AddExercise extends Component {
                                     type="Box"
                                 />
                             </Form.Group>
+
                             <div style={{fontSize: 12, color: "red"}}>
                                 {this.state.nameErr}
                             </div>
+
+                            {/*<Form.Group>*/}
+                            {/*    <Form.Label>Exercises</Form.Label>*/}
+                            {/*    <Form.Control*/}
+                            {/*        onChange={this.onChange}*/}
+                            {/*        value={this.state.exercises}*/}
+                            {/*        name="exercises"*/}
+                            {/*        id="exercises"*/}
+                            {/*        as="select"*/}
+                            {/*    >*/}
+                            {/*        <option>Select an Exercise</option>*/}
+                            {/*        {this.state.exercises.map(data =>*/}
+                            {/*            <option>{data.exerciseName}</option>*/}
+                            {/*        )}*/}
+                            {/*        /!*<option>Please Select a Plan Type</option>*!/*/}
+                            {/*        /!*<option>Strength Building</option>*!/*/}
+                            {/*        /!*<option>Recreation</option>*!/*/}
+                            {/*        /!*<option>Health and Wellness</option>*!/*/}
+                            {/*        /!*<option>General Fitness</option>*!/*/}
+                            {/*    </Form.Control>*/}
+                            {/*    <Button>Add</Button>*/}
+                            {/*</Form.Group>*/}
+
                             <Form.Row>
                                 <h4>Optional Details</h4>
                             </Form.Row>

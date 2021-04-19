@@ -6,6 +6,7 @@ import PaginationComponent from "../../page_components/PaginationComponent";
 import Search from "../../page_components/Search";
 import BackToDashButton from "../page_components/BackToDashButton";
 import DeleteRequest from "../page_components/DeleteRequest"
+import AddPlanExercises from "../page_components/AddPlanExercises";
 
 class AdminPlans extends Component {
 
@@ -164,11 +165,14 @@ const PlansTable = () => {
                                             <td colSpan="4"><h5>Exercises:</h5> {plan.exercises.map(option =>
                                                 <li><a target="_blank" href={option.videoURL}>{option.exerciseName}</a></li>
                                             )}
+                                                <AddPlanExercises
+                                                    planID={plan._id}
+                                                    name={plan.name}
+                                                    type={plan.type}
+                                                />
                                             </td>
+
                                         </tr>
-                                        {/*<tr>*/}
-                                        {/*    <td colSpan="4"><h5>Video Link:</h5> <a target="_blank" href={name.videoURL}>{name.videoURL}</a> </td>*/}
-                                        {/*</tr>*/}
                                     </>
                                 )}
                             </>
