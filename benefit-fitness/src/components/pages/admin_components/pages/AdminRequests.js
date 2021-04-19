@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Card, Container, Row} from "react-bootstrap";
+import {Container, Row} from "react-bootstrap";
 import RequestsTable from "../page_components/RequestsTable"
 import BackToDashButton from "../page_components/BackToDashButton"
 
@@ -7,7 +7,7 @@ class AdminRequests extends Component {
 
     render() {
         return (
-            <Container>
+            <Container style={{marginBottom: '20rem'}}>
                 <p>{' '}</p>
                 <Row>
                 <BackToDashButton/>
@@ -15,9 +15,7 @@ class AdminRequests extends Component {
                 <Row>
                 <RequestsTable />
                 </Row>
-                <Card bg="dark" style={{width: '20rem', height: '15rem'}}>
 
-                </Card>
             </Container>
         );
     }

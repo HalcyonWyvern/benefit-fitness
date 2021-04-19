@@ -44,12 +44,6 @@ const RequestsTable = () => {
     // //Change page
     // const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    const returnDate = (date) => {
-        let newDate = new Date(date);
-
-        return newDate.getMonth() + "/" + newDate.getDay() + "/" +newDate.getFullYear();
-    }
-
     return(
         <>
             <Row>
@@ -116,7 +110,9 @@ const RequestsTable = () => {
                                 </ListGroup>
                             </Col>
                             <Col sm={7}>
-                                <h5>Message Body submitted {returnDate(data.requestedDate)}</h5>
+                                <h5>
+                                    Message Body submitted {data.requestedDate.slice(0,10)}
+                                </h5>
                                 <Form>
                                     <Form.Group>
 
