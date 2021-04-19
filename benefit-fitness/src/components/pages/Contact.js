@@ -22,6 +22,7 @@ class Contact extends Component {
 
     valid = () => {
         let phoneErr = "";
+
         let reqTypeErr = "";
         let methodErr = "";
         let commentErr = "";
@@ -40,6 +41,10 @@ class Contact extends Component {
 
         if (!this.state.contactMethod) {
             methodErr = "Please select a contact method."
+        }
+
+        if(this.state.phoneNumber.length !== 10) {
+            phoneErr = "Please enter a valid ten digit phone number."
         }
 
         if (phoneErr || reqTypeErr || methodErr || commentErr) {
@@ -134,7 +139,7 @@ class Contact extends Component {
                                 We'll never share your phone or email with anyone else.
                             </Form.Text>
                         </Form.Group>
-                        <div style={{ fontSize: 10, color: "red" }}>
+                        <div style={{ fontSize: 12, color: "red" }}>
                             {this.state.phoneErr}
                         </div>
 
@@ -163,19 +168,19 @@ class Contact extends Component {
 
                         </Form.Row>
                         <Row>
-                            <Col><div style={{ fontSize: 10, color: "red" }}>
+                            <Col><div style={{ fontSize: 12, color: "red" }}>
                                 {this.state.reqTypeErr}
                             </div></Col>
-                            <Col><div style={{ fontSize: 10, color: "red" }}>
+                            <Col><div style={{ fontSize: 12, color: "red" }}>
                                 {this.state.methodErr}
                             </div></Col>
                         </Row>
 
                         <Form.Group>
                             <Form.Label>Details</Form.Label>
-                            <Form.Control onChange={this.onChange} value={this.state.comments} id="comments" as="textarea" rows={3}/>
+                            <Form.Control onChange={this.onChange} value={this.state.comments} id="comments" as="textarea" rows={3} placeholder="Please tell us more about how we can help you."/>
                         </Form.Group>
-                        <div style={{ fontSize: 10, color: "red" }}>
+                        <div style={{ fontSize: 12, color: "red" }}>
                             {this.state.commentErr}
                         </div>
 

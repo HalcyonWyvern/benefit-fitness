@@ -127,9 +127,11 @@ const ExerciseTable = () => {
                                     setCurrentPage(1);
                                 }}
                             />
-
                         </Col>
-                        <Col>
+                        <Col sm={2}>
+                            <br/>
+                            <br/>
+                            <br/>
                             <AddExercise/>
                         </Col>
                     </Row>
@@ -158,7 +160,14 @@ const ExerciseTable = () => {
                                         <Button variant="primary" className="ml-2" onClick={() => toggleShown(name.exerciseName)}>
                                         Toggle Details
                                         </Button>
-                                        <UpdateExercise/>
+                                        <UpdateExercise
+                                            exerciseID={name._id}
+                                            name={name.exerciseName}
+                                            equipment={name.equipment}
+                                            type={name.exerciseType}
+                                            video={name.videoURL}
+                                            instructions={name.instructions}
+                                        />
                                         {/*<Button variant="success" className="ml-2" onClick={UpdateExercise}>*/}
                                         {/*    Update Exercise*/}
                                         {/*</Button>*/}
