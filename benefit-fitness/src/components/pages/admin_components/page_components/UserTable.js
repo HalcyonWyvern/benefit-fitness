@@ -7,6 +7,8 @@ const UserTable = () => {
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(8);
+    const [search, setSearch] = useState("");
+    const [sorting, setSorting] = useState({ field: "", order: "" });
 
     useEffect(() =>{
         const getUsers = async () => {

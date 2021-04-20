@@ -1,17 +1,15 @@
 import React, {Component} from "react";
 import axios from "axios";
-import {Button, Col, Form, Modal} from "react-bootstrap";
+import {Button, Form, Modal} from "react-bootstrap";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import AddExercise from "./AddExercise";
 
 class AddPlanExercises extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            _id: props.planID || "",
-            exercises: props.planExs || [],
+            exercise: "",
             choices: [],
             isOpen: false
         }
@@ -53,7 +51,7 @@ class AddPlanExercises extends Component {
     valid = () => {
         let exerciseErr = "";
 
-        if(!this.state.exercises) {
+        if(!this.state.exercise) {
             exerciseErr = "Please choose an exercise"
         }
         if (exerciseErr) {
@@ -72,16 +70,17 @@ class AddPlanExercises extends Component {
         if (isValid) {
 
             const added = {
-                exercises: this.state.exercises
+                exercise: this.state.exercise
             }
             console.log(added);
 
-            axios.put("/api/plans/add/" + this.props.planID, added)
+
+            axios.put(("api/plans/add/" + this.props.planID), added)
                 .then(res => {
                     console.log(res.data);
                 })
             this.setState({
-                exercises: [],
+                exercise: "",
                 isOpen: false
             })
         }
@@ -105,12 +104,12 @@ class AddPlanExercises extends Component {
                                 <Form.Label>Exercise</Form.Label>
                                 <Form.Control
                                     onChange={this.onChange}
-                                    value={this.state.exercises}
-                                    name="exercises"
-                                    id="exercises"
+                                    value={this.state.exercise}
+                                    name="exercise"
+                                    id="exercise"
                                     as="select"
                                 >
-                                    <option>Select an Exercise</option>
+                                    <option>Select an Exercise to Add</option>
                                     {this.state.choices.map(data =>
                                         <option>{data.exerciseName}</option>
                                     )}
