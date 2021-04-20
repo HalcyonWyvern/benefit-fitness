@@ -170,6 +170,7 @@ const PlansTable = () => {
                                                     name={plan.name}
                                                     type={plan.type}
                                                 />
+
                                             </td>
 
                                         </tr>
