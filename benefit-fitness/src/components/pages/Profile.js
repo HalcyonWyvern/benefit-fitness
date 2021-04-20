@@ -105,7 +105,12 @@ class Profile extends Component {
                         </Col>
                         <Col xs={6} md={2}>
                             <p>{' '}</p>
-                            <ProfileUpdateAcc/>
+                            <ProfileUpdateAcc
+                                address={profile.user.address}
+                                city={profile.user.city}
+                                state={profile.user.state}
+                                zip={profile.user.zip}
+                            />
                         </Col>
                     </Row>
 
