@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player/lazy'
 
 
 
-const ExerciseModal = ({ exerciseData, showState, hideModal}) => {
+const ExerciseModal = ({exerciseData, showState, hideModal}) => {
     return (
         <Modal size="xl" show={showState} onHide={hideModal}>
             <Modal.Header closeButton>
@@ -12,12 +12,15 @@ const ExerciseModal = ({ exerciseData, showState, hideModal}) => {
             </Modal.Header>
             <Modal.Body>
                 <Container>
+                    <Row style={{ justifyContent: "center"}}>
+                        <h5>Video Demonstration</h5>
+                    </Row>
                     <Row>
                         <Col style={{paddingLeft: "14rem"}}>
                             <ReactPlayer controls={true} url={exerciseData.videoURL}/>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row style={{paddingTop: "1rem"}}>
                         <Col xs={10}>
                             <h5>Exercise Instructions</h5>
                             <p>{exerciseData.instructions}</p>
