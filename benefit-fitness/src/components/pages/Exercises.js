@@ -1,8 +1,9 @@
 import React, {Component, useEffect, useMemo, useState} from "react";
-import {Button, Container, Nav, Row, Table} from "react-bootstrap";
+import {Button, Container, Table} from "react-bootstrap";
 import axios from "axios";
 import PaginationComponent from "./page_components/PaginationComponent"
 import Search from "./page_components/Search";
+import ReactPlayer from "react-player/lazy";
 
 
 class Exercises extends Component {
@@ -12,7 +13,8 @@ class Exercises extends Component {
         return (
 
             <>
-                <Container className="pt-5">
+                <Container style={{marginBottom: '20rem', marginTop: '2.5rem'}}>
+                    <h3>Find Exercises Here</h3>
                     <ExerciseTable />
                 </Container>
             </>
@@ -36,7 +38,7 @@ const ExerciseTable = () => {
     // const [clicked, setClicked] = useState([]);
     const [exerciseShown, setExerciseShown] = useState([]);
 
-    const ITEMS_PER_PAGE = 10;
+    const ITEMS_PER_PAGE = 12;
 
 
 
@@ -111,7 +113,6 @@ const ExerciseTable = () => {
 
     return (
         <>
-                <h3>Find Exercises Here</h3>
                 <div >
                     <div >
                         <div>
@@ -133,13 +134,13 @@ const ExerciseTable = () => {
                             </div>
                         </div>
 
-                        <Table striped bordered hover>
+                        <Table responsive striped bordered hover size="sm">
                             <thead>
                             <tr>
                                 <th>Exercise Name</th>
                                 <th>Exercise Type</th>
                                 <th>Equipment</th>
-                                <th>More Info</th>
+                                <th style={{textAlign: "center"}}>More Info</th>
                             </tr>
                             {/*headers={headers}*/}
                             {/*onSorting={(field, order) =>*/}
@@ -150,10 +151,10 @@ const ExerciseTable = () => {
                             {exerciseData.map(name => (
                                 <>
                                 <tr key={name._id}>
-                                    <td >{name.exerciseName}</td>
+                                    <td style={{verticalAlign: "middle"}}><h5>{name.exerciseName}</h5></td>
                                     <td>{name.exerciseType}</td>
                                     <td>{name.equipment}</td>
-                                    <td colSpan="0"><Button variant="primary" onClick={() => toggleShown(name.exerciseName)}>Toggle Details</Button></td>
+                                    <td colSpan="0" style={{textAlign: "center"}}><Button size="sm" variant="primary" onClick={() => toggleShown(name.exerciseName)}>Toggle Details</Button></td>
                                 </tr>
                                     {exerciseShown.includes(name.exerciseName) && (
                                         <>
@@ -161,7 +162,7 @@ const ExerciseTable = () => {
                                             <td colSpan="4"><h5>Instructions:</h5>{name.instructions}</td>
                                         </tr>
                                         <tr>
-                                            <td colSpan="4"><h5>Video Link:</h5> <a target="_blank" href={name.videoURL}>{name.videoURL}</a> </td>
+                                            <td colSpan="4"><h5>Video Example:</h5> <a target="_blank"><ReactPlayer controls={true} url={name.videoURL}/></a> </td>
                                         </tr>
                                         </>
                                     )}

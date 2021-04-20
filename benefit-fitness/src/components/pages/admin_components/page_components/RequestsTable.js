@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {Card, Col, Form, ListGroup, Row, Spinner} from "react-bootstrap";
 import axios from "axios";
 // import RequestsPagination from "./RequestsPagination";
 import DeleteRequest from "./DeleteRequest"
 import PaginationComponent from "../../page_components/PaginationComponent";
+import Search from "../../page_components/Search";
 
 const RequestsTable = () => {
     const [data, setData] = useState([]);
@@ -44,6 +45,8 @@ const RequestsTable = () => {
     // //Change page
     // const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+
+
     return(
         <>
             <Row>
@@ -54,7 +57,6 @@ const RequestsTable = () => {
                         currentPage={currentPage}
                         onPageChange={page => setCurrentPage(page)}
                     />
-                    {/*<RequestsPagination postsPerPage={postsPerPage} totalPosts={data.length} paginate={paginate}/>*/}
                 </Col>
             </Row>
             {currentPosts.map(data =>

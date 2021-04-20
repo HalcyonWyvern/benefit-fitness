@@ -22,7 +22,7 @@ class Plans extends Component {
     render() {
 
         return (
-            <Container>
+            <Container  style={{marginBottom: '20rem', marginTop: '2.5rem'}}>
                 <PlansTable/>
             </Container>
         );

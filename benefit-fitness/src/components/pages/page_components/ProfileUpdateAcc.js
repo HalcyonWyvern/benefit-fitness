@@ -9,10 +9,10 @@ class ProfileUpdateAcc extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            address: "",
-            city: "",
-            state: "",
-            zip: "",
+            address: props.address || "",
+            city: props.city || "",
+            state: props.state || "",
+            zip: props.zip || "",
         }
     }
 
