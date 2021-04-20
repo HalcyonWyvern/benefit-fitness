@@ -167,6 +167,7 @@ const PlansTable = () => {
                                             )}
                                                 <AddPlanExercises
                                                     planID={plan._id}
+                                                    planExs={plan.exercises}
                                                     name={plan.name}
                                                     type={plan.type}
                                                 />

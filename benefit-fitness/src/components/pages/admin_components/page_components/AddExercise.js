@@ -101,6 +101,8 @@ class AddExercise extends Component {
                 instructions: "",
                 isOpen: false
             })
+
+            window.location.reload(false);
         }
     }
 

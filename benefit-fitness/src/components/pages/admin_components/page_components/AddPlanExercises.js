@@ -21,7 +21,7 @@ class AddPlanExercises extends Component {
 
     getExercises = () => {
         // const {user} = this.props.auth;
-        axios.get('/api/exercises/')
+        axios.get("api/exercises/")
             .then(res => {
                 const data = res.data
                 this.setState({choices: data})
@@ -73,6 +73,7 @@ class AddPlanExercises extends Component {
                 exercise: this.state.exercise
             }
             console.log(added);
+
 
             axios.put(("api/plans/add/" + this.props.planID), added)
                 .then(res => {
