@@ -10,7 +10,8 @@ class AddPlanExercises extends Component {
         super(props);
 
         this.state = {
-            exercises: [],
+            _id: props.planID || "",
+            exercises: props.planExs || [],
             choices: [],
             isOpen: false
         }
@@ -22,7 +23,7 @@ class AddPlanExercises extends Component {
 
     getExercises = () => {
         // const {user} = this.props.auth;
-        axios.get('/api/exercises/')
+        axios.get("api/exercises/")
             .then(res => {
                 const data = res.data
                 this.setState({choices: data})
@@ -75,7 +76,7 @@ class AddPlanExercises extends Component {
             }
             console.log(added);
 
-            axios.put("api/plans/add/" + this.props.planID, added)
+            axios.put("/api/plans/add/" + this.props.planID, added)
                 .then(res => {
                     console.log(res.data);
                 })
