@@ -1,5 +1,5 @@
 import React, {Component, useEffect, useMemo, useState} from "react";
-import {Button, Col, Container, Row, Table} from "react-bootstrap";
+import {Button, Col, Container, ListGroup, Row, Table} from "react-bootstrap";
 import AddPlan from "../page_components/AddPlan";
 import axios from "axios";
 import PaginationComponent from "../../page_components/PaginationComponent";
@@ -7,12 +7,14 @@ import Search from "../../page_components/Search";
 import BackToDashButton from "../page_components/BackToDashButton";
 import DeleteRequest from "../page_components/DeleteRequest"
 import AddPlanExercises from "../page_components/AddPlanExercises";
+import UpdatePlan from "../page_components/UpdatePlan"
+import RemovePlanExercise from "../page_components/RemovePlanExercise";
 
 class AdminPlans extends Component {
 
     render() {
         return (
-            <Container>
+            <Container style={{paddingBottom: "18rem"}}>
                 <p>{' '}</p>
                 <BackToDashButton/>
                 <p>{' '}</p>
@@ -121,7 +123,10 @@ const PlansTable = () => {
                                 }}
                             />
                         </Col>
-                        <Col>
+                        <Col sm={2}>
+                            <br/>
+                            <br/>
+                            <br/>
                             <AddPlan/>
                         </Col>
                     </Row>
@@ -131,7 +136,7 @@ const PlansTable = () => {
                         <tr>
                             <th>Plan Name</th>
                             <th>Plan Type</th>
-                            <th>Date</th>
+                            <th>Tags</th>
                             <th>More Options</th>
                         </tr>
                         {/*headers={headers}*/}
@@ -150,9 +155,12 @@ const PlansTable = () => {
                                         <Button variant="primary" className="ml-2" onClick={() => toggleShown(plan.name)}>
                                             Toggle Details
                                         </Button>
-                                        <Button variant="success" className="ml-2">
-                                            Update Plan
-                                        </Button>
+                                        <UpdatePlan
+                                            name={plan.name}
+                                            planID={plan._id}
+                                            type={plan.type}
+                                            explanation={plan.trainerExplanation}
+                                        />
                                         <DeleteRequest requestID={plan._id} URI='/api/plans/'/>
                                     </td>
                                 </tr>
@@ -163,8 +171,19 @@ const PlansTable = () => {
                                         </tr>
                                         <tr>
                                             <td colSpan="4"><h5>Exercises:</h5> {plan.exercises.map(option =>
-                                                <li><a target="_blank" href={option.videoURL}>{option.exerciseName}</a></li>
+                                                <Row>
+                                                    <Col sm={8}>
+                                                <ListGroup as="ul">
+                                                    <ListGroup.Item>{option.exerciseName}</ListGroup.Item>
+                                                </ListGroup>
+                                                    </Col >
+                                                    <Col sm={4}>
+                                                    <RemovePlanExercise planID={plan._id} exerciseName={option.exerciseName}/>
+                                                    </Col>
+                                                </Row>
                                             )}
+
+                                            <br/>
                                                 <AddPlanExercises
                                                     planID={plan._id}
                                                     planExs={plan.exercises}

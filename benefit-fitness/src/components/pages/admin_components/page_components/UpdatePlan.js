@@ -1,36 +1,18 @@
-import React, {Component, useEffect} from "react";
-import axios from "axios";
+import React, {Component} from 'react';
+import axios from 'axios';
 import {Button, Form, Modal} from "react-bootstrap";
 
-
-class AddExercise extends Component {
+class UpdatePlan extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             isOpen: false,
-            name: "",
-            trainerExplanation: "",
-            type: "",
-            exercises: []
+            name: props.name || "",
+            trainerExplanation: props.explanation || "",
+            type: props.type || ""
         }
     }
-
-    // componentDidMount() {
-    //     this.getProfile();
-    // }
-    //
-    // getProfile = () => {
-    //     // const {user} = this.props.auth;
-    //     axios.get('/api/exercises/')
-    //         .then(res => {
-    //             const data = res.data
-    //             this.setState({exercises: data})
-    //             console.log(data);
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
-    // }
 
     showModal = () => {
         this.setState({
@@ -77,7 +59,7 @@ class AddExercise extends Component {
             }
             console.log(newPlan);
 
-            axios.post("api/plans/", newPlan)
+            axios.put("api/plans/" + this.props.planID, newPlan)
                 .then(res => {
                     console.log(res.data);
                 })
@@ -88,24 +70,27 @@ class AddExercise extends Component {
                 type: "",
                 isOpen: false
             })
+
+            window.location.reload(false);
         }
     }
 
     render() {
-        return (
+        return(
             <>
-                <Button onClick={this.showModal}>
-                    New Plan
+                <Button variant="success" className="ml-2" onClick={this.showModal}>
+                    Update Plan
                 </Button>
                 <Modal size="lg" show={this.state.isOpen} onHide={this.hideModal}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Create a new Plan.</Modal.Title>
+                        <Modal.Title>Update Plan Details</Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
+
                         <h5>USER NOTICE</h5>
-                        <p>This tool allows you to create empty workout skeletons for the workout library. To add
-                        an exercise into newly created workouts, please use the "Add" button located in the exercises section
+                        <p>This tool allows you to update workout information that the users use to browse the library. To add
+                            an exercise into created workouts, please use the "Add" button located in the exercises section
                             of the toggled plan.</p>
                         <Form onSubmit={this.onSubmit}>
                             <Form.Group>
@@ -128,7 +113,7 @@ class AddExercise extends Component {
                                 <h4>Optional Details</h4>
                             </Form.Row>
                             <Form.Group>
-                                <Form.Label>Plan Comments</Form.Label>
+                                <Form.Label>Plan Comments or Explanation</Form.Label>
                                 <Form.Control
                                     onChange={this.onChange}
                                     value={this.state.trainerExplanation}
@@ -150,8 +135,6 @@ class AddExercise extends Component {
                                 >
                                     <option>Please Select a Plan Type</option>
                                     <option>Strength Building</option>
-                                    <option>CrossFit</option>
-                                    <option>Zumba</option>
                                     <option>Recreation</option>
                                     <option>Health and Wellness</option>
                                     <option>General Fitness</option>
@@ -164,6 +147,7 @@ class AddExercise extends Component {
                                 Submit
                             </Button>
                         </Form>
+
                     </Modal.Body>
                 </Modal>
             </>
@@ -171,4 +155,4 @@ class AddExercise extends Component {
     }
 }
 
-export default AddExercise;
+export default UpdatePlan;

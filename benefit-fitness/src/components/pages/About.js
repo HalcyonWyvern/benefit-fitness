@@ -7,7 +7,7 @@ class About extends Component {
 
     render() {
         return (
-            <Container>
+            <Container style={{paddingBottom: "5rem"}}>
                 <p>{' '}</p>
                 <Jumbotron>
                     <h1>Questions About Training?</h1>

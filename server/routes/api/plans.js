@@ -74,6 +74,17 @@ router.delete("/:id",
         })
 })
 
+//@route PUT api/plans/:id
+router.put("/:id",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+    Plan.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
+        .then(plan => {
+            res.json(plan)
+        })
+        .catch(err => console.log(err))
+    })
+
 // @route PUT api/plans/add/:id
 // @desc Add exercise to plan (The ID) by exercise name(req.body.exercise)
 // @access Private
@@ -105,29 +116,27 @@ router.put("/add/:id",
 // @route PUT api/plans/remove/:id
 // @desc Remove exercise from plan by exercise name
 // @access Private
-// Currently not working. I'll fix if we add this
-// TODO
+// Fixed and working!
 router.put("/remove/:id",
     [passport.authenticate("jwt", { session: false }), isAdmin],
     (req, res) => {
-        Exercise.findOne({exerciseName: req.body.exercise}).then(exercise => {
+        Exercise.findOne({exerciseName: req.body.exerciseName}).then(exercise => {
             if(exercise) {
                 Plan.findByIdAndUpdate(
                     {_id: req.params.id},
                     {
-                        $pull: {
-                            exercises: exercise
+                        $pullAll: {
+                            exercises: [exercise]
                         }
                     },
-                    {new: true}
+                    {new: true, safe: true}
                 )
-                    .populate("exercises", "exerciseName")
                     .then(plan => {
                         res.json(plan)
                     })
-                    .catch(err => console.log(err));
+                    .catch(err => console.log(err))
             } else {
-                return res.status(404).json({exercise: "Exercise not found!"})
+                return res.status(404).json({exerciseName: "Exercise not found!"})
             }
         })
     })
