@@ -107,8 +107,17 @@ class Contact extends Component {
         const date = new Date();
         const {user} = this.props.auth;
         return (
-                <Container>
-                    <p>{' '}</p>
+                <Container style={{paddingBottom: "10rem", paddingTop: "2.5rem"}}>
+
+                   {/* <Row>
+                        <Col>
+                            <h2>Benefit Fitness Contact Information</h2>
+                            <p style={{fontSize: "1.5rem"}}>Benefit Fitness</p>
+                        </Col>
+
+                    </Row>*/}
+
+
                     <Alert color="info" isOpen={this.state.visible} toggle={this.onDismiss}>
                         <h4>Thank you!</h4>Your request has been sent, you should receive a message from us
                         within 5-10 business days!
@@ -116,37 +125,37 @@ class Contact extends Component {
                     <Row>
                         <Col>
                             <h2>Contact Us!</h2>
-                            <h6>Please provide us with some basic information and we will reach out to you shortly.</h6>
+                            <p style={{fontSize: "1.30rem"}}>Please provide us with some basic information in this form and we will reach out to you shortly.</p>
 
                         </Col>
                     </Row>
                     <Form onSubmit={this.onSubmit}>
                         <Form.Group>
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control onChange={this.onChange} value={user.username.split(" ")[0]} disabled name="user" id="user" type="box"/>
+                            <Form.Label style={{fontSize: "1.25rem"}}>Username</Form.Label>
+                            <Form.Control style={{fontSize: "1.25rem"}} onChange={this.onChange} value={user.username.split(" ")[0]} disabled name="user" id="user" type="box"/>
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label>Today's Date</Form.Label>
-                            <Form.Control onChange={this.onChange} value={date.toDateString()} id="requestedDate"  placeholder="Date" disabled type="box"/>
+                            <Form.Label style={{fontSize: "1.25rem"}}>Today's Date</Form.Label>
+                            <Form.Control style={{fontSize: "1.25rem"}} onChange={this.onChange} value={date.toDateString()} id="requestedDate"  placeholder="Date" disabled type="box"/>
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label>Phone Number</Form.Label>
-                            <Form.Control onChange={this.onChange} value={this.state.phoneNumber} name="phoneNumber" id="phoneNumber" type="box" placeholder="Phone"/>
+                            <Form.Label style={{fontSize: "1.25rem"}}>Phone Number</Form.Label>
+                            <Form.Control style={{fontSize: "1.25rem"}} onChange={this.onChange} value={this.state.phoneNumber} name="phoneNumber" id="phoneNumber" type="box" placeholder="Phone"/>
 
-                            <Form.Text className="text-muted">
+                            <Form.Text style={{fontSize: "1.15rem"}} className="text-muted">
                                 We'll never share your phone or email with anyone else.
                             </Form.Text>
                         </Form.Group>
-                        <div style={{ fontSize: 12, color: "red" }}>
+                        <div style={{ fontSize: 14, color: "red" }}>
                             {this.state.phoneErr}
                         </div>
 
                         <Form.Row>
                         <Form.Group as={Col} md="6">
-                            <Form.Label>Request Type</Form.Label>
-                            <Form.Control onChange={this.onChange} value={this.state.requestType} as="select" id="requestType">
+                            <Form.Label style={{fontSize: "1.25rem"}}>Request Type</Form.Label>
+                            <Form.Control style={{fontSize: "1.25rem"}} onChange={this.onChange} value={this.state.requestType} as="select" id="requestType">
                                 <option>Please Choose an Option</option>
                                 <option>Fitness Inquiry</option>
                                 <option>Online Training</option>
@@ -158,8 +167,8 @@ class Contact extends Component {
                         </Form.Group>
 
                         <Form.Group as={Col} md="6">
-                            <Form.Label>Contact Method</Form.Label>
-                            <Form.Control onChange={this.onChange} value={this.state.contactMethod} as="select" id="contactMethod">
+                            <Form.Label style={{fontSize: "1.25rem"}}>Contact Method</Form.Label>
+                            <Form.Control style={{fontSize: "1.25rem"}} onChange={this.onChange} value={this.state.contactMethod} as="select" id="contactMethod">
                                 <option>Please Choose an Option</option>
                                 <option>Phone</option>
                                 <option>Email</option>
@@ -168,19 +177,19 @@ class Contact extends Component {
 
                         </Form.Row>
                         <Row>
-                            <Col><div style={{ fontSize: 12, color: "red" }}>
+                            <Col><div style={{ fontSize: 14, color: "red" }}>
                                 {this.state.reqTypeErr}
                             </div></Col>
-                            <Col><div style={{ fontSize: 12, color: "red" }}>
+                            <Col><div style={{ fontSize: 14, color: "red" }}>
                                 {this.state.methodErr}
                             </div></Col>
                         </Row>
 
                         <Form.Group>
-                            <Form.Label>Details</Form.Label>
-                            <Form.Control onChange={this.onChange} value={this.state.comments} id="comments" as="textarea" rows={3} placeholder="Please tell us more about how we can help you."/>
+                            <Form.Label style={{fontSize: "1.25rem"}}>Details</Form.Label>
+                            <Form.Control style={{fontSize: "1.25rem"}} onChange={this.onChange} value={this.state.comments} id="comments" as="textarea" rows={3} placeholder="Please tell us more about how we can help you."/>
                         </Form.Group>
-                        <div style={{ fontSize: 12, color: "red" }}>
+                        <div style={{ fontSize: 14, color: "red" }}>
                             {this.state.commentErr}
                         </div>
 

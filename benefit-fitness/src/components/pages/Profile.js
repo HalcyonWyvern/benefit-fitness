@@ -51,7 +51,7 @@ class Profile extends Component {
                 <Row>
                     <Col>
                         <h2>{x}'s Profile</h2>
-                        <h6>Please ensure your information is up-to-date for our trainers to reference.</h6>
+                        <h6 style={{fontSize: "1.25rem"}}>Please ensure your information is up-to-date for our trainers to reference.</h6>
                     </Col>
 
                     <Col xs={6} md={2}>
@@ -72,28 +72,28 @@ class Profile extends Component {
                     <Row>
                         <Col>
                             <Form.Group>
-                                <Form.Label>My Bio</Form.Label>
-                                <Form.Control value={profile.bio} id="bio" as="textarea" disabled placeholder="Bio not created."/>
+                                <Form.Label style={{fontSize: "1.25rem"}}>My Bio</Form.Label>
+                                <Form.Control style={{fontSize: "1.25rem"}} value={profile.bio} id="bio" as="textarea" disabled placeholder="Bio not created."/>
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                             <Form.Group>
-                                <Form.Label>Height in Inches</Form.Label>
-                                <Form.Control value={profile.height} id="height" disabled type="box" placeholder="None Given"/>
+                                <Form.Label style={{fontSize: "1.25rem"}}>Height in Inches</Form.Label>
+                                <Form.Control style={{fontSize: "1.25rem"}} value={profile.height} id="height" disabled type="box" placeholder="None Given"/>
                             </Form.Group>
                         </Col>
                         <Col>
                             <Form.Group>
-                                <Form.Label>My Weight in Pounds</Form.Label>
-                                <Form.Control value={profile.weight} id="weight" disabled type="box" placeholder="None Given"/>
+                                <Form.Label style={{fontSize: "1.25rem"}}>My Weight in Pounds</Form.Label>
+                                <Form.Control style={{fontSize: "1.25rem"}} value={profile.weight} id="weight" disabled type="box" placeholder="None Given"/>
                             </Form.Group>
                         </Col>
-                        <Col md="8">
+                        <Col md="6">
                             <Form.Group>
-                                <Form.Label>My Goal</Form.Label>
-                                <Form.Control value={profile.exerciseGoal} id="exerciseGoal" disabled type="box" placeholder="None specified"/>
+                                <Form.Label style={{fontSize: "1.25rem"}}>My Goal</Form.Label>
+                                <Form.Control style={{fontSize: "1.25rem"}} value={profile.exerciseGoal} id="exerciseGoal" disabled type="box" placeholder="None specified"/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -101,7 +101,7 @@ class Profile extends Component {
                     <Row>
                         <Col>
                         <h2>My Account Information</h2>
-                            <h6>Please use the <Link to="/contact">contact form</Link> if you need your email address changed.</h6>
+                            <h6 style={{fontSize: "1.25rem"}}>Please use the <Link to="/contact">contact form</Link> if you need your email address changed.</h6>
                         </Col>
                         <Col xs={6} md={2}>
                             <p>{' '}</p>
@@ -117,34 +117,34 @@ class Profile extends Component {
                     <Row>
                         <Col>
                         <Form.Group>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control value={profile.user.email} id="email" disabled type="box" placeholder="None specified"/>
+                            <Form.Label style={{fontSize: "1.25rem"}}>Email</Form.Label>
+                            <Form.Control style={{fontSize: "1.25rem"}} value={profile.user.email} id="email" disabled type="box" placeholder="None specified"/>
                         </Form.Group>
                         </Col>
                         <Col>
                         <Form.Group>
-                            <Form.Label>Address</Form.Label>
-                            <Form.Control value={profile.user.address} id="address" disabled type="box"/>
+                            <Form.Label style={{fontSize: "1.25rem"}}>Address</Form.Label>
+                            <Form.Control style={{fontSize: "1.25rem"}} value={profile.user.address} id="address" disabled type="box"/>
                         </Form.Group>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                         <Form.Group>
-                            <Form.Label>City</Form.Label>
-                            <Form.Control value={profile.user.city} id="city" disabled type="box"/>
+                            <Form.Label style={{fontSize: "1.25rem"}}>City</Form.Label>
+                            <Form.Control style={{fontSize: "1.25rem"}} value={profile.user.city} id="city" disabled type="box"/>
                         </Form.Group>
                         </Col>
                         <Col>
                         <Form.Group>
-                            <Form.Label>State</Form.Label>
-                            <Form.Control value={profile.user.state} id="state" disabled type="box"/>
+                            <Form.Label style={{fontSize: "1.25rem"}}>State</Form.Label>
+                            <Form.Control style={{fontSize: "1.25rem"}} value={profile.user.state} id="state" disabled type="box"/>
                         </Form.Group>
                         </Col>
                         <Col>
                         <Form.Group>
-                            <Form.Label>Zip</Form.Label>
-                            <Form.Control value={profile.user.zip} id="zip" disabled type="box"/>
+                            <Form.Label style={{fontSize: "1.25rem"}}>Zip</Form.Label>
+                            <Form.Control style={{fontSize: "1.25rem"}} value={profile.user.zip} id="zip" disabled type="box"/>
                         </Form.Group>
                         </Col>
                     </Row>
