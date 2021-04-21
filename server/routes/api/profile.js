@@ -12,13 +12,12 @@ const isAdmin = require("../../middlewares/isAdmin");
 // @desc Create profile for user (Done only once per user)
 // @access Private
 router.post("/create/",
-    passport.authenticate("jwt", { session: false }),
     (req, res) => {
     User.findOne({username: req.body.username}).then(user => {
         if (user) {
             Profile.findOne({user: user}).then(profile => {
                 if (profile) {
-                    return res.status(404).json({user: "User Profile already exists!"})
+                    return res.status(409).json({user: "User Profile already exists!"})
                 } else {
                     const newProfile = new Profile({
                         user: user,
