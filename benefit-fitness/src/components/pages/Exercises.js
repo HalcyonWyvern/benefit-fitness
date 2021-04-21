@@ -14,7 +14,7 @@ class Exercises extends Component {
 
             <>
                 <Container style={{marginBottom: '20rem', marginTop: '2.5rem'}}>
-                    <h3>Find Exercises Here</h3>
+                    <h2>Exercise Library</h2>
                     <ExerciseTable />
                 </Container>
             </>
@@ -137,10 +137,10 @@ const ExerciseTable = () => {
                         <Table responsive striped bordered hover size="sm">
                             <thead>
                             <tr>
-                                <th>Exercise Name</th>
-                                <th>Exercise Type</th>
-                                <th>Equipment</th>
-                                <th style={{textAlign: "center"}}>More Info</th>
+                                <th style={{fontSize: "1.35rem"}}>Exercise Name</th>
+                                <th style={{fontSize: "1.35rem"}}>Exercise Type</th>
+                                <th style={{fontSize: "1.35rem"}}>Equipment</th>
+                                <th style={{fontSize: "1.35rem",textAlign: "center"}}>More Info</th>
                             </tr>
                             {/*headers={headers}*/}
                             {/*onSorting={(field, order) =>*/}
@@ -152,14 +152,14 @@ const ExerciseTable = () => {
                                 <>
                                 <tr key={name._id}>
                                     <td style={{verticalAlign: "middle"}}><h5>{name.exerciseName}</h5></td>
-                                    <td>{name.exerciseType}</td>
-                                    <td>{name.equipment}</td>
+                                    <td style={{fontSize: "1.30rem"}}>{name.exerciseType}</td>
+                                    <td style={{fontSize: "1.30rem"}}>{name.equipment}</td>
                                     <td colSpan="0" style={{textAlign: "center"}}><Button size="sm" variant="primary" onClick={() => toggleShown(name.exerciseName)}>Toggle Details</Button></td>
                                 </tr>
                                     {exerciseShown.includes(name.exerciseName) && (
                                         <>
                                         <tr>
-                                            <td colSpan="4"><h5>Instructions:</h5>{name.instructions}</td>
+                                            <td style={{fontSize: "1.20rem"}} colSpan="4"><h5>Instructions:</h5>{name.instructions}</td>
                                         </tr>
                                         <tr>
                                             <td colSpan="4"><h5>Video Example:</h5> <a target="_blank"><ReactPlayer controls={true} url={name.videoURL}/></a> </td>

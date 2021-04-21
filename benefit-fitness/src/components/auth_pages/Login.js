@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
+import axios from "axios";
 
 class Login extends Component {
     constructor() {
@@ -45,7 +46,20 @@ class Login extends Component {
             password: this.state.password
         };
 
+        const user = {
+            username: this.state.username
+        }
+
         this.props.loginUser(userData);
+
+        axios
+            .post("/api/profile/create/", user)
+            .then(res => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     };
 
     render() {

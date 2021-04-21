@@ -45,7 +45,7 @@ class Dashboard extends Component {
                                         <b>Hey there,</b> {user.username.split(" ")[0]}
                                         <p className="flow-text grey-text text-darken-1">
                                             You are logged into{" "}
-                                            <span style={{ fontFamily: "monospace" }}>STURGEON</span>
+                                            <span style={{ fontFamily: "monospace" }}>BENEFIT FITNESS</span>
                                         </p>
                                     </h4>
                                     <button

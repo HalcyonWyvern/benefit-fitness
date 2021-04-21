@@ -40,7 +40,7 @@ const PlansTable = () => {
     const [showState, setShowState] = useState("");
 
 
-    const ITEMS_PER_PAGE = 2;
+    const ITEMS_PER_PAGE = 5;
 
 
 
@@ -120,8 +120,8 @@ const PlansTable = () => {
 
     return (
         <>
-            <h3>Find Plans Here</h3>
-            <div >
+            <h2>Plan Library</h2>
+            <div>
                 <div >
                     <div>
                         <div>
@@ -145,10 +145,10 @@ const PlansTable = () => {
                     <Table striped bordered hover>
                         <thead>
                         <tr>
-                            <th>Plan Name</th>
-                            <th>Plan Type</th>
-                            <th>Tags</th>
-                            <th>More Info</th>
+                            <th style={{fontSize: "1.35rem"}}>Plan Name</th>
+                            <th style={{fontSize: "1.35rem"}}>Plan Type</th>
+                            <th style={{fontSize: "1.35rem"}}>Tags</th>
+                            <th style={{fontSize: "1.35rem"}}>More Info</th>
                         </tr>
                         {/*headers={headers}*/}
                         {/*onSorting={(field, order) =>*/}
@@ -159,18 +159,18 @@ const PlansTable = () => {
                         {planData.map(plan => (
                             <>
                             <tr key={plan._id}>
-                                <td>{plan.name}</td>
-                                <td>{plan.type}</td>
-                                <td>{' '}</td>
+                                <td style={{fontSize: "1.30rem"}}>{plan.name}</td>
+                                <td style={{fontSize: "1.30rem"}}>{plan.type}</td>
+                                <td style={{fontSize: "1.30rem"}}></td>
                                 <td colSpan="0"><Button variant="primary" onClick={() => toggleShown(plan.name)}>Toggle Details</Button></td>
                             </tr>
                                 {planShown.includes(plan.name) && (
                                     <>
                                         <tr>
-                                            <td colSpan="4"><h5>Trainer Explanation:</h5>{plan.trainerExplanation}</td>
+                                            <td style={{fontSize: "1.20rem"}} colSpan="4"><h5>Trainer Explanation:</h5>{plan.trainerExplanation}</td>
                                         </tr>
                                         <tr>
-                                            <td colSpan="4"><h5>Exercises:</h5> {plan.exercises.map(option =>
+                                            <td style={{fontSize: "1.20rem"}} colSpan="4"><h5>Exercises:</h5> {plan.exercises.map(option =>
                                                 <ListGroup as="ul">
                                                     <ListGroup.Item action onClick={() => showThis(option._id)}>{option.exerciseName}</ListGroup.Item>
                                                     <ExerciseModal exerciseData={option} showState={(showState === option._id)} hideModal={hideThis}/>
