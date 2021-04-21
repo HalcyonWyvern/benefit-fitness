@@ -42,7 +42,7 @@ class AdminDash extends Component {
                 <Row>
                     {/*Misc. actions in this row*/}
                     <Card style={{ width: '80rem', height: '50rem'}}>
-                        <Card.Header><Card.Title>Users</Card.Title></Card.Header>
+                        <Card.Header><Card.Title>Users Table</Card.Title></Card.Header>
                         <UserTable/>
                     </Card>
                 </Row>

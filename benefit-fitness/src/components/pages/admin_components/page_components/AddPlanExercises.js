@@ -90,7 +90,7 @@ class AddPlanExercises extends Component {
         return (
             <>
                 <Button onClick={this.showModal}>
-                    Add
+                    Add Exercise to Plan
                 </Button>
 
                 <Modal size="lg" show={this.state.isOpen} onHide={this.hideModal}>
