@@ -11,6 +11,7 @@ class AddExercise extends Component {
             name: "",
             trainerExplanation: "",
             type: "",
+            tag: "",
             exercises: []
         }
     }
@@ -74,6 +75,7 @@ class AddExercise extends Component {
                 name: this.state.name,
                 trainerExplanation: this.state.trainerExplanation,
                 type: this.state.type,
+                tag: this.state.tag
             }
             console.log(newPlan);
 
@@ -86,6 +88,7 @@ class AddExercise extends Component {
                 name: "",
                 trainerExplanation: "",
                 type: "",
+                tag: "",
                 isOpen: false
             })
         }
@@ -152,10 +155,23 @@ class AddExercise extends Component {
                                     <option>Strength Building</option>
                                     <option>CrossFit</option>
                                     <option>Zumba</option>
+                                    <option>Calisthenics</option>
                                     <option>Recreation</option>
                                     <option>Health and Wellness</option>
                                     <option>General Fitness</option>
                                 </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label>Tags</Form.Label>
+                                <Form.Control
+                                    onChange={this.onChange}
+                                    value={this.state.tag}
+                                    name="tag"
+                                    id="tag"
+                                    placeholder="These are search tags that can be used to find your new plan!"
+                                    type="Box"
+                                />
                             </Form.Group>
 
 

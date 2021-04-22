@@ -1,5 +1,5 @@
 import React, {Component, useEffect, useMemo, useState} from "react";
-import {Button, Container, ListGroup, Table} from "react-bootstrap";
+import {Button, Container, ListGroup, OverlayTrigger, Popover, Table} from "react-bootstrap";
 import axios from "axios";
 import PaginationComponent from "./page_components/PaginationComponent";
 import Search from "./page_components/Search";
@@ -88,7 +88,8 @@ const PlansTable = () => {
             computedPlans = computedPlans.filter(
                 data =>
                     data.name.toLowerCase().includes(search.toLowerCase()) ||
-                    data.type.toLowerCase().includes(search.toLowerCase())
+                    data.type.toLowerCase().includes(search.toLowerCase()) ||
+                    data.tag.toLowerCase().includes(search.toLowerCase())
             );
         }
 
@@ -116,6 +117,14 @@ const PlansTable = () => {
 
     function showThis(id) {
         setShowState(id);
+    }
+
+    const formatTag = (tag) => {
+        if(tag === "") {
+            return "None Specified"
+        } else {
+            return tag
+        }
     }
 
     return (
@@ -161,7 +170,18 @@ const PlansTable = () => {
                             <tr key={plan._id}>
                                 <td style={{fontSize: "1.30rem"}}>{plan.name}</td>
                                 <td style={{fontSize: "1.30rem"}}>{plan.type}</td>
-                                <td style={{fontSize: "1.30rem"}}></td>
+                                <td style={{fontSize: "1.30rem"}}>
+                                    <OverlayTrigger trigger="click" placement="top" overlay={
+                                        <Popover id="popover-basic">
+                                            <Popover.Title style={{fontSize: "1.25rem"}} as="h2">Plan tags</Popover.Title>
+                                            <Popover.Content style={{fontSize: "1.15rem"}}>
+                                                {formatTag(plan.tag)}
+                                            </Popover.Content>
+                                        </Popover>
+                                    }>
+                                        <Button variant="outline-success">View Tags</Button>
+                                    </OverlayTrigger>
+                                </td>
                                 <td colSpan="0"><Button variant="primary" onClick={() => toggleShown(plan.name)}>Toggle Details</Button></td>
                             </tr>
                                 {planShown.includes(plan.name) && (

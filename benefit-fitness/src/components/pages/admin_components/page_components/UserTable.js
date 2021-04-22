@@ -48,7 +48,6 @@ const UserTable = () => {
 
     return(
         <>
-
             <DataGrid
                 getRowId={(row) => row._id}
                 columns={columns}
@@ -59,10 +58,6 @@ const UserTable = () => {
                     Toolbar: GridToolbar,
                 }}
             />
-
-
-
-
 
             {/*<Table responsive hover>
                 <thead>
