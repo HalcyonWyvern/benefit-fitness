@@ -31,7 +31,7 @@ class Dashboard extends Component {
         const { user } = this.props.auth;
 
         return (
-            <Container>
+            <Container style={{paddingBottom: "13rem"}}>
                 <p>{' '}</p>
                 <div style={{justifyContent: "center"}} className="valign-wrapper">
                     <div className="row">

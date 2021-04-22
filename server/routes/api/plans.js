@@ -22,6 +22,7 @@ router.post("/",
                 name: req.body.name,
                 trainerExplanation: req.body.trainerExplanation,
                 type: req.body.type,
+                tag: req.body.tag
             })
             newPlan
                 .save()

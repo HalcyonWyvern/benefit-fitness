@@ -21,6 +21,11 @@ const planSchema = new Schema({
         type: String,
         required: false,
         default: "Default Plan Type"
+    },
+    tag: {
+        type: String,
+        required: false,
+        default: ""
     }
 })
 

@@ -7,7 +7,7 @@ class AdminDash extends Component {
 
     render() {
         return (
-            <Container>
+            <Container style={{paddingBottom: "25rem"}}>
                 <p>{' '}</p>
                 <Row style={{ justifyContent: "Center" }}>
                     <h1>Admin Dashboard</h1>
@@ -44,18 +44,6 @@ class AdminDash extends Component {
                     <Card style={{ width: '80rem', height: '45rem'}}>
                         <Card.Header><Card.Title>User Table</Card.Title></Card.Header>
                         <UserTable/>
-                    </Card>
-                </Row>
-                <Row>
-                    {/*Misc. actions in this row*/}
-                    <Card style={{ width: '80rem', height: '20rem'}}>
-
-                    </Card>
-                </Row>
-                <Row>
-                    {/*Misc. actions in this row*/}
-                    <Card style={{ width: '80rem', height: '20rem'}}>
-
                     </Card>
                 </Row>
             </Container>

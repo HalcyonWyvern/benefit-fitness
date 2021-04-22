@@ -33,9 +33,7 @@ const PlansTable = () => {
     const [planShown, setPlanShown] = useState([]);
 
 
-    const ITEMS_PER_PAGE = 2;
-
-
+    const ITEMS_PER_PAGE = 5;
 
     useEffect(() => {
         const getPlans = () => {
@@ -81,7 +79,8 @@ const PlansTable = () => {
             computedPlans = computedPlans.filter(
                 data =>
                     data.name.toLowerCase().includes(search.toLowerCase()) ||
-                    data.type.toLowerCase().includes(search.toLowerCase())
+                    data.type.toLowerCase().includes(search.toLowerCase()) ||
+                    data.tag.toLowerCase().includes(search.toLowerCase())
             );
         }
 
@@ -150,7 +149,7 @@ const PlansTable = () => {
                                 <tr key={plan._id}>
                                     <td>{plan.name}</td>
                                     <td>{plan.type}</td>
-                                    <td>{' '}</td>
+                                    <td>{plan.tag}</td>
                                     <td colSpan="0">
                                         <Button variant="primary" className="ml-2" onClick={() => toggleShown(plan.name)}>
                                             Toggle Details
