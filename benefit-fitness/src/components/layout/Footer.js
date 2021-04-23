@@ -11,7 +11,7 @@ class Footer extends Component {
     render() {
         return (
             <div>
-                <Navbar className="navbar-light border-top border-primary" fixed="bottom" bg="dark">
+                <Navbar style={{height: 70}} className="navbar-light border-top border-primary" fixed="bottom" bg="dark">
                     <Navbar.Brand className="text-primary" as={Link} to="/about">
                         <img
                             alt=""
