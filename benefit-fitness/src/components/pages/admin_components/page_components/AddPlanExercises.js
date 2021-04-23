@@ -83,7 +83,9 @@ class AddPlanExercises extends Component {
                 exercise: "",
                 isOpen: false
             })
+
         }
+        window.location.reload(false);
     }
 
     render() {
