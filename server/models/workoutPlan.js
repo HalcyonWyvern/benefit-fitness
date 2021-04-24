@@ -8,9 +8,33 @@ const planSchema = new Schema({
         index: true
     },
     exercises: [{
-            type: Schema.Types.ObjectId,
-            ref: "exercises",
-            required: true
+            type: "array",
+            // type: Schema.Types.ObjectId,
+            of: [
+                {
+                    title: "exerciseID",
+                    type: Schema.Types._ObjectId,
+                    ref: "exercises",
+                    required: true
+                },
+                {
+                    title: "sets",
+                    type: Number,
+                    required: false
+                },
+                {
+                    title: "reps",
+                    type: Number,
+                    required: false
+                },
+                {
+                    title: "time",
+                    type: Number,
+                    required: false
+                }
+            ]
+            // ref: "exercises",
+            // required: true
     }],
     trainerExplanation: {
         type: String,
