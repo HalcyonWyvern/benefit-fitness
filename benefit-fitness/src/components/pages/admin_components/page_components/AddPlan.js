@@ -91,6 +91,7 @@ class AddExercise extends Component {
                 tag: "",
                 isOpen: false
             })
+            window.location.reload(false);
         }
     }
 
@@ -100,20 +101,31 @@ class AddExercise extends Component {
                 <Button onClick={this.showModal}>
                     New Plan
                 </Button>
-                <Modal size="lg" show={this.state.isOpen} onHide={this.hideModal}>
+                <Modal size="xl" show={this.state.isOpen} onHide={this.hideModal}
+                       style={{
+                           position: "absolute",
+                           left: "50%",
+                           top: "45%",
+                           transform: "translate(-50%, -50%)",
+                           background: 0,
+                           boxShadow: "none",
+                       }}
+                       scrollable
+                >
                     <Modal.Header closeButton>
-                        <Modal.Title>Create a new Plan.</Modal.Title>
+                        <Modal.Title>Create a New Plan.</Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
-                        <h5>USER NOTICE</h5>
-                        <p>This tool allows you to create empty workout skeletons for the workout library. To add
+                        <h4>USER NOTICE</h4>
+                        <p style={{fontSize: "1.15rem"}}>This tool allows you to create empty workout skeletons for the workout library. To add
                         an exercise into newly created workouts, please use the "Add" button located in the exercises section
                             of the toggled plan.</p>
                         <Form onSubmit={this.onSubmit}>
                             <Form.Group>
-                                <Form.Label>Plan Name</Form.Label>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Plan Name</Form.Label>
                                 <Form.Control
+                                    style={{fontSize: "1.15rem"}}
                                     onChange={this.onChange}
                                     value={this.state.name}
                                     name="name"
@@ -131,8 +143,9 @@ class AddExercise extends Component {
                                 <h4>Optional Details</h4>
                             </Form.Row>
                             <Form.Group>
-                                <Form.Label>Plan Comments</Form.Label>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Plan Comments</Form.Label>
                                 <Form.Control
+                                    style={{fontSize: "1.15rem"}}
                                     onChange={this.onChange}
                                     value={this.state.trainerExplanation}
                                     name="trainerExplanation"
@@ -143,8 +156,9 @@ class AddExercise extends Component {
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Label>Plan Type</Form.Label>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Plan Type</Form.Label>
                                 <Form.Control
+                                    style={{fontSize: "1.15rem"}}
                                     onChange={this.onChange}
                                     value={this.state.type}
                                     name="type"
@@ -163,8 +177,9 @@ class AddExercise extends Component {
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Label>Tags</Form.Label>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Tags</Form.Label>
                                 <Form.Control
+                                    style={{fontSize: "1.15rem"}}
                                     onChange={this.onChange}
                                     value={this.state.tag}
                                     name="tag"

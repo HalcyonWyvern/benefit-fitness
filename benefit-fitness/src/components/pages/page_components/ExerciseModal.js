@@ -6,7 +6,17 @@ import ReactPlayer from 'react-player/lazy'
 
 const ExerciseModal = ({exerciseData, showState, hideModal}) => {
     return (
-        <Modal size="xl" show={showState} onHide={hideModal}>
+        <Modal size="xl" show={showState} onHide={hideModal}
+               style={{
+                   position: "absolute",
+                   left: "50%",
+                   top: "45%",
+                   transform: "translate(-50%, -50%)",
+                   background: 0,
+                   boxShadow: "none",
+               }}
+               scrollable
+        >
             <Modal.Header closeButton>
                 <Modal.Title>{exerciseData.exerciseName}</Modal.Title>
             </Modal.Header>
@@ -22,18 +32,18 @@ const ExerciseModal = ({exerciseData, showState, hideModal}) => {
                     </Row>
                     <Row style={{paddingTop: "1rem"}}>
                         <Col xs={10}>
-                            <h5>Exercise Instructions</h5>
-                            <p>{exerciseData.instructions}</p>
+                            <h5 style={{fontSize: "1.25rem"}}>Exercise Instructions</h5>
+                            <p style={{fontSize: "1.25rem"}}>{exerciseData.instructions}</p>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            <h5>Exercise Type Classification</h5>
-                            <p>{exerciseData.exerciseType}</p>
+                            <h5 style={{fontSize: "1.25rem"}}>Exercise Type Classification</h5>
+                            <p style={{fontSize: "1.25rem"}}>{exerciseData.exerciseType}</p>
                         </Col>
                         <Col>
-                            <h5>Required Equipment</h5>
-                            <p>{exerciseData.equipment}</p>
+                            <h5 style={{fontSize: "1.25rem"}}>Required Equipment</h5>
+                            <p style={{fontSize: "1.25rem"}}>{exerciseData.equipment}</p>
                         </Col>
                     </Row>
                 </Container>

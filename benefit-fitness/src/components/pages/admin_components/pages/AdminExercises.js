@@ -12,7 +12,7 @@ class AdminExercises extends Component {
 
     render() {
         return (
-            <Container>
+            <Container style={{paddingBottom: "10rem"}}>
                 <p>{' '}</p>
                 <BackToDashButton/>
                 <p>{' '}</p>
@@ -107,7 +107,7 @@ const ExerciseTable = () => {
 
     return (
         <>
-            <h3>Find Exercises Here</h3>
+            <h2>Exercise Management</h2>
             <div >
                 <div >
                     <Row>
@@ -139,10 +139,10 @@ const ExerciseTable = () => {
                     <Table striped bordered hover>
                         <thead>
                         <tr>
-                            <th>Exercise Name</th>
-                            <th>Exercise Type</th>
-                            <th>Equipment</th>
-                            <th>More Options</th>
+                            <th style={{fontSize: "1.35rem"}}>Exercise Name</th>
+                            <th style={{fontSize: "1.35rem"}}>Exercise Type</th>
+                            <th style={{fontSize: "1.35rem"}}>Equipment</th>
+                            <th style={{fontSize: "1.35rem"}}>More Options</th>
                         </tr>
                         {/*headers={headers}*/}
                         {/*onSorting={(field, order) =>*/}
@@ -153,9 +153,9 @@ const ExerciseTable = () => {
                         {exerciseData.map(name => (
                             <>
                                 <tr key={name._id}>
-                                    <td >{name.exerciseName}</td>
-                                    <td>{name.exerciseType}</td>
-                                    <td>{name.equipment}</td>
+                                    <td style={{fontSize: "1.25rem"}}>{name.exerciseName}</td>
+                                    <td style={{fontSize: "1.25rem"}}>{name.exerciseType}</td>
+                                    <td style={{fontSize: "1.25rem"}}>{name.equipment}</td>
                                     <td colSpan="0">
                                         <Button variant="primary" className="ml-2" onClick={() => toggleShown(name.exerciseName)}>
                                         Toggle Details
@@ -177,10 +177,10 @@ const ExerciseTable = () => {
                                 {exerciseShown.includes(name.exerciseName) && (
                                     <>
                                         <tr>
-                                            <td colSpan="4"><h5>Instructions:</h5>{name.instructions}</td>
+                                            <td colSpan="4" style={{fontSize: "1.35rem"}}><h5>Instructions:</h5>{name.instructions}</td>
                                         </tr>
                                         <tr>
-                                            <td colSpan="4"><h5>Video Link:</h5> <a target="_blank" href={name.videoURL}>{name.videoURL}</a> </td>
+                                            <td colSpan="4" style={{fontSize: "1.35rem"}}><h5>Video Link:</h5> <a target="_blank" href={name.videoURL}>{name.videoURL}</a> </td>
                                         </tr>
                                     </>
                                 )}

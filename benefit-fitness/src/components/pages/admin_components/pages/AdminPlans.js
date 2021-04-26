@@ -33,7 +33,7 @@ const PlansTable = () => {
     const [planShown, setPlanShown] = useState([]);
 
 
-    const ITEMS_PER_PAGE = 5;
+    const ITEMS_PER_PAGE = 6;
 
     useEffect(() => {
         const getPlans = () => {

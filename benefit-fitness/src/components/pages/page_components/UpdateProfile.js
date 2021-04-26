@@ -1,5 +1,5 @@
 //Modal button for updating the user profile
-import {Component} from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Button, Form, Modal} from "react-bootstrap";
@@ -66,7 +66,17 @@ class UpdateProfile extends Component {
                 <Button onClick={this.showModal}>
                     Update Profile
                 </Button>
-                <Modal size="lg" show={this.state.isOpen} onHide={this.hideModal}>
+                <Modal size="lg" show={this.state.isOpen} onHide={this.hideModal}
+                       style={{
+                           position: "absolute",
+                           left: "50%",
+                           top: "45%",
+                           transform: "translate(-50%, -50%)",
+                           background: 0,
+                           boxShadow: "none",
+                       }}
+                       scrollable
+                >
                     <Modal.Header closeButton>
                         <Modal.Title>Update My Profile</Modal.Title>
                     </Modal.Header>

@@ -67,10 +67,20 @@ class UpdateExercise extends Component {
     render() {
         return (
             <>
-                <Button variant="success" className="ml-2" onClick={this.showModal}>
+                <Button variant="outline-success" className="ml-2" onClick={this.showModal}>
                     Update Exercise
                 </Button>
-                <Modal size="lg" show={this.state.isOpen} onHide={this.hideModal}>
+                <Modal size="xl" show={this.state.isOpen} onHide={this.hideModal}
+                       style={{
+                           position: "absolute",
+                           left: "50%",
+                           top: "45%",
+                           transform: "translate(-50%, -50%)",
+                           background: 0,
+                           boxShadow: "none",
+                       }}
+                       scrollable
+                >
                     <Modal.Header closeButton>
                         <Modal.Title>Update Exercise</Modal.Title>
                     </Modal.Header>
@@ -78,18 +88,18 @@ class UpdateExercise extends Component {
                     <Modal.Body>
                         <Form onSubmit={this.onSubmit}>
                             <Form.Group>
-                                <Form.Label>Exercise Name</Form.Label>
-                                <Form.Control onChange={this.onChange} value={this.state.exerciseName} name="exerciseName" id="exerciseName" type="box"/>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Exercise Name</Form.Label>
+                                <Form.Control style={{fontSize: "1.15rem"}} onChange={this.onChange} value={this.state.exerciseName} name="exerciseName" id="exerciseName" type="box"/>
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Label>Equipment</Form.Label>
-                                <Form.Control onChange={this.onChange} value={this.state.equipment} name="equipment" id="equipment" type="box" placeholder="Equipment Needed"/>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Equipment</Form.Label>
+                                <Form.Control style={{fontSize: "1.15rem"}} onChange={this.onChange} value={this.state.equipment} name="equipment" id="equipment" type="box" placeholder="Equipment Needed"/>
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Label>Exercise Type</Form.Label>
-                                <Form.Control onChange={this.onChange} value={this.state.exerciseType} name="exerciseType" id="exerciseType" as="select">
+                                <Form.Label style={{fontSize: "1.15rem"}}>Exercise Type</Form.Label>
+                                <Form.Control style={{fontSize: "1.15rem"}} onChange={this.onChange} value={this.state.exerciseType} name="exerciseType" id="exerciseType" as="select">
                                     <option>Please Select an Exercise Type</option>
                                     <option>Please Choose the Exercise Type</option>
                                     <option>Core Work</option>
@@ -101,8 +111,8 @@ class UpdateExercise extends Component {
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Label>Video Link</Form.Label>
-                                <Form.Control onChange={this.onChange} value={this.state.videoURL} name="videoURL" id="videoURL" placeholder="Link to Exercise Video">
+                                <Form.Label style={{fontSize: "1.15rem"}}>Video Link</Form.Label>
+                                <Form.Control style={{fontSize: "1.15rem"}} onChange={this.onChange} value={this.state.videoURL} name="videoURL" id="videoURL" placeholder="Link to Exercise Video">
                                     {/*<option>Please Choose an Option</option>*/}
                                     {/*<option>Recreation</option>*/}
                                     {/*<option>Strength Training</option>*/}
@@ -111,8 +121,8 @@ class UpdateExercise extends Component {
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Label>Instructions</Form.Label>
-                                <Form.Control onChange={this.onChange} value={this.state.instructions} as="textarea" rows={4} name="instructions" id="instructions" placeholder="Exercise Instructions"/>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Instructions</Form.Label>
+                                <Form.Control style={{fontSize: "1.15rem"}} onChange={this.onChange} value={this.state.instructions} as="textarea" rows={4} name="instructions" id="instructions" placeholder="Exercise Instructions"/>
                             </Form.Group>
                             <Button variant="primary" type="submit">
                                 Save Changes
