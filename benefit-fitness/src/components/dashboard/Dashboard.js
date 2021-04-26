@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import {Button, Card, Container, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import ModalSkeleton from "../pages/page_components/HelpModals/ModalSkeleton";
 
 class Dashboard extends Component {
     onLogoutClick = e => {
@@ -33,7 +32,6 @@ class Dashboard extends Component {
 
         return (
             <Container style={{paddingBottom: "13rem"}}>
-                <ModalSkeleton/>
                 <p>{' '}</p>
                 <div style={{justifyContent: "center"}} className="valign-wrapper">
                     <div className="row">

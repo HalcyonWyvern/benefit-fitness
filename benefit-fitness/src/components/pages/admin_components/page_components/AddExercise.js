@@ -129,7 +129,6 @@ class AddExercise extends Component {
                     </Modal.Header>
 
                     <Modal.Body>
-                        <AddExerciseHelp/>
                         <Form onSubmit={this.onSubmit}>
                             <Form.Group>
                                 <Form.Label style={{fontSize: "1.15rem"}}>Exercise Name</Form.Label>
@@ -268,9 +267,16 @@ class AddExercise extends Component {
                                 </Col>
                             </Form.Row>
                             <p>{' '}</p>
-                            <Button variant="primary" type="submit">
-                                Submit
-                            </Button>
+                            <Form.Row>
+                                <Col sm={1}>
+                                    <Button variant="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Col>
+                                <Col sm={4}>
+                                    <AddExerciseHelp/>
+                                </Col>
+                            </Form.Row>
                         </Form>
                     </Modal.Body>
                 </Modal>

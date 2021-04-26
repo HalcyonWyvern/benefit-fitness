@@ -1,7 +1,6 @@
-import React from 'react';
 import {Button, Modal} from "react-bootstrap";
 
-const AddExerciseHelp = () => {
+const AddPlanHelp = () => {
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => setOpen(true);
@@ -11,7 +10,7 @@ const AddExerciseHelp = () => {
 
     return(
         <>
-            <Button variant="outline-success" onClick={handleOpen}>Help</Button>
+            <Button variant="outline-success" onClick={handleOpen}>Help!</Button>
             <Modal
                 size="md"
                 style={{
@@ -42,4 +41,4 @@ const AddExerciseHelp = () => {
     )
 }
 
-export default AddExerciseHelp;
+export default AddPlanHelp;
