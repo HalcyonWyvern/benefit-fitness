@@ -1,16 +1,15 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {Card, Col, Form, ListGroup, Row, Spinner} from "react-bootstrap";
 import axios from "axios";
-// import RequestsPagination from "./RequestsPagination";
 import DeleteRequest from "./DeleteRequest"
-import PaginationComponent from "../../page_components/PaginationComponent";
-import Search from "../../page_components/Search";
+//import PaginationComponent from "../../page_components/PaginationComponent";
+import Pagination from '@material-ui/lab/Pagination';
 
-const RequestsTable = () => {
+export default function RequestsTable () {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(2);
+    const [postsPerPage] = useState(1);
 
     useEffect(() => {
         const getFunc = async () => {
@@ -45,17 +44,25 @@ const RequestsTable = () => {
     // //Change page
     // const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-
+    const handleChange = (event, value) => {
+        setCurrentPage(value);
+    };
 
     return(
         <>
             <Row>
                 <Col>
-                    <PaginationComponent
+                    {/*<PaginationComponent
                         total={data.length}
                         itemsPerPage={postsPerPage}
                         currentPage={currentPage}
                         onPageChange={page => setCurrentPage(page)}
+                    />*/}
+                    <Pagination
+                        style={{backgroundColor: "white"}}
+                        count={data.length}
+                        boundaryCount={2}
+                        onChange={handleChange}
                     />
                 </Col>
             </Row>
@@ -130,4 +137,4 @@ const RequestsTable = () => {
     )
 };
 
-export default RequestsTable;
+//export default RequestsTable;
