@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import axios from "axios";
 import {Button, Form, Modal} from "react-bootstrap";
 import PropTypes from "prop-types";
+import { Typeahead } from 'react-bootstrap-typeahead';
 import {connect} from "react-redux";
 
 class AddPlanExercises extends Component {
@@ -83,9 +84,8 @@ class AddPlanExercises extends Component {
                 exercise: "",
                 isOpen: false
             })
-
+            window.location.reload(false);
         }
-        window.location.reload(false);
     }
 
     render() {
@@ -95,28 +95,57 @@ class AddPlanExercises extends Component {
                     Add Exercise to Plan
                 </Button>
 
-                <Modal size="lg" show={this.state.isOpen} onHide={this.hideModal}>
+                <Modal size="xl" show={this.state.isOpen} onHide={this.hideModal}
+                       style={{
+                           position: "absolute",
+                           left: "50%",
+                           top: "45%",
+                           transform: "translate(-50%, -50%)",
+                           background: 0,
+                           boxShadow: "none",
+                       }}
+                >
                     <Modal.Header closeButton>
                         <Modal.Title>Add an exercise to the plan.</Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
                         <Form onSubmit={this.onSubmit}>
-                            <Form.Group>
-                                <Form.Label>Exercise</Form.Label>
-                                <Form.Control
-                                    onChange={this.onChange}
-                                    value={this.state.exercise}
-                                    name="exercise"
+                            <Form.Group style={{paddingBottom: "3rem"}}>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Select an Exercise</Form.Label>
+                                <Typeahead
                                     id="exercise"
-                                    as="select"
-                                >
-                                    <option>Select an Exercise to Add</option>
-                                    {this.state.choices.map(data =>
-                                        <option>{data.exerciseName}</option>
-                                    )}
+                                    name="exercise"
+                                    labelKey={option => `${option.exerciseName}`}
+                                    onChange={(selected) => {
+                                        this.setState({exercise: selected}, () => {
+                                            console.log("selected: " + selected)
+                                        });
+                                    }}
+                                    options={this.state.choices}
+                                    value={this.state.exercise}
+                                    placeholder="Search or scroll to select an Exercise."
+                                    as="box"
+                                />
 
-                                </Form.Control>
+
+
+                                {/*<Form.Control*/}
+                                {/*    style={{fontSize: "1.15rem"}}*/}
+                                {/*    onChange={this.onChange}*/}
+                                {/*    value={this.state.exercise}*/}
+                                {/*    name="exercise"*/}
+                                {/*    id="exercise"*/}
+                                {/*    as="select"*/}
+                                {/*    size="lg"*/}
+                                {/*    htmlSize={10}*/}
+                                {/*>*/}
+                                {/*    <option>Select an Exercise to Add</option>*/}
+                                {/*    {this.state.choices.map(data =>*/}
+                                {/*        <option>{data.exerciseName}</option>*/}
+                                {/*    )}*/}
+
+                                {/*</Form.Control>*/}
                             </Form.Group>
                             <Button variant="primary" type="submit">
                                 Submit
