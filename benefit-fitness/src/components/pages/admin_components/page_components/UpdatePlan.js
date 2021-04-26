@@ -10,7 +10,8 @@ class UpdatePlan extends Component {
             isOpen: false,
             name: props.name || "",
             trainerExplanation: props.explanation || "",
-            type: props.type || ""
+            type: props.type || "",
+            tag: props.tag || ""
         }
     }
 
@@ -56,6 +57,7 @@ class UpdatePlan extends Component {
                 name: this.state.name,
                 trainerExplanation: this.state.trainerExplanation,
                 type: this.state.type,
+                tag: this.state.tag
             }
             console.log(newPlan);
 
@@ -68,6 +70,7 @@ class UpdatePlan extends Component {
                 name: "",
                 trainerExplanation: "",
                 type: "",
+                tag: "",
                 isOpen: false
             })
 
@@ -78,24 +81,35 @@ class UpdatePlan extends Component {
     render() {
         return(
             <>
-                <Button variant="success" className="ml-2" onClick={this.showModal}>
+                <Button variant="outline-success" className="ml-2" onClick={this.showModal}>
                     Update Plan
                 </Button>
-                <Modal size="lg" show={this.state.isOpen} onHide={this.hideModal}>
+                <Modal size="xl" show={this.state.isOpen} onHide={this.hideModal}
+                       style={{
+                           position: "absolute",
+                           left: "50%",
+                           top: "45%",
+                           transform: "translate(-50%, -50%)",
+                           background: 0,
+                           boxShadow: "none",
+                       }}
+                       scrollable
+                >
                     <Modal.Header closeButton>
                         <Modal.Title>Update Plan Details</Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
 
-                        <h5>USER NOTICE</h5>
-                        <p>This tool allows you to update workout information that the users use to browse the library. To add
+                        <h4>USER NOTICE</h4>
+                        <p style={{fontSize: "1.15rem"}}>This tool allows you to update workout information that the users use to browse the library. To add
                             an exercise into created workouts, please use the "Add" button located in the exercises section
                             of the toggled plan.</p>
                         <Form onSubmit={this.onSubmit}>
                             <Form.Group>
-                                <Form.Label>Plan Name</Form.Label>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Plan Name</Form.Label>
                                 <Form.Control
+                                    style={{fontSize: "1.15rem"}}
                                     onChange={this.onChange}
                                     value={this.state.name}
                                     name="name"
@@ -113,8 +127,9 @@ class UpdatePlan extends Component {
                                 <h4>Optional Details</h4>
                             </Form.Row>
                             <Form.Group>
-                                <Form.Label>Plan Comments or Explanation</Form.Label>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Plan Comments or Explanation</Form.Label>
                                 <Form.Control
+                                    style={{fontSize: "1.15rem"}}
                                     onChange={this.onChange}
                                     value={this.state.trainerExplanation}
                                     name="trainerExplanation"
@@ -125,8 +140,9 @@ class UpdatePlan extends Component {
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Label>Plan Type</Form.Label>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Plan Type</Form.Label>
                                 <Form.Control
+                                    style={{fontSize: "1.15rem"}}
                                     onChange={this.onChange}
                                     value={this.state.type}
                                     name="type"
@@ -135,10 +151,26 @@ class UpdatePlan extends Component {
                                 >
                                     <option>Please Select a Plan Type</option>
                                     <option>Strength Building</option>
+                                    <option>CrossFit</option>
+                                    <option>Zumba</option>
+                                    <option>Calisthenics</option>
                                     <option>Recreation</option>
                                     <option>Health and Wellness</option>
                                     <option>General Fitness</option>
                                 </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Plan Tags</Form.Label>
+                                <Form.Control
+                                    style={{fontSize: "1.15rem"}}
+                                    onChange={this.onChange}
+                                    value={this.state.tag}
+                                    name="tag"
+                                    id="tag"
+                                    placeholder="You can include keywords that users can use to search this plan."
+                                    type="Box"
+                                />
                             </Form.Group>
 
 

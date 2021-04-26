@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import axios from "axios";
 import {Button, Col, Form, Modal} from "react-bootstrap";
+import AddExerciseHelp from "../../page_components/HelpModals/AddExerciseHelp";
 
 
 class AddExercise extends Component {
@@ -112,16 +113,28 @@ class AddExercise extends Component {
                 <Button onClick={this.showModal}>
                     New Exercise
                 </Button>
-                <Modal size="lg" show={this.state.isOpen} onHide={this.hideModal}>
+                <Modal size="xl" show={this.state.isOpen} onHide={this.hideModal}
+                       style={{
+                           position: "absolute",
+                           left: "50%",
+                           top: "45%",
+                           transform: "translate(-50%, -50%)",
+                           background: 0,
+                           boxShadow: "none",
+                       }}
+                       scrollable
+                >
                     <Modal.Header closeButton>
                             <Modal.Title>Create a new Exercise entry.</Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
+                        <AddExerciseHelp/>
                         <Form onSubmit={this.onSubmit}>
                             <Form.Group>
-                                <Form.Label>Exercise Name</Form.Label>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Exercise Name</Form.Label>
                                 <Form.Control
+                                    style={{fontSize: "1.15rem"}}
                                     onChange={this.onChange}
                                     value={this.state.exerciseName}
                                     name="exerciseName"
@@ -135,8 +148,9 @@ class AddExercise extends Component {
                             </div>
 
                             <Form.Group>
-                                <Form.Label>Required Equipment</Form.Label>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Required Equipment</Form.Label>
                                 <Form.Control
+                                    style={{fontSize: "1.15rem"}}
                                     onChange={this.onChange}
                                     value={this.state.equipment}
                                     name="equipment"
@@ -150,8 +164,9 @@ class AddExercise extends Component {
                             </div>
 
                             <Form.Group>
-                                <Form.Label>Exercise Type</Form.Label>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Exercise Type</Form.Label>
                                 <Form.Control
+                                    style={{fontSize: "1.15rem"}}
                                     onChange={this.onChange}
                                     value={this.state.exerciseType}
                                     name="exerciseType"
@@ -171,8 +186,9 @@ class AddExercise extends Component {
                             </div>
 
                             <Form.Group>
-                                <Form.Label>Instructions</Form.Label>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Instructions</Form.Label>
                                 <Form.Control
+                                    style={{fontSize: "1.15rem"}}
                                     onChange={this.onChange}
                                     value={this.state.instructions}
                                     name="instructions"
@@ -180,7 +196,7 @@ class AddExercise extends Component {
                                     as="textarea"
                                     aria-describedby="textHelpBlock"
                                 />
-                                <Form.Text id="textHelpBlock" muted>
+                                <Form.Text id="textHelpBlock" muted style={{fontSize: "1.15rem"}}>
                                     Please thoroughly describe how the exercise is done to someone
                                     who has never performed it before.
                                 </Form.Text>
@@ -195,8 +211,9 @@ class AddExercise extends Component {
                             <Form.Row>
                                 <Col>
                                     <Form.Group>
-                                        <Form.Label>Sets</Form.Label>
+                                        <Form.Label style={{fontSize: "1.15rem"}}>Sets</Form.Label>
                                         <Form.Control
+                                            style={{fontSize: "1.15rem"}}
                                             onChange={this.onChange}
                                             value={this.state.sets}
                                             name="sets"
@@ -214,8 +231,9 @@ class AddExercise extends Component {
                                 </Col>
                                 <Col>
                                     <Form.Group>
-                                        <Form.Label>Reps</Form.Label>
+                                        <Form.Label style={{fontSize: "1.15rem"}}>Reps</Form.Label>
                                         <Form.Control
+                                            style={{fontSize: "1.15rem"}}
                                             onChange={this.onChange}
                                             value={this.state.reps}
                                             name="reps"
@@ -236,8 +254,9 @@ class AddExercise extends Component {
                             <Form.Row>
                                 <Col>
                                     <Form.Group>
-                                        <Form.Label>Video URL</Form.Label>
+                                        <Form.Label style={{fontSize: "1.15rem"}}>Video URL</Form.Label>
                                         <Form.Control
+                                            style={{fontSize: "1.15rem"}}
                                             onChange={this.onChange}
                                             value={this.state.videoURL}
                                             name="videoURL"

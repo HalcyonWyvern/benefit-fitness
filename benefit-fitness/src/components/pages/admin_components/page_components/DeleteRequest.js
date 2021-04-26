@@ -19,7 +19,7 @@ const DeleteRequest = ({ requestID, URI}) => {
     }
 
     return(
-        <Button variant="danger" onClick={deleteRequest} className="ml-2">Delete</Button>
+        <Button variant="outline-danger" onClick={deleteRequest} className="ml-2">Delete</Button>
     )
 }
 

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import {Button, Card, Container, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import ModalSkeleton from "../pages/page_components/HelpModals/ModalSkeleton";
 
 class Dashboard extends Component {
     onLogoutClick = e => {
@@ -14,7 +15,7 @@ class Dashboard extends Component {
     renderAdmin = () => {
         const {user} = this.props.auth;
         if(user.isAdmin) {
-            return(<Card style={{width: '20rem'}} className="bg-primary ml-2">
+            return(<Card style={{width: '25rem', height: '15rem', fontSize: "1.25rem"}} className="bg-primary ml-2">
                 <Card.Body>
                     <Card.Title className="text-light">Administration</Card.Title>
                     <Card.Text className="text-light">
@@ -32,10 +33,10 @@ class Dashboard extends Component {
 
         return (
             <Container style={{paddingBottom: "13rem"}}>
+                <ModalSkeleton/>
                 <p>{' '}</p>
                 <div style={{justifyContent: "center"}} className="valign-wrapper">
                     <div className="row">
-
                         <Container>
 
                             {/*Row containing welcoming and logout button*/}
@@ -49,7 +50,7 @@ class Dashboard extends Component {
                                         </p>
                                     </h4>
                                     <button
-                                        style={{
+                                        style={{fontSize: "1.25rem",
                                             width: "150px",
                                             borderRadius: "3px",
                                             letterSpacing: "1.5px",
@@ -65,7 +66,7 @@ class Dashboard extends Component {
 
                             {/*Row containing 1st set of Nav Cards    */}
                             <Row style={{justifyContent: "Center"}}>
-                                <Card style={{ width: '20rem', height: '15rem'}}>
+                                <Card style={{ width: '25rem', height: '15rem', fontSize: "1.25rem"}}>
                                     {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
                                     <Card.Body>
                                         <Card.Title>EXERCISE LIBRARY</Card.Title>
@@ -76,7 +77,7 @@ class Dashboard extends Component {
                                         <Button variant="primary" as={Link} to="/exercises">Go to Exercises</Button>
                                     </Card.Body>
                                 </Card>
-                                <Card style={{ width: '20rem', height: '15rem' }} className="ml-2">
+                                <Card style={{ width: '25rem', height: '15rem', fontSize: "1.25rem"}} className="ml-2">
                                     <Card.Body>
                                         <Card.Title>WORKOUT PLANS</Card.Title>
                                         <Card.Text>
@@ -100,7 +101,7 @@ class Dashboard extends Component {
 
                             {/*Row containing second set of Nav Cards*/}
                             <Row style={{justifyContent: "Center"}}>
-                                <Card style={{ width: '20rem', height: '15rem'}}>
+                                <Card style={{ width: '25rem', height: '15rem', fontSize: "1.25rem"}}>
                                     {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
                                     <Card.Body>
                                         <Card.Title>CONTACT US</Card.Title>
@@ -111,7 +112,7 @@ class Dashboard extends Component {
                                         <Button variant="primary" as={Link} to="/contact">Go to Contact</Button>
                                     </Card.Body>
                                 </Card>
-                                <Card style={{ width: '20rem', height: '15rem' }} className="ml-2">
+                                <Card style={{ width: '25rem', height: '15rem', fontSize: "1.25rem" }} className="ml-2">
                                     <Card.Body>
                                         <Card.Title>MY PROFILE</Card.Title>
                                         <Card.Text>
