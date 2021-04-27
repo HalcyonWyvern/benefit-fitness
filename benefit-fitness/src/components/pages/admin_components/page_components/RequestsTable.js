@@ -59,7 +59,7 @@ export default function RequestsTable () {
                         onPageChange={page => setCurrentPage(page)}
                     />*/}
                     <Pagination
-                        style={{backgroundColor: "white"}}
+                        style={{backgroundColor: "white", boxShadow: "none",}}
                         count={data.length}
                         boundaryCount={2}
                         onChange={handleChange}

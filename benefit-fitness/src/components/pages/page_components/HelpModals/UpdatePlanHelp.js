@@ -1,7 +1,7 @@
 import {Button, Modal} from "react-bootstrap";
 import React from 'react';
 
-const AddPlanHelp = () => {
+const UpdatePlanHelp = () => {
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => setOpen(true);
@@ -34,13 +34,13 @@ const AddPlanHelp = () => {
                     textAlign: "left",
                     verticalAlign: "middle"
                 }}>
-                    <h3>Creating a New Plan</h3>
+                    <h3>Modifying an Existing Plan</h3>
                     <p style={{fontSize: "1.15rem"}}>
-                        Plans, by default, do not come with exercises within them. The "Create a New Plan"
-                        tool is designed to create an empty plan which you can then add exercises into.
+                        Plans, by default, do not come with exercises within them. If you are trying to add exercises,
+                        please hit <strong>TOGGLE DETAILS</strong> and select <strong>ADD EXERCISE.</strong>
                     </p>
                     <p style={{fontSize: "1.15rem"}}>
-                        In order to create a plan you must give it a name and use the <strong>SUBMIT </strong>
+                        In order to modify this plan you must give it a name and use the <strong>SUBMIT </strong>
                         button at the bottom of the form.
                     </p>
                     <h3>Field Information</h3>
@@ -66,4 +66,4 @@ const AddPlanHelp = () => {
     )
 }
 
-export default AddPlanHelp;
+export default UpdatePlanHelp;
