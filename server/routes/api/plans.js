@@ -108,7 +108,7 @@ router.put("/:id",
 router.put("/add/:id",
     [passport.authenticate("jwt", { session: false }), isAdmin],
     (req, res) => {
-        Exercise.findOne({exerciseName: req.body.exercise}).then(exercise => {
+        Exercise.findOne({_id: req.body.exercise}).then(exercise => {
             if(exercise) {
                 Plan.findByIdAndUpdate(
                     {_id: req.params.id},
