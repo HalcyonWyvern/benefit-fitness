@@ -39,10 +39,7 @@ const PlansTable = () => {
     const [planShown, setPlanShown] = useState([]);
     const [showState, setShowState] = useState("");
 
-
     const ITEMS_PER_PAGE = 5;
-
-
 
     useEffect(() => {
         const getPlans = () => {
@@ -53,7 +50,7 @@ const PlansTable = () => {
                     const plan = response.data
                     // this.setState({ choices: exercise})
                     setPlans(plan);
-                    console.log(response.data);
+                    console.log(plan);
                 })
                 .catch(() => {
                     alert('Error');
@@ -191,9 +188,10 @@ const PlansTable = () => {
                                         </tr>
                                         <tr>
                                             <td style={{fontSize: "1.20rem"}} colSpan="4"><h5>Exercises:</h5> {plan.exercises.map(option =>
+
                                                 <ListGroup as="ul">
-                                                    <ListGroup.Item action onClick={() => showThis(option._id)}>{option.exerciseName}</ListGroup.Item>
-                                                    <ExerciseModal exerciseData={option} showState={(showState === option._id)} hideModal={hideThis}/>
+                                                    <ListGroup.Item action onClick={() => showThis(option._id)}>Exercise: {option.exerciseID.exerciseName}, {' '} Sets: {option.sets}, {' '} Reps: {option.reps}, {' '} Time: {option.time}</ListGroup.Item>
+                                                    <ExerciseModal exerciseData={option.exerciseID} showState={(showState === option._id)} hideModal={hideThis}/>
                                                 </ListGroup>
                                             )}
                                             </td>

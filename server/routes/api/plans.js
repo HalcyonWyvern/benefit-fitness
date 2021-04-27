@@ -42,11 +42,18 @@ router.post("/",
 router.get("/",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-    Plan.find()
-        .populate("exercises")
-        .sort({ type: -1 }) // descending order
-        .then(plans => res.json(plans));
-});
+        Plan.find()
+            .populate({
+                path: "exercises",
+                populate: {
+                    path: "exerciseID",
+                    select: "exerciseName videoURL instructions equipment exerciseType"
+                }
+            })
+            // .populate("exerciseID")
+            .sort({ type: -1 }) // descending order
+            .then(plans => res.json(plans));
+    });
 
 // @route GET api/plans/:id
 // @desc Get Workout Plan by ID
@@ -54,10 +61,18 @@ router.get("/",
 router.get("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-    Plan.findById({_id: req.params.id })
-        .populate("exercises", "exerciseName")
-        .then(plan => res.json(plan));
-})
+        Plan.findById({_id: req.params.id })
+            .populate({
+                path: "exercises",
+                populate: {
+                    path: "exerciseID",
+                    select: "exerciseName videoURL instructions equipment exerciseType"
+
+                }
+            })
+            // .populate("exerciseID", "exerciseName")
+            .then(plan => res.json(plan));
+    })
 
 // @route DELETE api/plans/:id
 // @desc Delete workout plan by ID
@@ -76,6 +91,7 @@ router.delete("/:id",
 })
 
 //@route PUT api/plans/:id
+//@desc Updates plan information
 router.put("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
@@ -92,27 +108,32 @@ router.put("/:id",
 router.put("/add/:id",
     [passport.authenticate("jwt", { session: false }), isAdmin],
     (req, res) => {
-    Exercise.findOne({_id: req.body.exercise}).then(exercise => {
-        if(exercise) {
-            Plan.findByIdAndUpdate(
-                {_id: req.params.id},
-                {
-                    $push: {
-                        exercises: exercise
-                    }
-                },
-                {new: true}
+        Exercise.findOne({exerciseName: req.body.exercise}).then(exercise => {
+            if(exercise) {
+                Plan.findByIdAndUpdate(
+                    {_id: req.params.id},
+                    {
+                        $push: {
+                            exercises: {
+                                exerciseID: exercise,
+                                reps: req.body.reps,
+                                sets: req.body.sets,
+                                time: req.body.time
+                            }
+                        }
+                    },
+                    {new: true}
                 )
-                .populate("exercises", "exerciseName")
-                .then(plan => {
+                    .populate("exercise", "exerciseName")
+                    .then(plan => {
                         res.json(plan)
                     })
-                .catch(err => console.log(err));
-        } else {
-            return res.status(404).json({exercise: "Exercise not found!"})
-        }
+                    .catch(err => console.log(err));
+            } else {
+                return res.status(404).json({exercise: "Exercise not found!"})
+            }
+        })
     })
-})
 
 // @route PUT api/plans/remove/:id
 // @desc Remove exercise from plan by exercise name

@@ -159,6 +159,7 @@ const PlansTable = () => {
                                             planID={plan._id}
                                             type={plan.type}
                                             explanation={plan.trainerExplanation}
+                                            tag={plan.tag}
                                         />
                                         <DeleteRequest requestID={plan._id} URI='/api/plans/'/>
                                     </td>
@@ -172,12 +173,12 @@ const PlansTable = () => {
                                             <td colSpan="4"><h5>Exercises:</h5> {plan.exercises.map(option =>
                                                 <Row>
                                                     <Col sm={8}>
-                                                <ListGroup as="ul">
-                                                    <ListGroup.Item>{option.exerciseName}</ListGroup.Item>
-                                                </ListGroup>
+                                                    <ListGroup as="ul">
+                                                        <ListGroup.Item>Exercise: {option.exerciseID.exerciseName}, {' '} Sets: {option.sets}, {' '} Reps: {option.reps}, {' '} Time: {option.time}</ListGroup.Item>
+                                                    </ListGroup>
                                                     </Col >
                                                     <Col sm={4}>
-                                                    <RemovePlanExercise planID={plan._id} exerciseName={option.exerciseName}/>
+                                                        <RemovePlanExercise planID={plan._id} exerciseName={option.exerciseID.exerciseName}/>
                                                     </Col>
                                                 </Row>
                                             )}
