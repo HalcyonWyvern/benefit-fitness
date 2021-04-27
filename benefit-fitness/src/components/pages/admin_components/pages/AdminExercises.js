@@ -167,6 +167,8 @@ const ExerciseTable = () => {
                                             type={name.exerciseType}
                                             video={name.videoURL}
                                             instructions={name.instructions}
+                                            sets={name.sets}
+                                            reps={name.reps}
                                         />
                                         {/*<Button variant="success" className="ml-2" onClick={UpdateExercise}>*/}
                                         {/*    Update Exercise*/}

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Modal} from "react-bootstrap";
 
-const AddExerciseHelp = () => {
+const UpdateExerciseHelp = () => {
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => setOpen(true);
@@ -27,18 +27,18 @@ const AddExerciseHelp = () => {
                 onHide={handleClose}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Adding to the Exercise Library</Modal.Title>
+                    <Modal.Title>Updating the Exercise Library</Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{
                     display: "inline-block",
                     textAlign: "left",
                     verticalAlign: "middle"
                 }}>
-                    <h3>Adding an Exercise</h3>
+                    <h3>Modifying an Exercise</h3>
                     <p style={{fontSize: "1.15rem"}}>
-                        In order to add an exercise, you must fill out all fields within
-                        the <strong>Required Details</strong> section. If any fields are left
-                        blank you will be unable to add the exercise to the database.
+                        When modifying an exercise, you are able to see the pre-existing values for each
+                        field for that exercise. Information is able to be modified and changed by the admin
+                        user. For information on each field, see below.
                     </p>
                     <p style={{fontSize: "1.15rem"}}>
                         When all required fields are filled out, hit the <strong>SUBMIT</strong> button at the
@@ -77,4 +77,4 @@ const AddExerciseHelp = () => {
     )
 }
 
-export default AddExerciseHelp;
+export default UpdateExerciseHelp;

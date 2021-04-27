@@ -1,6 +1,7 @@
 import React, {Component, useEffect} from "react";
 import axios from "axios";
-import {Button, Form, Modal} from "react-bootstrap";
+import {Button, Col, Form, Modal} from "react-bootstrap";
+import AddPlanHelp from "../../page_components/HelpModals/AddPlanHelp";
 
 
 class AddExercise extends Component {
@@ -114,6 +115,9 @@ class AddExercise extends Component {
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Create a New Plan.</Modal.Title>
+                        <Col>
+                            <AddPlanHelp/>
+                        </Col>
                     </Modal.Header>
 
                     <Modal.Body>

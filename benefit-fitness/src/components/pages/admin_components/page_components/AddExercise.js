@@ -125,12 +125,15 @@ class AddExercise extends Component {
                        scrollable
                 >
                     <Modal.Header closeButton>
-                            <Modal.Title>Create a new Exercise entry.</Modal.Title>
+                        <Modal.Title>Create a new Exercise entry.</Modal.Title>
+                        <Col sm={1}>
+                        <AddExerciseHelp/>
+                        </Col>
                     </Modal.Header>
 
                     <Modal.Body>
-                        <AddExerciseHelp/>
                         <Form onSubmit={this.onSubmit}>
+                            <h4>Required Details</h4>
                             <Form.Group>
                                 <Form.Label style={{fontSize: "1.15rem"}}>Exercise Name</Form.Label>
                                 <Form.Control
@@ -268,9 +271,13 @@ class AddExercise extends Component {
                                 </Col>
                             </Form.Row>
                             <p>{' '}</p>
-                            <Button variant="primary" type="submit">
-                                Submit
-                            </Button>
+                            <Form.Row>
+                                <Col sm={1}>
+                                    <Button variant="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Col>
+                            </Form.Row>
                         </Form>
                     </Modal.Body>
                 </Modal>

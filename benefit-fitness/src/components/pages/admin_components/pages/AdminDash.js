@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Button, Card, Container, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import UserTable from "../page_components/UserTable";
+import UserTableHelp from "../../page_components/HelpModals/UserTableHelp";
 
 class AdminDash extends Component {
 
@@ -42,8 +43,15 @@ class AdminDash extends Component {
                 <Row>
                     {/*Misc. actions in this row*/}
                     <Card style={{ width: '80rem', height: '45rem'}}>
-                        <Card.Header><Card.Title>User Table</Card.Title></Card.Header>
+                        <Card.Header>
+
+                            <Card.Title style={{fontSize: "2rem"}}>User Table</Card.Title>
+
+                        </Card.Header>
                         <UserTable/>
+                        <Card.Footer>
+                            <UserTableHelp/>
+                        </Card.Footer>
                     </Card>
                 </Row>
             </Container>

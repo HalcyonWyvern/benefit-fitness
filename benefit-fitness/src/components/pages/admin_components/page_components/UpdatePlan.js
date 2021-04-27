@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Button, Form, Modal} from "react-bootstrap";
+import {Button, Col, Form, Modal, Row} from "react-bootstrap";
+import UpdatePlanHelp from "../../page_components/HelpModals/UpdatePlanHelp";
 
 class UpdatePlan extends Component {
     constructor(props) {
@@ -96,7 +97,12 @@ class UpdatePlan extends Component {
                        scrollable
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title>Update Plan Details</Modal.Title>
+                        <Row>
+                            <Modal.Title>Update Plan Details</Modal.Title>
+                            <Col>
+                                <UpdatePlanHelp/>
+                            </Col>
+                        </Row>
                     </Modal.Header>
 
                     <Modal.Body>
