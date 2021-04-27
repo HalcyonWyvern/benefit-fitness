@@ -147,8 +147,11 @@ router.put("/remove/:id",
                 Plan.findByIdAndUpdate(
                     {_id: req.params.id},
                     {
-                        $pullAll: {
-                            exercises: [exercise]
+                        $pull: {
+                            exercises: {
+                                //_id: [req.body.id]
+                                exerciseID: exercise
+                            }
                         }
                     },
                     {new: true, safe: true}

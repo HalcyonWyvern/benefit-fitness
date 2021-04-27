@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from "axios";
-import {Button, Form, Modal} from "react-bootstrap";
+import {Button, Col, Form, Modal} from "react-bootstrap";
 import PropTypes from "prop-types";
 import { Typeahead } from 'react-bootstrap-typeahead';
 import {connect} from "react-redux";
@@ -11,6 +11,9 @@ class AddPlanExercises extends Component {
 
         this.state = {
             exercise: "",
+            reps: "",
+            sets: "",
+            time: "",
             choices: [],
             isOpen: false
         }
@@ -71,7 +74,10 @@ class AddPlanExercises extends Component {
         if (isValid) {
 
             const added = {
-                exercise: this.state.exercise
+                exercise: this.state.exercise,
+                reps: this.state.reps,
+                sets: this.state.sets,
+                time: this.state.time
             }
             console.log(added);
 
@@ -111,7 +117,7 @@ class AddPlanExercises extends Component {
 
                     <Modal.Body>
                         <Form onSubmit={this.onSubmit}>
-                            <Form.Group style={{paddingBottom: "3rem"}}>
+                            <Form.Group style={{paddingBottom: "0.15rem"}}>
                                 <Form.Label style={{fontSize: "1.15rem"}}>Select an Exercise</Form.Label>
                                 <Typeahead
                                     id="exercise"
@@ -124,29 +130,56 @@ class AddPlanExercises extends Component {
                                     }}
                                     options={this.state.choices}
                                     value={this.state.exercise}
-                                    placeholder="Search or scroll to select an Exercise."
+                                    placeholder="Search or scroll to select an exercise."
                                     as="box"
                                 />
-
-
-
-                                {/*<Form.Control*/}
-                                {/*    style={{fontSize: "1.15rem"}}*/}
-                                {/*    onChange={this.onChange}*/}
-                                {/*    value={this.state.exercise}*/}
-                                {/*    name="exercise"*/}
-                                {/*    id="exercise"*/}
-                                {/*    as="select"*/}
-                                {/*    size="lg"*/}
-                                {/*    htmlSize={10}*/}
-                                {/*>*/}
-                                {/*    <option>Select an Exercise to Add</option>*/}
-                                {/*    {this.state.choices.map(data =>*/}
-                                {/*        <option>{data.exerciseName}</option>*/}
-                                {/*    )}*/}
-
-                                {/*</Form.Control>*/}
                             </Form.Group>
+
+                            <h3>Optional Customization</h3>
+                            <Form.Row>
+                                <Col>
+                                    <Form.Group>
+                                        <Form.Label style={{fontSize: "1.15rem"}}>Reps</Form.Label>
+                                        <Form.Control
+                                            style={{fontSize: "1.15rem"}}
+                                            onChange={this.onChange}
+                                            value={this.state.reps}
+                                            name="reps"
+                                            id="reps"
+                                            placeholder="Customized Reps"
+                                            type="box"
+                                        />
+                                    </Form.Group>
+
+                                    <Form.Group>
+                                        <Form.Label style={{fontSize: "1.15rem"}}>Sets</Form.Label>
+                                        <Form.Control
+                                            style={{fontSize: "1.15rem"}}
+                                            onChange={this.onChange}
+                                            value={this.state.sets}
+                                            name="sets"
+                                            id="sets"
+                                            placeholder="Customized Sets"
+                                            type="box"
+                                        />
+                                    </Form.Group>
+                                </Col>
+                            </Form.Row>
+
+                            <Form.Group>
+                                <Form.Label style={{fontSize: "1.15rem"}}>Time in Seconds</Form.Label>
+                                <Form.Control
+                                    style={{fontSize: "1.15rem"}}
+                                    onChange={this.onChange}
+                                    value={this.state.time}
+                                    name="time"
+                                    id="time"
+                                    placeholder="Time in Seconds"
+                                    type="box"
+                                />
+                            </Form.Group>
+
+
                             <Button variant="primary" type="submit">
                                 Submit
                             </Button>

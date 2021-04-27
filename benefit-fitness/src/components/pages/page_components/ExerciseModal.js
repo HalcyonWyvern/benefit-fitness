@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player/lazy'
 
 
 
-const ExerciseModal = ({exerciseData, showState, hideModal}) => {
+const ExerciseModal = ({exerciseData, showState, hideModal, sets, reps, time}) => {
     return (
         <Modal size="xl" show={showState} onHide={hideModal}
                style={{
@@ -18,7 +18,9 @@ const ExerciseModal = ({exerciseData, showState, hideModal}) => {
                scrollable
         >
             <Modal.Header closeButton>
-                <Modal.Title>{exerciseData.exerciseName}</Modal.Title>
+                <Modal.Title>
+                    {exerciseData.exerciseName} | Sets: {sets} | Reps: {reps} | Timer: {time} Seconds
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Container>
