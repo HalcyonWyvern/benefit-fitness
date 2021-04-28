@@ -4,6 +4,7 @@ import axios from "axios";
 import PaginationComponent from "./page_components/PaginationComponent"
 import Search from "./page_components/Search";
 import ReactPlayer from "react-player/lazy";
+import UserExercisesHelp from "./page_components/HelpModals/UserExercisesHelp";
 
 
 class Exercises extends Component {
@@ -14,7 +15,7 @@ class Exercises extends Component {
 
             <>
                 <Container style={{marginBottom: '20rem', marginTop: '2.5rem'}}>
-                    <h2>Exercise Library</h2>
+                    <h2>Exercise Library <UserExercisesHelp/></h2>
                     <ExerciseTable />
                 </Container>
             </>

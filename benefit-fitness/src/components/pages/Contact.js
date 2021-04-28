@@ -5,6 +5,7 @@ import { Alert } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import axios from "axios";
+import ContactPageHelp from "./page_components/HelpModals/ContactPageHelp";
 
 class Contact extends Component {
     constructor(props) {
@@ -109,13 +110,21 @@ class Contact extends Component {
         return (
                 <Container style={{paddingBottom: "10rem", paddingTop: "2.5rem"}}>
 
-                   {/* <Row>
+                   <Row>
                         <Col>
                             <h2>Benefit Fitness Contact Information</h2>
-                            <p style={{fontSize: "1.5rem"}}>Benefit Fitness</p>
+                            <p style={{fontSize: "1.35rem"}}>
+                                Benefit Fitness is available to contact by phone at (314)-800-7051 or online by email
+                                at sam@benefitfitness.org.
+                            </p>
+                            <p style={{fontSize: "1.35rem"}}>
+                                Online requests are handled through this form and will be submitted into our
+                                contact request database for our administrators to view. If you have any questions or
+                                comments, please feel free to use our system or give us an email or phone call.
+                            </p>
                         </Col>
 
-                    </Row>*/}
+                    </Row>
 
 
                     <Alert color="info" isOpen={this.state.visible} toggle={this.onDismiss}>
@@ -124,7 +133,7 @@ class Contact extends Component {
                     </Alert>
                     <Row>
                         <Col>
-                            <h2>Contact Us!</h2>
+                            <h2>Contact Us! <ContactPageHelp/></h2>
                             <p style={{fontSize: "1.30rem"}}>Please provide us with some basic information in this form and we will reach out to you shortly.</p>
 
                         </Col>

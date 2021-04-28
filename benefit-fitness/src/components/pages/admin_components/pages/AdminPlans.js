@@ -9,6 +9,7 @@ import DeleteRequest from "../page_components/DeleteRequest"
 import AddPlanExercises from "../page_components/AddPlanExercises";
 import UpdatePlan from "../page_components/UpdatePlan"
 import RemovePlanExercise from "../page_components/RemovePlanExercise";
+import AdminPlanHelp from "../../page_components/HelpModals/AdminPlanHelp";
 
 class AdminPlans extends Component {
 
@@ -104,7 +105,7 @@ const PlansTable = () => {
 
     return (
         <>
-            <h3>Find Plans Here</h3>
+            <h3>Find Plans Here <AdminPlanHelp/></h3>
             <div >
                 <div >
                     <Row>

@@ -7,6 +7,7 @@ import BackToDashButton from "../page_components/BackToDashButton"
 import Search from "../../page_components/Search";
 import UpdateExercise from "../../admin_components/page_components/UpdateExercise";
 import DeleteRequest from "../page_components/DeleteRequest";
+import AdminExercisesHelp from "../../page_components/HelpModals/AdminExercisesHelp";
 
 class AdminExercises extends Component {
 
@@ -107,7 +108,7 @@ const ExerciseTable = () => {
 
     return (
         <>
-            <h2>Exercise Management</h2>
+            <h2>Exercise Management <AdminExercisesHelp/></h2>
             <div >
                 <div >
                     <Row>

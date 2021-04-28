@@ -11,9 +11,9 @@ class AddPlanExercises extends Component {
 
         this.state = {
             exercise: "",
-            reps: "",
-            sets: "",
-            time: "",
+            reps: "12",
+            sets: "3",
+            time: "60",
             choices: [],
             isOpen: false
         }

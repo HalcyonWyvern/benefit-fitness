@@ -6,6 +6,7 @@ import axios from "axios";
 import UpdateProfile from "./page_components/UpdateProfile"
 import ProfileUpdateAcc from "./page_components/ProfileUpdateAcc";
 import {Link} from "react-router-dom";
+import MyAccountHelp from "./page_components/HelpModals/MyAccountHelp";
 
 class Profile extends Component {
 
@@ -46,7 +47,9 @@ class Profile extends Component {
             <Container>
                 <p>{' '}</p>
                 <Row>
-
+                    <Col>
+                        <MyAccountHelp/>
+                    </Col>
                 </Row>
                 <Row>
                     <Col>

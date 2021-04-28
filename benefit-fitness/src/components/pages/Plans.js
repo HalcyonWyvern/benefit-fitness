@@ -4,6 +4,7 @@ import axios from "axios";
 import PaginationComponent from "./page_components/PaginationComponent";
 import Search from "./page_components/Search";
 import ExerciseModal from "./page_components/ExerciseModal";
+import UserPlanHelp from "./page_components/HelpModals/UserPlanHelp";
 
 class Plans extends Component {
 
@@ -126,7 +127,7 @@ const PlansTable = () => {
 
     return (
         <>
-            <h2>Plan Library</h2>
+            <h2>Plan Library <UserPlanHelp/></h2>
             <div>
                 <div >
                     <div>

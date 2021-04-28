@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import {Button, Card, Container, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import UserDashHelp from "../pages/page_components/HelpModals/UserDashHelp";
 
 class Dashboard extends Component {
     onLogoutClick = e => {
@@ -44,7 +45,8 @@ class Dashboard extends Component {
                                         <b>Hey there,</b> {user.username.split(" ")[0]}
                                         <p className="flow-text grey-text text-darken-1">
                                             You are logged into{" "}
-                                            <span style={{ fontFamily: "monospace" }}>BENEFIT FITNESS</span>
+                                            <span style={{ fontFamily: "monospace" }}>BENEFIT FITNESS </span>
+                                            <UserDashHelp/>
                                         </p>
                                     </h4>
                                     <button
