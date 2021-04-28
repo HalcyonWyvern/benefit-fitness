@@ -44,7 +44,7 @@ class Profile extends Component {
         let username = user.username;
         let x = username.charAt(0).toUpperCase() + username.slice(1);
         return (
-            <Container>
+            <Container style={{paddingBottom: "15rem"}}>
                 <p>{' '}</p>
                 <Row>
                     <Col>
