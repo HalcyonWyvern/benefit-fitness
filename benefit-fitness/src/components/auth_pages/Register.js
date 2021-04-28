@@ -54,7 +54,7 @@ class Register extends Component {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             address: this.state.address,
-            city: this.state.address,
+            city: this.state.city,
             state: this.state.state,
             zip: this.state.zip,
             password: this.state.password,
