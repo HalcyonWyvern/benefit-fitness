@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
 import axios from "axios";
+import RegisterHelp from "../pages/page_components/HelpModals/RegisterHelp";
 
 
 class Register extends Component {
@@ -76,7 +77,7 @@ class Register extends Component {
                         </Link>
                         <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                             <h4>
-                                <b>Register</b> Below
+                                <b>Register</b> Below <RegisterHelp/>
                             </h4>
                             <p className="grey-text text-darken-1">
                                 Already have an account? <Link to="/login">Log in</Link>
