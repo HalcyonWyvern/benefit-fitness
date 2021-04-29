@@ -33,31 +33,71 @@ class UpdateProfile extends Component {
         this.setState({ [e.target.id]: e.target.value });
     };
 
+    valid = () => {
+        let bioErr = "";
+        let heightErr = "";
+        let weightErr = "";
+        let goalErr = "";
+
+
+        if (!this.state.bio) {
+            bioErr = "Please include a bio."
+        }
+
+        if (!this.state.height || !Number(this.state.height)) {
+            heightErr = "Please list your height as a number, or enter '1'"
+        }
+
+        if (!this.state.weight || !Number(this.state.weight)) {
+            weightErr = "Please list your weight as a number, or enter '1'."
+        }
+
+        if (!this.state.exerciseGoal || this.state.exerciseGoal === "Please Choose an Option") {
+            goalErr = "Please include an exercise goal."
+        }
+
+
+        if (bioErr || heightErr || weightErr || goalErr) {
+            this.setState({
+                bioErr,
+                heightErr,
+                weightErr,
+                goalErr
+            });
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     onSubmit = e => {
         e.preventDefault();
         const {user} = this.props.auth;
-        const newRequest = {
-            bio: this.state.bio,
-            height: this.state.height,
-            weight: this.state.weight,
-            exerciseGoal: this.state.exerciseGoal
+        const isValid = this.valid();
+        if(isValid) {
+            const newRequest = {
+                bio: this.state.bio,
+                height: this.state.height,
+                weight: this.state.weight,
+                exerciseGoal: this.state.exerciseGoal
+            }
+            console.log(newRequest);
+
+            axios
+                .put('/api/profile/' + user.username, newRequest)
+                .then(res => console.log(res.data));
+
+            this.setState({
+                isOpen: false,
+                bio: "",
+                height: "",
+                weight: "",
+                exerciseGoal: "",
+            })
+
+            //Refreshes the profile page to show new data
+            window.location.reload(false);
         }
-        console.log(newRequest);
-
-        axios
-            .put('/api/profile/' + user.username, newRequest)
-            .then(res => console.log(res.data));
-
-        this.setState({
-            isOpen: false,
-            bio: "",
-            height: "",
-            weight: "",
-            exerciseGoal: "",
-        })
-
-        //Refreshes the profile page to show new data
-        window.location.reload(false);
     }
 
     render() {
@@ -87,16 +127,25 @@ class UpdateProfile extends Component {
                                 <Form.Label>Bio</Form.Label>
                                 <Form.Control onChange={this.onChange} value={this.state.bio} name="bio" id="bio" as="textarea"/>
                             </Form.Group>
+                            <div style={{fontSize: 12, color: "red"}}>
+                                {this.state.bioErr}
+                            </div>
 
                             <Form.Group>
                                 <Form.Label>Height</Form.Label>
                                 <Form.Control onChange={this.onChange} value={this.state.height} name="height" id="height" placeholder="Height in inches"/>
                             </Form.Group>
+                            <div style={{fontSize: 12, color: "red"}}>
+                                {this.state.heightErr}
+                            </div>
 
                             <Form.Group>
                                 <Form.Label>Weight</Form.Label>
                                 <Form.Control onChange={this.onChange} value={this.state.weight} name="weight" id="weight" placeholder="Weight in lbs"/>
                             </Form.Group>
+                            <div style={{fontSize: 12, color: "red"}}>
+                                {this.state.weightErr}
+                            </div>
 
                             <Form.Group>
                                 <Form.Label>Exercise Goal</Form.Label>
@@ -107,6 +156,10 @@ class UpdateProfile extends Component {
                                     <option>Physical Health/Wellness</option>
                                 </Form.Control>
                             </Form.Group>
+                            <div style={{fontSize: 12, color: "red", paddingBottom: 5}}>
+                                {this.state.goalErr}
+                            </div>
+
                             <Button variant="primary" type="submit">
                                 Save Changes
                             </Button>
