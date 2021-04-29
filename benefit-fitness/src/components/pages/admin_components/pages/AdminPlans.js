@@ -175,7 +175,8 @@ const PlansTable = () => {
                                                 <Row>
                                                     <Col sm={8}>
                                                     <ListGroup as="ul">
-                                                        <ListGroup.Item>Exercise: {option.exerciseID.exerciseName}, {' '} Sets: {option.sets}, {' '} Reps: {option.reps}, {' '} Time: {option.time}</ListGroup.Item>
+                                                        <ListGroup.Item><h5>{option.exerciseID.exerciseName}</h5> {' '} Sets: {option.sets}, {' '} Reps: {option.reps}, {' '} Time: {option.time}</ListGroup.Item>
+                                                        {/*<ListGroup.Item>Exercise: {option.exerciseID.exerciseName}, {' '} Sets: {option.sets}, {' '} Reps: {option.reps}, {' '} Time: {option.time}</ListGroup.Item>*/}
                                                     </ListGroup>
                                                     </Col >
                                                     <Col sm={4}>

@@ -191,7 +191,7 @@ const PlansTable = () => {
                                             <td style={{fontSize: "1.20rem"}} colSpan="4"><h5>Exercises:</h5> {plan.exercises.map(option =>
 
                                                 <ListGroup as="ul">
-                                                    <ListGroup.Item action onClick={() => showThis(option._id)}>{option.exerciseID.exerciseName}</ListGroup.Item>
+                                                    <ListGroup.Item action onClick={() => showThis(option._id)}><h5>{option.exerciseID.exerciseName}</h5> {' '} Sets: {option.sets}, {' '} Reps: {option.reps}, {' '} Time: {option.time}</ListGroup.Item>
                                                     <ExerciseModal exerciseData={option.exerciseID} showState={(showState === option._id)} hideModal={hideThis} sets={option.sets} reps={option.reps} time={option.time}/>
                                                 </ListGroup>
                                             )}
