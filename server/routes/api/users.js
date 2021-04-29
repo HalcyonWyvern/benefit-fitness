@@ -159,17 +159,20 @@ router.get('/',
 //@route DELETE api/users/:id
 //@desc delete a user by their _id (as parameter)
 //@access Private
-router.delete('/:id',
-    [passport.authenticate("jwt", { session: false }), isAdmin],
+router.delete('/:username',
+    [passport.authenticate("jwt", {session: false}), isAdmin],
     (req, res) => {
-    User.findByIdAndDelete({ _id: req.params.id })
-        .then(user => {
-            res.json({ user, success: true})
+        User.findOne({username: req.params.username}).then(user => {
+            User.findByIdAndDelete({_id: user._id})
+                .then(user => {
+                    res.json({user, success: true})
+                })
+                .catch(err => {
+                    res.status(404).json({success: false})
+                    console.log(err)
+                })
         })
-        .catch(err => {
-            res.status(404).json({ success: false })
-            console.log(err)
-        })
-});
+            .catch(err => console.log("User Not Found"))
+    });
 
 module.exports = router;

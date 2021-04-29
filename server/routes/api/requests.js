@@ -53,17 +53,20 @@ router.get("/user/:id",
         .then(request => res.json(request))
 });
 
-// @route GET api/requests/user/
-// @desc Get all requests from one user by inputting their username
+// @route Delete api/requests/
+// @desc Delete all users requests
 // @access Private
-router.get("/user",
+router.delete("/user/:username",
     [passport.authenticate("jwt", { session: false }), isAdmin],
     (req, res) =>{
-    User.findOne({ username: req.body.username }).then(user => {
-        Request.find({ user: user})
-            .populate("user", "email")
-            .then(request => res.json(request))
+    User.findOne({ username: req.params.username }).then(user => {
+        Request.deleteMany({ user: user._id})
+            .then(request => res.json({request, success: true}))
+            .catch(err => {
+                console.log(err)
+            })
     })
+        .catch(err => console.log("User Not Found"))
 });
 
 // @route PUT api/requests/:id
