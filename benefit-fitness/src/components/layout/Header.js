@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import {Container, Nav, Navbar} from "react-bootstrap";
 import bannerLogo from '../images/BenefitLogo1.png';
 
+
+
 class Header extends Component {
     // constructor(props) {
     //     super(props);
@@ -19,13 +21,13 @@ class Header extends Component {
         return (
             <div>
                 <Container className="p-0" fluid={true}>
-                    <Navbar style={{height: 65}} className="navbar-light border-dark border-bottom" bg="primary" expand="lg">
-                        <Navbar.Brand as={Link} to="/" className="text-white">
+                    <Navbar style={{height: 65, whiteSpace: "nowrap"}} className="navbar-light border-dark border-bottom" bg="primary" expand="lg">
+                        <Navbar.Brand as={Link} to="/" className="text-white" style={{fontSize: 35}}>
                             <img
                                 alt=""
                                 src={bannerLogo}
-                                width="40"
-                                height="40"
+                                width="50"
+                                height="50"
                                 className="d-inline-block align-self-center"
                                 />{' '}
                             STURGEON</Navbar.Brand>

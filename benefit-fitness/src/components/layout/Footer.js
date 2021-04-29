@@ -1,7 +1,7 @@
 //rcc
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
-import {Container, Nav, Navbar,} from "react-bootstrap";
+import {Container, Nav, Navbar, Row,} from "react-bootstrap";
 import bannerLogo2 from '../images/BenefitLogo2.png';
 import Facebooky from '../images/Facebook.png'
 import Insta from '../images/Insta1.jpg'
@@ -11,18 +11,18 @@ class Footer extends Component {
     render() {
         return (
             <div>
-                <Navbar style={{height: 70}} className="navbar-light border-top border-primary" fixed="bottom" bg="dark">
-                    <Navbar.Brand className="text-primary" as={Link} to="/about">
+                <Navbar style={{height: 70, whiteSpace: "nowrap"}} className="navbar-light border-top border-primary" fixed="bottom" bg="dark">
+                    <Navbar.Brand className="text-primary" as={Link} to="/about" style={{fontSize: 35}}>
                         <img
                             alt=""
                             src={bannerLogo2}
-                            width="40"
-                            height="40"
+                            width="50"
+                            height="50"
                             className="d-inline-block align-self-center"
                         /> {' '}
                         BENEFIT FITNESS
                     </Navbar.Brand>
-                    <Nav className="ml-auto">
+                    <Nav className="ml-auto" style={{fontSize: 20}}>
                         <Nav.Item>
                             Phone: (314) 800-7051
                         </Nav.Item>
@@ -37,8 +37,8 @@ class Footer extends Component {
                                     className="rounded-circle d-inline-block align-self-center"
                                     alt="100x100"
                                     src={Facebooky}
-                                    width="30"
-                                    height="30"
+                                    width="50"
+                                    height="50"
                                 />
                             </a>
                             <a target="_blank" href="https://www.instagram.com/benefit.fitness/">
@@ -47,8 +47,8 @@ class Footer extends Component {
                                     className="rounded-circle d-inline-block align-self-center"
                                     alt="100x100"
                                     src={Insta}
-                                    width="30"
-                                    height="30"
+                                    width="50"
+                                    height="50"
                                 />
                             </a>
                         </Nav.Item>
