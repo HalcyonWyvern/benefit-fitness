@@ -104,7 +104,7 @@ class Profile extends Component {
                     <Row>
                         <Col>
                         <h2>My Account Information</h2>
-                            <h6 style={{fontSize: "1.25rem"}}>Please use the <Link to="/contact">contact form</Link> if you need your email address changed.</h6>
+                            <h6 style={{fontSize: "1.25rem"}}>Please use the <Link to="/contact">contact form</Link> if you have any other questions about your account.</h6>
                         </Col>
                         <Col xs={6} md={2}>
                             <p>{' '}</p>
