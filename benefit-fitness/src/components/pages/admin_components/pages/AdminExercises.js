@@ -6,8 +6,8 @@ import PaginationComponent from "../../page_components/PaginationComponent";
 import BackToDashButton from "../page_components/BackToDashButton"
 import Search from "../../page_components/Search";
 import UpdateExercise from "../../admin_components/page_components/UpdateExercise";
-import DeleteRequest from "../page_components/DeleteRequest";
 import AdminExercisesHelp from "../../page_components/HelpModals/AdminExercisesHelp";
+import DeleteExercise from "../page_components/DeleteExercise";
 
 class AdminExercises extends Component {
 
@@ -29,7 +29,7 @@ const ExerciseTable = () => {
     const [totalItems, setTotalItems] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
-    const [sorting, setSorting] = useState({ field: "", order: "" });
+    const [sorting] = useState({ field: "", order: "" });
     // const [clicked, setClicked] = useState([]);
     const [exerciseShown, setExerciseShown] = useState([]);
 
@@ -174,7 +174,7 @@ const ExerciseTable = () => {
                                         {/*<Button variant="success" className="ml-2" onClick={UpdateExercise}>*/}
                                         {/*    Update Exercise*/}
                                         {/*</Button>*/}
-                                        <DeleteRequest requestID={name._id} URI='/api/exercises/'/>
+                                        <DeleteExercise requestID={name._id} URI='/api/exercises/' exerciseName={name.exerciseName}/>
                                     </td>
                                 </tr>
                                 {exerciseShown.includes(name.exerciseName) && (

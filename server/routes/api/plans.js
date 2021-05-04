@@ -166,4 +166,31 @@ router.put("/remove/:id",
         })
     })
 
+router.patch("/auto",
+    [passport.authenticate("jwt", { session: false }), isAdmin],
+    (req, res) => {
+        Exercise.findOne({exerciseName: req.body.exercise}).then(path => {
+            if(path) {
+                Plan.updateMany(
+                    {},
+                    {
+                        $pull: {
+                            exercises: {
+                                //_id: [req.body.id]
+                                exerciseID: path
+                            }
+                        }
+                    },
+                    {new: true, safe: true}
+                )
+                    .then(plan => {
+                        res.json(plan)
+                    })
+                    .catch(err => console.log(err))
+            } else {
+                return res.status(404).json({exercise: "Exercise not found!"})
+            }
+        })
+    })
+
 module.exports = router;
