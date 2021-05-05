@@ -141,6 +141,7 @@ const PlansTable = () => {
                         </div>
                         <div>
                             <Search
+                                placeholder="Search by Name, Type, or Tag"
                                 onSearch={value => {
                                     setSearch(value);
                                     setCurrentPage(1);

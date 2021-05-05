@@ -117,6 +117,7 @@ const PlansTable = () => {
                                 onPageChange={page => setCurrentPage(page)}
                             />
                             <Search
+                                placeholder="Search by Name, Type, or Tag"
                                 onSearch={value => {
                                     setSearch(value);
                                     setCurrentPage(1);

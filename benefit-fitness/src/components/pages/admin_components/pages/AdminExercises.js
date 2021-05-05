@@ -123,6 +123,7 @@ const ExerciseTable = () => {
 
 
                             <Search
+                                placeholder="Search by Name or Type"
                                 onSearch={value => {
                                     setSearch(value);
                                     setCurrentPage(1);
