@@ -50,7 +50,7 @@ class AddExercise extends Component {
             equipErr = "Please list the equipment required. If none is required, please specify that."
         }
 
-        if (!this.state.exerciseType) {
+        if (!this.state.exerciseType || this.state.exerciseType === "Please Choose the Exercise Type") {
             typeErr = "Please categorize the exercise."
         }
 

@@ -35,8 +35,8 @@ class ProfileUpdateAcc extends Component {
             stateErr = "State cannot be blank."
         }
 
-        if (!this.state.zip) {
-            zipErr = "Zip code cannot be blank."
+        if (!this.state.zip || isNaN(this.state.zip)) {
+            zipErr = "Zip code cannot be blank, and must be a number."
         }
 
         if (addressErr || cityErr || stateErr || zipErr) {

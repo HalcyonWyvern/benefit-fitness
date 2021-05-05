@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import axios from "axios";
 import {Button, Col, Form, Modal} from "react-bootstrap";
-import PropTypes from "prop-types";
+import PropTypes, {number} from "prop-types";
 import { Typeahead } from 'react-bootstrap-typeahead';
 import {connect} from "react-redux";
 
@@ -54,13 +54,32 @@ class AddPlanExercises extends Component {
 
     valid = () => {
         let exerciseErr = "";
+        let repsErr = "";
+        let setsErr = "";
+        let timeErr = "";
 
         if(!this.state.exercise) {
             exerciseErr = "Please choose an exercise"
         }
-        if (exerciseErr) {
+
+        if(!this.state.reps || isNaN(this.state.reps)) {
+            repsErr = "Please enter number of reps"
+        }
+
+        if(!this.state.sets || isNaN(this.state.sets)) {
+            setsErr = "Please enter number of sets"
+        }
+
+        if(!this.state.exercise || isNaN(this.state.time)) {
+            timeErr = "Please enter a number of seconds"
+        }
+
+        if (exerciseErr || repsErr || setsErr || timeErr) {
             this.setState({
                 exerciseErr,
+                repsErr,
+                setsErr,
+                timeErr
             });
             return false;
         } else {
@@ -135,6 +154,10 @@ class AddPlanExercises extends Component {
                                 />
                             </Form.Group>
 
+                            <div style={{fontSize: 12, color: "red"}}>
+                                {this.state.exerciseErr}
+                            </div>
+
                             <h3>Optional Customization</h3>
                             <Form.Row>
                                 <Col>
@@ -151,6 +174,10 @@ class AddPlanExercises extends Component {
                                         />
                                     </Form.Group>
 
+                                    <div style={{fontSize: 12, color: "red"}}>
+                                        {this.state.repsErr}
+                                    </div>
+
                                     <Form.Group>
                                         <Form.Label style={{fontSize: "1.15rem"}}>Sets</Form.Label>
                                         <Form.Control
@@ -163,6 +190,10 @@ class AddPlanExercises extends Component {
                                             type="box"
                                         />
                                     </Form.Group>
+
+                                    <div style={{fontSize: 12, color: "red"}}>
+                                        {this.state.setsErr}
+                                    </div>
                                 </Col>
                             </Form.Row>
 
@@ -178,6 +209,10 @@ class AddPlanExercises extends Component {
                                     type="box"
                                 />
                             </Form.Group>
+
+                            <div style={{fontSize: 12, color: "red"}}>
+                                {this.state.timeErr}
+                            </div>
 
 
                             <Button variant="primary" type="submit">

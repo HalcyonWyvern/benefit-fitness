@@ -34,15 +34,21 @@ class UpdatePlan extends Component {
 
     valid = () => {
         let nameErr = "";
+        let typeErr = "";
 
 
         if (!this.state.name) {
             nameErr = "Please name the Plan."
         }
 
+        if (!this.state.type || this.state.type === "Please Select a Plan Type") {
+            typeErr = "Please choose the type for the Plan."
+        }
+
         if (nameErr) {
             this.setState({
                 nameErr,
+                typeErr
             });
             return false;
         } else {
@@ -165,6 +171,10 @@ class UpdatePlan extends Component {
                                     <option>General Fitness</option>
                                 </Form.Control>
                             </Form.Group>
+
+                            <div style={{fontSize: 12, color: "red"}}>
+                                {this.state.typeErr}
+                            </div>
 
                             <Form.Group>
                                 <Form.Label style={{fontSize: "1.15rem"}}>Plan Tags</Form.Label>

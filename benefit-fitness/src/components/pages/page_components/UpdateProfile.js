@@ -44,12 +44,12 @@ class UpdateProfile extends Component {
             bioErr = "Please include a bio."
         }
 
-        if (!this.state.height || !Number(this.state.height)) {
-            heightErr = "Please list your height as a number, or enter '1'"
+        if (!this.state.height || isNaN(this.state.height)) {
+            heightErr = "Please list your height as a number, or enter '0'"
         }
 
-        if (!this.state.weight || !Number(this.state.weight)) {
-            weightErr = "Please list your weight as a number, or enter '1'."
+        if (!this.state.weight || isNaN(this.state.weight)) {
+            weightErr = "Please list your weight as a number, or enter '0'."
         }
 
         if (!this.state.exerciseGoal || this.state.exerciseGoal === "Please Choose an Option") {
