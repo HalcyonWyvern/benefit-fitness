@@ -30,7 +30,7 @@ class Header extends Component {
                                 height="50"
                                 className="d-inline-block align-self-center"
                                 />{' '}
-                            STURGEON</Navbar.Brand>
+                            BENEFIT FITNESS</Navbar.Brand>
 
                         <Navbar.Toggle className="border-0" aria-controls="navbar-toggle"/>
                         <Navbar.Collapse id="navbar-toggle">

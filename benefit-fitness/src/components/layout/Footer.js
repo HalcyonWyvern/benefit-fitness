@@ -12,7 +12,7 @@ class Footer extends Component {
         return (
             <div>
                 <Navbar style={{height: 70, whiteSpace: "nowrap"}} className="navbar-light border-top border-primary" fixed="bottom" bg="dark">
-                    <Navbar.Brand className="text-primary" as={Link} to="/about" style={{fontSize: 35}}>
+                    <Navbar.Brand className="text-primary" as={Link} to="/about" style={{fontSize: 30}}>
                         <img
                             alt=""
                             src={bannerLogo2}
@@ -20,7 +20,7 @@ class Footer extends Component {
                             height="50"
                             className="d-inline-block align-self-center"
                         /> {' '}
-                        BENEFIT FITNESS
+                        STURGEON
                     </Navbar.Brand>
                     <Nav className="ml-auto" style={{fontSize: 20}}>
                         <Nav.Item>
