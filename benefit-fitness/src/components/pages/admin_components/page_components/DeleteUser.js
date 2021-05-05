@@ -59,7 +59,7 @@ class DeleteUser extends Component {
             alert("Hello, Dr. Rottman. Do not delete the administrator.")
         }
     }
-S
+
     render() {
         return(
             <>
