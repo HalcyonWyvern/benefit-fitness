@@ -31,17 +31,18 @@ class DeleteUser extends Component {
     onSubmit = e => {
         e.preventDefault();
 
-        axios
-            .delete('/api/requests/user/' + this.state.username)
-            .then(res => {
-                console.log(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        if (this.state.username !== "administrator") {
+            axios
+                .delete('/api/requests/user/' + this.state.username)
+                .then(res => {
+                    console.log(res.data)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
 
-        axios
-            .delete('/api/users/' + this.state.username)
+            axios
+                .delete('/api/users/' + this.state.username)
                 .then(res => {
                     console.log(res.data)
                 })
@@ -53,7 +54,10 @@ class DeleteUser extends Component {
             this.setState({
                 username: "",
             })
-        window.location.reload(false);
+            window.location.reload(false);
+        } else {
+            alert("Hello, Dr. Rottman. Do not delete the administrator.")
+        }
     }
 S
     render() {
