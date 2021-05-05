@@ -50,6 +50,10 @@ const UserPlanHelp = () => {
                         or <strong>PLAN TYPE.</strong> In order to use the search tool, use the field
                         in the top left of the table and type in your query.
                     </p>
+                    <p style={{fontSize: "1.15rem"}}>
+                        <strong>Tag Searching</strong> is also supported by the search bar, so you can use the
+                        search bar to search by one or more tags that are included within the plan's TAG section.
+                    </p>
                     <h4>Viewing Plan Exercises</h4>
                     <p style={{fontSize: "1.15rem"}}>
                         In order to see the plan's exercises, you must toggle details and click on the exercise
