@@ -1,4 +1,4 @@
 module.exports = {
-    mongoURI: "mongodb+srv://ledermann:yzQtOXY5KjHIYBZw@cluster0.cnek4.mongodb.net/sturgeon?retryWrites=true&w=majority",
-    secretOrKey: "sturgeon-secret"
+    mongoURI: process.env.MONGO_URI,
+    secretOrKey: process.env.SECRET
 }
