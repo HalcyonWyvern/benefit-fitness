@@ -1,7 +1,7 @@
 //rcc
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
-import {Container, Nav, Navbar, Row,} from "react-bootstrap";
+import {Nav, Navbar} from "react-bootstrap";
 import bannerLogo2 from '../images/BenefitLogo2.png';
 import Facebooky from '../images/Facebook.png'
 import Insta from '../images/Insta1.jpg'
@@ -19,8 +19,7 @@ class Footer extends Component {
                             width="50"
                             height="50"
                             className="d-inline-block align-self-center"
-                        /> {' '}
-                        STURGEON
+                        />
                     </Navbar.Brand>
                     <Nav className="ml-auto" style={{fontSize: 20}}>
                         <Nav.Item>
@@ -54,9 +53,6 @@ class Footer extends Component {
                         </Nav.Item>
                     </Nav>
                 </Navbar>
-                {/*<Card.Footer fixed="bottom">*/}
-                {/*    Benefit Fitness*/}
-                {/*</Card.Footer>*/}
             </div>
         );
     }
