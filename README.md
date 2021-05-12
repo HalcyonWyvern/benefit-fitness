@@ -1,5 +1,5 @@
 # Sturgeon [![NPM Version][npm-image]][npm-url]
-  Web Application built using MongoDB, Express, React, and Node.
+  Web Application built using MongoDB, Express, React, and Node. You can create an account, log new exercises, and create plans from the exercises stored within your database.     Built completely in 6 weeks for the final capstone course at the University of Missouri St. Louis
 
 
 ## Contributing -- Please Read
