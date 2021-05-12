@@ -11,8 +11,9 @@
 5. Push to the branch (`git push origin feature/exampleOne`)
 6. Create a new Pull Request
 
-## About
-  This is a Work-In-Progress.
+## Team Members
+* **Backend Development** -- Luke Ledermann
+* **Frontend Development** -- Nick Tedesco
 
 
 
